@@ -1,0 +1,1 @@
+// Javascript will be used to provide the interactive elements of our site.

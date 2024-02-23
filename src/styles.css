@@ -1,0 +1,61 @@
+/*Placeholder CSS*/
+body {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light gray text for readability */
+    font-family: 'Inter', sans-serif; /* Modern, clean font */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-weight: 700; /* Bold headings for structure */
+    color: #ffffff; /* Bright white for headings to stand out */
+    margin-top: 20px;
+}
+
+a {
+    color: #bb86fc; /* Soft purple for links, provides a nice pop */
+    text-decoration: none; /* No underline for a cleaner look */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover for accessibility */
+}
+
+.container {
+    max-width: 800px; /* Optimal line length for readability */
+    margin: auto;
+    background: #1e1e1e; /* Slightly lighter dark shade for content background */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5); /* More pronounced shadow for depth on dark themes */
+    border-radius: 8px; /* Rounded corners for a softer look */
+}
+
+/* Additional styling for forms and buttons if needed */
+input, button {
+    background-color: #333;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #444; /* Lighten button background on hover */
+}
+
+/* Style adjustments for better contrast and visibility */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #bb86fc; /* Soft purple scrollbar thumb */
+    border-radius: 6px;
+}
+

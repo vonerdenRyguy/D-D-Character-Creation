@@ -3,11 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!--A favicon is the icon that shows as the "tab icon"-->
     <link rel="icon" type="image" href="../assets/favicon.png">
+
+    <!--Link the CSS file styles.css-->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--Import font from Google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <!--Title bar of the site-->
     <title>DnD Character Creator</title>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>DnD Character Generator</h1>
+        </header>
     
+        <section>
+            <p>Generate your Dungeons & Dragons character with a click of a button. Customize your race, class, stats, and background to embark on your next adventure.</p>
+            <!--Buttons like this can have ids to be referenced by our script file-->
+            <button>Generate Character</button>
+
+            <div id="characterOutput">
+                <!-- Character information will be displayed here -->
+                <p><strong>Character Name:</strong> Elrandir</p>
+                <p><strong>Race:</strong> Elf</p>
+                <p><strong>Class:</strong> Wizard</p>
+                <p><strong>Background:</strong> Scholar</p>
+                <p><strong>Stats:</strong> Strength: 8, Dexterity: 14, Constitution: 13, Intelligence: 17, Wisdom: 12, Charisma: 10</p>
+            </div>
+        </section>
+    
+        <!--Sections divide content, just like divs-->
+        <section>
+            <h2>Information</h2>
+            <p>Credits/Description/Etc.</p>
+        </section>
+    
+        <footer>
+            <p>&copy; 2024 DnD Character Generator. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <!--Link the Javascript file script.js-->
+    <script src="scrip.js"></script>
 </body>
 </html>
