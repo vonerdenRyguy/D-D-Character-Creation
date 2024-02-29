@@ -33,7 +33,7 @@ a:hover {
 }
 
 /* Specific styles for form elements */
-input, button, select {
+input, button, select, textarea {
     background-color: #333; /* Dark background for input fields */
     color: #ffffff; /* Light text for visibility */
     border: 1px solid #555; /* Slightly lighter border for some contrast */
@@ -45,7 +45,7 @@ input, button, select {
     font-family: 'Inter', sans-serif; /* Ensure font consistency */
 }
 
-select:focus {
+input:focus, select:focus, textarea:focus{
     outline: none; /* Remove the default focus outline */
     border-color: #bb86fc; /* Soft purple border to indicate focus, matching link color */
 }
