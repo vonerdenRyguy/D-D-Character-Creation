@@ -10,6 +10,24 @@ const character = {
       background: "",
       alignment: "",
       experiencePoints: 0,
+    },
+    abilityScores: {
+      strength: "",
+      dexterity: "",
+      constitution: "",
+      intelligence: "",
+      wisdom: "",
+      charisma: "",
+    },
+    combat: {
+      armorClass: "",
+      initiative: "",
+      speed: "",
+      hitPointMaximum: "",
+      currentHitPoints: "",
+      temporaryHitPoints: "",
+      hitDice: "",
+      deathSaves: "",
     }
-    // other properties...
+    // Still more properties are needed; refer to readme
   };
