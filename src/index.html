@@ -30,12 +30,12 @@
             <h2>Enter Character Information</h2>
             <form id="characterInfoForm" onsubmit="createCharacter(event)">
                 <!--Text based form input for string information-->
-                <label for="charName">Name:</label>
-                <input type="text" id="charName" name="charName"><br>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
 
                 <!--Dropdown menu for race-->
                 <label for="charRace">Race:</label>
-                <select name="charRace" id="charRace">
+                <select name="race" id="race">
                     <option value="human">Human</option>
                     <option value="elf">Elf</option>
                     <option value="dwarf">Dwarf</option>
@@ -48,8 +48,8 @@
                 </select><br>
                 
                 <!--Dropdown menu for class-->
-                <label for="charClass">Class:</label>
-                <select name="charClass" id="charClass">
+                <label for="class">Class:</label>
+                <select name="class" id="class">
                     <option value="barbarian">Barbarian</option>
                     <option value="bard">Bard</option>
                     <option value="cleric">Cleric</option>
@@ -65,12 +65,12 @@
                 </select><br>
 
                 <!--Character level starts at 1 by default-->
-                <label for="charLevel">Level:</label>
-                <input type="number" id="charLevel" name="charLevel" value="1"><br>
+                <label for="level">Level:</label>
+                <input type="number" id="level" name="level" value="1"><br>
 
                 <!--Character alignment-->
-                <label for="charAlignment">Alignment:</label>
-                <select name="charAlignment" id="charAlignment">
+                <label for="alignment">Alignment:</label>
+                <select name="alignment" id="alignment">
                     <option value="lawful_good">Lawful Good</option>
                     <option value="neutral_good">Neutral Good</option>
                     <option value="chaotic_good">Chaotic Good</option>
@@ -82,8 +82,8 @@
                     <option value="chaotic_evil">Chaotic Evil</option>
                 </select><br>
 
-                <label for="charDescription">Description:</label>
-                <textarea id="charDescription" name="charDescription" rows="3"></textarea>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="3"></textarea>
                 <br>
                 <!--Buttons like this can have ids to be referenced by our script file-->
                 <button type="submit">Generate Character</button>   
