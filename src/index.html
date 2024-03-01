@@ -28,7 +28,7 @@
             <p>Generate your Dungeons & Dragons character with a click of a button. Customize your race, class, stats, and background to embark on your next adventure.</p>
             
             <h2>Enter Character Information</h2>
-            <form id="characterInfoForm">
+            <form id="characterInfoForm" onsubmit="createCharacter(event)">
                 <!--Text based form input for string information-->
                 <label for="charName">Name:</label>
                 <input type="text" id="charName" name="charName"><br>
@@ -86,7 +86,7 @@
                 <textarea id="charDescription" name="charDescription" rows="3"></textarea>
                 <br>
                 <!--Buttons like this can have ids to be referenced by our script file-->
-                <button type="submit">Generate Character</button>
+                <button type="submit">Generate Character</button>   
             </form>
         </section>
     
