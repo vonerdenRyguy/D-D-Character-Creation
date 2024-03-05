@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +17,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <!--Title bar of the site-->
-    <title>D&D Character Creator</title>
+    <title>D&D Character Generator</title>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>D&D Character Generator</h1>
         </header>
-    
+
         <section>
-            <p>Generate your Dungeons & Dragons character with a click of a button. Customize your race, class, stats, and background to embark on your next adventure.</p>
-            
+            <p>Generate your Dungeons & Dragons character with a click of a button. Customize your race, class, stats,
+                and background to embark on your next adventure.</p>
+
             <h2>Enter Character Information</h2>
             <form id="characterInfoForm" onsubmit="createCharacter(event)">
                 <!--Text based form input for string information-->
@@ -46,7 +49,7 @@
                     <option value="half-orc">Half-Orc</option>
                     <option value="tiefling">Tiefling</option>
                 </select><br>
-                
+
                 <!--Dropdown menu for class-->
                 <label for="class">Class:</label>
                 <select name="class" id="class">
@@ -86,22 +89,35 @@
                 <textarea id="description" name="description" rows="3"></textarea>
                 <br>
                 <!--Buttons like this can have ids to be referenced by our script file-->
-                <button type="submit">Generate Character</button>   
+                <button type="submit">Generate Character</button>
             </form>
         </section>
-    
+
         <!--Sections divide content, just like divs-->
         <section>
             <h2>Information</h2>
             <p>Check out the source code on <a href="https://github.com/vonerdenRyguy/D-D-Character-Creation/tree/main">GitHub</a>.</p>
         </section>
-    
+
+        <!-- Dev credits-->
+        <section class="developers">
+            <h2>Developed By</h2>
+            <div class="developer-names">
+                <span>Roric Dunifon</span>
+                <span>Victor Hearn</span>
+                <span>Gage Wickner</span>
+                <span>Gunnar Von Bergen</span>
+                <span>Ryan vonErden</span>
+            </div>
+        </section>
+
         <footer>
             <p>&copy; 2024 D&D Character Generator. All rights reserved.</p>
         </footer>
     </div>
-    
+
     <!--Link the Javascript file script.js-->
     <script src="script.js"></script>
 </body>
+
 </html>
