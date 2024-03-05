@@ -1,57 +1,87 @@
 /*Placeholder CSS*/
 body {
-    background-color: #121212; /* Dark background */
-    color: #e0e0e0; /* Light gray text for readability */
-    font-family: 'Inter', sans-serif; /* Modern, clean font */
+    background-color: #121212;
+    /* Dark background */
+    color: #e0e0e0;
+    /* Light gray text for readability */
+    font-family: 'Inter', sans-serif;
+    /* Modern, clean font */
     margin: 0;
     padding: 20px;
     line-height: 1.6;
 }
 
-h1, h2, h3 {
-    font-weight: 700; /* Bold headings for structure */
-    color: #ffffff; /* Bright white for headings to stand out */
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    /* Bold headings for structure */
+    color: #ffffff;
+    /* Bright white for headings to stand out */
     margin-top: 20px;
 }
 
 a {
-    color: #bb86fc; /* Soft purple for links, provides a nice pop */
-    text-decoration: none; /* No underline for a cleaner look */
+    color: #bb86fc;
+    /* Soft purple for links, provides a nice pop */
+    text-decoration: none;
+    /* No underline for a cleaner look */
 }
 
 a:hover {
-    text-decoration: underline; /* Underline on hover for accessibility */
+    text-decoration: underline;
+    /* Underline on hover for accessibility */
 }
 
 .container {
-    max-width: 800px; /* Optimal line length for readability */
+    max-width: 800px;
+    /* Optimal line length for readability */
     margin: auto;
-    background: #1e1e1e; /* Slightly lighter dark shade for content background */
+    background: #1e1e1e;
+    /* Slightly lighter dark shade for content background */
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.5); /* More pronounced shadow for depth on dark themes */
-    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    /* More pronounced shadow for depth on dark themes */
+    border-radius: 8px;
+    /* Rounded corners for a softer look */
 }
 
 /* Specific styles for form elements */
-input, button, select, textarea {
-    background-color: #333; /* Dark background for input fields */
-    color: #ffffff; /* Light text for visibility */
-    border: 1px solid #555; /* Slightly lighter border for some contrast */
+input,
+button,
+select,
+textarea {
+    background-color: #333;
+    /* Dark background for input fields */
+    color: #ffffff;
+    /* Light text for visibility */
+    border: 1px solid #555;
+    /* Slightly lighter border for some contrast */
     padding: 10px;
-    margin-top: 5px; /* Ensure there's some space above inputs */
-    border-radius: 5px; /* Match the border-radius for consistency */
-    width: 100%; /* Make sure the select takes up the full container width */
-    box-sizing: border-box; /* Include padding and border in the element's total width */
-    font-family: 'Inter', sans-serif; /* Ensure font consistency */
+    margin-top: 5px;
+    /* Ensure there's some space above inputs */
+    border-radius: 5px;
+    /* Match the border-radius for consistency */
+    width: 100%;
+    /* Make sure the select takes up the full container width */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width */
+    font-family: 'Inter', sans-serif;
+    /* Ensure font consistency */
 }
 
-input:focus, select:focus, textarea:focus{
-    outline: none; /* Remove the default focus outline */
-    border-color: #bb86fc; /* Soft purple border to indicate focus, matching link color */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    /* Remove the default focus outline */
+    border-color: #bb86fc;
+    /* Soft purple border to indicate focus, matching link color */
 }
 
 button:hover {
-    background-color: #444; /* Lighten button background on hover */
+    background-color: #444;
+    /* Lighten button background on hover */
 }
 
 /* Style adjustments for better contrast and visibility */
@@ -64,7 +94,24 @@ button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #bb86fc; /* Soft purple scrollbar thumb */
+    background-color: #bb86fc;
+    /* Soft purple scrollbar thumb */
     border-radius: 6px;
 }
 
+.developers {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.developer-names {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+}
+
+.developer-names span {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+}
