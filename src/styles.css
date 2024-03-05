@@ -32,13 +32,22 @@ a:hover {
     border-radius: 8px; /* Rounded corners for a softer look */
 }
 
-/* Additional styling for forms and buttons if needed */
-input, button {
-    background-color: #333;
-    color: #ffffff;
-    border: none;
+/* Specific styles for form elements */
+input, button, select, textarea {
+    background-color: #333; /* Dark background for input fields */
+    color: #ffffff; /* Light text for visibility */
+    border: 1px solid #555; /* Slightly lighter border for some contrast */
     padding: 10px;
-    border-radius: 5px;
+    margin-top: 5px; /* Ensure there's some space above inputs */
+    border-radius: 5px; /* Match the border-radius for consistency */
+    width: 100%; /* Make sure the select takes up the full container width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    font-family: 'Inter', sans-serif; /* Ensure font consistency */
+}
+
+input:focus, select:focus, textarea:focus{
+    outline: none; /* Remove the default focus outline */
+    border-color: #bb86fc; /* Soft purple border to indicate focus, matching link color */
 }
 
 button:hover {

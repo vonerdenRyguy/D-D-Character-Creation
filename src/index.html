@@ -26,17 +26,68 @@
     
         <section>
             <p>Generate your Dungeons & Dragons character with a click of a button. Customize your race, class, stats, and background to embark on your next adventure.</p>
-            <!--Buttons like this can have ids to be referenced by our script file-->
-            <button>Generate Character</button>
+            
+            <h2>Enter Character Information</h2>
+            <form id="characterInfoForm" onsubmit="createCharacter(event)">
+                <!--Text based form input for string information-->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
 
-            <div id="characterOutput">
-                <!-- Character information will be displayed here -->
-                <p><strong>Character Name:</strong> Elrandir</p>
-                <p><strong>Race:</strong> Elf</p>
-                <p><strong>Class:</strong> Wizard</p>
-                <p><strong>Background:</strong> Scholar</p>
-                <p><strong>Stats:</strong> Strength: 8, Dexterity: 14, Constitution: 13, Intelligence: 17, Wisdom: 12, Charisma: 10</p>
-            </div>
+                <!--Dropdown menu for race-->
+                <label for="charRace">Race:</label>
+                <select name="race" id="race">
+                    <option value="human">Human</option>
+                    <option value="elf">Elf</option>
+                    <option value="dwarf">Dwarf</option>
+                    <option value="halfling">Halfling</option>
+                    <option value="dragonborn">Dragonborn</option>
+                    <option value="gnome">Gnome</option>
+                    <option value="half-elf">Half-Elf</option>
+                    <option value="half-orc">Half-Orc</option>
+                    <option value="tiefling">Tiefling</option>
+                </select><br>
+                
+                <!--Dropdown menu for class-->
+                <label for="class">Class:</label>
+                <select name="class" id="class">
+                    <option value="barbarian">Barbarian</option>
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="monk">Monk</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
+                </select><br>
+
+                <!--Character level starts at 1 by default-->
+                <label for="level">Level:</label>
+                <input type="number" id="level" name="level" value="1"><br>
+
+                <!--Character alignment-->
+                <label for="alignment">Alignment:</label>
+                <select name="alignment" id="alignment">
+                    <option value="lawful_good">Lawful Good</option>
+                    <option value="neutral_good">Neutral Good</option>
+                    <option value="chaotic_good">Chaotic Good</option>
+                    <option value="lawful_neutral">Lawful Neutral</option>
+                    <option value="true_neutral">True Neutral</option>
+                    <option value="chaotic_neutral">Chaotic Neutral</option>
+                    <option value="lawful_evil">Lawful Evil</option>
+                    <option value="neutral_evil">Neutral Evil</option>
+                    <option value="chaotic_evil">Chaotic Evil</option>
+                </select><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="3"></textarea>
+                <br>
+                <!--Buttons like this can have ids to be referenced by our script file-->
+                <button type="submit">Generate Character</button>   
+            </form>
         </section>
     
         <!--Sections divide content, just like divs-->
