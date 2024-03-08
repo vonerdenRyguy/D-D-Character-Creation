@@ -72,6 +72,15 @@ function createCharacter(event) {
       languages: [],
       other: [],
     },
+    characterAppearance: {
+      age: "",
+      height: "",
+      weight: "",
+      eyes: "",
+      skin: "",
+      hair: "",
+    },
     // Potential inclusion of spells, features and traits, proficiencies, etc.
   };
+  // End of character object definition
 }
