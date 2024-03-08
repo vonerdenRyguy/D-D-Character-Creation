@@ -1,11 +1,26 @@
 # D&D-Character-Creation
-**CSE 201 Project**
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/vonerdenRyguy/D-D-Character-Creation?label=updated)](https://github.com/vonerdenRyguy/D-D-Character-Creation/commits)
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Objectives](#objectives)
+- [D&D Character Object Structure](#dd-character-object-structure)
+  - [Basic Info](#basic-info)
+  - [Ability Scores](#ability-scores)
+  - [Modifiers](#modifiers)
+  - [Skills](#skills)
+  - [Combat](#combat)
+  - [Equipment](#equipment)
+  - [Features and Traits, Proficiencies and Languages, Spells](#features-and-traits-proficiencies-and-languages-spells)
+  - [Backstory, Allies and Organizations, Additional Features and Traits, Treasure](#backstory-allies-and-organizations-additional-features-and-traits-treasure)
+- [Notes](#notes)
+- [Credits](#credits)
+
 
 ## Objectives:
-1. Apply the learned contents of the course into a small real-life project which allows the
-students to explore and experience tackling industry-based working environments.
-2. Provide the students to work in groups and learn the skills of industry-based communication
-skills.
+As a cumulative assignment for CSE 201, this project hopes to:
+1. Apply the learned contents of the course into a small real-life project, which allows the students to explore and experience tackling industry-based working environments.
+2. Provide students the opportunity to work in groups and learn industry-based communication skills.
 
 ## D&D Character Object Structure
 
