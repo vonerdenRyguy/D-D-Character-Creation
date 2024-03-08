@@ -33,15 +33,38 @@ function createCharacter(event) {
       charisma: 0,
     },
     combat: {
-      armorClass: "",
-      initiative: "",
-      speed: "",
-      hitPointMaximum: "",
-      currentHitPoints: "",
-      temporaryHitPoints: "",
+      armorClass: 0,
+      initiative: 0,
+      speed: 0,
+      hitPointMaximum: 0,
+      currentHitPoints: 0,
+      temporaryHitPoints: 0,
       hitDice: "",
-      deathSaves: "",
-    }
-    // Still more properties are needed; refer to readme
+      deathSaves: {
+        successes: 0,
+        failures: 0,
+      },
+    },
+    skills: {
+      acrobatics: 0,
+      animalHandling: 0,
+      arcana: 0,
+      athletics: 0,
+      deception: 0,
+      history: 0,
+      insight: 0,
+      intimidation: 0,
+      investigation: 0,
+      medicine: 0,
+      nature: 0,
+      perception: 0,
+      performance: 0,
+      persuasion: 0,
+      religion: 0,
+      sleightOfHand: 0,
+      stealth: 0,
+      survival: 0,
+    },
+    // Potential inclusion of spells, features and traits, proficiencies, etc.
   };
 }
