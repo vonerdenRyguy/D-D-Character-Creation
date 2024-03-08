@@ -65,6 +65,13 @@ function createCharacter(event) {
       stealth: 0,
       survival: 0,
     },
+    proficiencies: {
+      armor: [],
+      weapons: [],
+      tools: [],
+      languages: [],
+      other: [],
+    },
     // Potential inclusion of spells, features and traits, proficiencies, etc.
   };
 }
