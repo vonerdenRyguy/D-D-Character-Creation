@@ -15,7 +15,6 @@ function createCharacter(event) {
   const character = {
     // basicInfo created as a way to encapsulate similar instance variables
     // to access these, reference as character.basicInfo.name
-    passiveWisdom: 0,
     basicInfo: {
       name: "",
       race: "",
@@ -65,6 +64,7 @@ function createCharacter(event) {
       sleightOfHand: 0,
       stealth: 0,
       survival: 0,
+      passiveWisdom: 0
     },
     proficiencies: {
       armor: [],
