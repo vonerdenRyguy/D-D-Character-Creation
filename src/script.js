@@ -11,10 +11,11 @@ function createCharacter(event) {
     console.log(`${key}: ${value}`);
   }
 
-  // character object all data a single character contains
+  // Character objects contain all the information about a single character
   const character = {
-    // basicInfo created as a way to encapsulate similar instance variables
-    // to access these, reference as character.basicInfo.name
+    // To access this information, reference through the encapsulated properties
+    // Example: character.basicInfo.name or character.combat.deathSaves.failures
+    // Currently, none of these properties are being set to the form data
     basicInfo: {
       name: "",
       race: "",
@@ -80,8 +81,6 @@ function createCharacter(event) {
       eyes: "",
       skin: "",
       hair: ""
-    },
-    // Potential inclusion of spells, features and traits, proficiencies, etc.
-  };
-  // End of character object definition
+    }
+  };  // End of character object definition
 }
