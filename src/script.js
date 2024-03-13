@@ -22,7 +22,7 @@ function createCharacter(event) {
       level: 0,
       background: "",
       alignment: "",
-      experiencePoints: 0,
+      experiencePoints: 0
     },
     abilityScores: {
       strength: 0,
@@ -30,7 +30,7 @@ function createCharacter(event) {
       constitution: 0,
       intelligence: 0,
       wisdom: 0,
-      charisma: 0,
+      charisma: 0
     },
     combat: {
       armorClass: 0,
@@ -42,8 +42,8 @@ function createCharacter(event) {
       hitDice: "",
       deathSaves: {
         successes: 0,
-        failures: 0,
-      },
+        failures: 0
+      }
     },
     skills: {
       acrobatics: 0,
@@ -71,7 +71,7 @@ function createCharacter(event) {
       weapons: [],
       tools: [],
       languages: [],
-      other: [],
+      other: []
     },
     characterAppearance: {
       age: "",
@@ -79,7 +79,7 @@ function createCharacter(event) {
       weight: "",
       eyes: "",
       skin: "",
-      hair: "",
+      hair: ""
     },
     // Potential inclusion of spells, features and traits, proficiencies, etc.
   };
