@@ -115,3 +115,7 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
 }
+
+#race {
+    visibility: hidden;
+}
