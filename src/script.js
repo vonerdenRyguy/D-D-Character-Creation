@@ -33,6 +33,7 @@ function createCharacter(event) {
       wisdom: 0,
       charisma: 0
     },
+    passiveWisdom: 0,
     combat: {
       armorClass: 0,
       initiative: 0,
@@ -64,8 +65,7 @@ function createCharacter(event) {
       religion: 0,
       sleightOfHand: 0,
       stealth: 0,
-      survival: 0,
-      passiveWisdom: 0
+      survival: 0
     },
     proficiencies: {
       armor: [],
@@ -83,4 +83,10 @@ function createCharacter(event) {
       hair: ""
     }
   };  // End of character object definition
+  function calcAbilityMod(score){
+    if (score < 1){
+      return 0;
+    }
+    return (Math.floor((score - 10) / 2));
+  }
 }
