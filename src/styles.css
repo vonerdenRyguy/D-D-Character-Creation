@@ -115,7 +115,24 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
 }
-
+#name {
+    visibility: hidden;
+}
 #race {
+    visibility: hidden;
+}
+#class {
+    visibility: hidden;
+}
+#level {
+    visibility: hidden;
+}
+#alignment {
+    visibility: hidden;
+}
+#description {
+    visibility: hidden;
+}
+#submitButton {
     visibility: hidden;
 }
