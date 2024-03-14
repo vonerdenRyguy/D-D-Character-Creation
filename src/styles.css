@@ -33,19 +33,6 @@ a:hover {
     /* Underline on hover for accessibility */
 }
 
-.container {
-    max-width: 800px;
-    /* Optimal line length for readability */
-    margin: auto;
-    background: #1e1e1e;
-    /* Slightly lighter dark shade for content background */
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    /* More pronounced shadow for depth on dark themes */
-    border-radius: 8px;
-    /* Rounded corners for a softer look */
-}
-
 /* Specific styles for form elements */
 input,
 button,
@@ -99,40 +86,30 @@ button:hover {
     border-radius: 6px;
 }
 
-.developers {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.developer-names {
-    display: flex;
-    justify-content: center;
-    gap: 2vw;
-}
-
-.developer-names span {
-    background-color: #444;
-    padding: 10px;
-    border-radius: 5px;
-}
 #name {
     visibility: hidden;
 }
+
 #race {
     visibility: hidden;
 }
+
 #class {
     visibility: hidden;
 }
+
 #level {
     visibility: hidden;
 }
+
 #alignment {
     visibility: hidden;
 }
+
 #description {
     visibility: hidden;
 }
+
 #submitButton {
     visibility: hidden;
 }
