@@ -74,6 +74,12 @@ function createCharacter(event) {
       languages: [],
       other: []
     },
+    wealth: {
+      platinum: 0,
+      gold: 0,
+      silver: 0,
+      copper: 0,
+    },
     characterAppearance: {
       age: "",
       height: "",
@@ -89,4 +95,17 @@ function createCharacter(event) {
     }
     return (Math.floor((score - 10) / 2));
   }
+  
+}
+function openDiceRollPanel(event){
+
+  event.preventDefault();
+
+  document.getElementById('openPopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'block';
+});
+
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+});
 }

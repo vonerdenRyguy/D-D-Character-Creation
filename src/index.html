@@ -22,6 +22,9 @@
 
 <body>
     <div class="container">
+
+            
+
         <header>
             <h1>D&D Character Generator</h1>
         </header>
@@ -91,8 +94,23 @@
                 <br>
                 <!--Buttons like this can have ids to be referenced by our script file-->
                 <button type="submit">Generate Character</button>
+                
+                
+
+
             </form>
         </section>
+        
+        <form id="DiceRollPanel" onsubmit="openDiceRollPanel(event)">
+            <button id="openPopup">Open Popup</button>
+
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <p>This is a popup!</p>
+                </div>
+            </div>
+        </form>
 
         <!--Sections divide content, just like divs-->
         <section>

@@ -99,6 +99,32 @@ button:hover {
     border-radius: 6px;
 }
 
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(124, 124, 124, 0.5);
+    width: 10vw;
+    height: 100vh;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 999;
+    text-align: center;
+}
+
+.popup-content {
+    color: white;
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 .developers {
     text-align: center;
     margin-bottom: 20px;
