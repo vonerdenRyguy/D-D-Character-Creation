@@ -1,3 +1,6 @@
 .characterSheet {
     margin: 40px 40px 40px 40px;
 }
+#charNameBox {
+    width: 400px;    
+}
