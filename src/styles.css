@@ -11,6 +11,8 @@ body {
     line-height: 1.6;
 }
 
+
+
 h1,
 h2,
 h3 {
@@ -47,7 +49,7 @@ a:hover {
 }
 
 /* Specific styles for form elements */
-input,
+input:not(#d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count),
 button,
 select,
 textarea {
@@ -103,10 +105,10 @@ button:hover {
     display: none;
     position: fixed;
     top: 50%;
-    left: 90%;
+    left: 91.5%;
     transform: translate(-50%, -50%);
     background-color: rgba(124, 124, 124, 0.5);
-    width: 10vw;
+    width: 15vw;
     height: 100vh;
     padding: 20px;
     border-radius: 10px;
@@ -115,7 +117,8 @@ button:hover {
 }
 
 .popup-content {
-    color: white;
+    color: rgb(255, 255, 255);
+    
 }
 
 .close {

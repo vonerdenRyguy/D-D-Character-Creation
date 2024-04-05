@@ -21,10 +21,7 @@
 </head>
 
 <body>
-    <div class="container">
-
-            
-
+    <div class="container">     
         <header>
             <h1>D&D Character Generator</h1>
         </header>
@@ -102,14 +99,42 @@
         </section>
         
         <form id="DiceRollPanel" onsubmit="openDiceRollPanel(event)">
-            <button id="openPopup">Open Popup</button>
+            <button id="openPopup">Open Dice Panel</button>
 
-            <div id="popup" class="popup">
+            <section id="popup" class="popup">
                 <div class="popup-content">
                     <span class="close" id="closePopup">&times;</span>
                     <p>This is a popup!</p>
+                    <nobr>
+                        <input type="text" id="d4Count" name="d4Count" value="0">
+                        <label for="d4Count">d4</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d6Count" name="d6Count" value="0">
+                        <label for="d4Count">d6</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d8Count" name="d8Count" value="0">
+                        <label for="d4Count">d8</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d10Count" name="d10Count" value="0">
+                        <label for="d4Count">d10</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d12Count" name="d12Count" value="0">
+                        <label for="d4Count">d12</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d20Count" name="d20Count" value="0">
+                        <label for="d4Count">d20</label>
+                    </nobr>
+                    <!--<label for="roll">test</label>-->
+                    <button id="roll" name="roll" onclick="rollDice(event)">roll</button>
+                    <p id="result">result: </p>
+                    <p id="total">total: </p>
                 </div>
-            </div>
+            </section>
         </form>
 
         <!--Sections divide content, just like divs-->

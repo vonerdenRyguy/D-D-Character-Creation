@@ -97,6 +97,7 @@ function createCharacter(event) {
   }
   
 }
+
 function openDiceRollPanel(event){
 
   event.preventDefault();
@@ -108,4 +109,65 @@ function openDiceRollPanel(event){
 document.getElementById('closePopup').addEventListener('click', function() {
     document.getElementById('popup').style.display = 'none';
 });
+}
+
+function rollDice(event){
+
+  event.preventDefault();
+
+  d4 = document.getElementById("d4Count").value;
+  d6 = document.getElementById("d6Count").value;
+  d8 = document.getElementById("d8Count").value;
+  d10 = document.getElementById("d10Count").value;
+  d12 = document.getElementById("d12Count").value;
+  d20 = document.getElementById("d20Count").value;
+
+let final = 0;
+const results = [];
+let count = 0;
+
+  for (let i = 0; i < d4; i++){
+    let roll = Math.ceil(Math.random()*4);
+    final += roll;
+    results.push(roll);
+    count++;
+    console.log("test" + count);
+  }
+  for (let i = 0; i < d6; i++){
+    let roll = Math.ceil(Math.random()*6);
+    final += roll;
+    results.push(roll);
+    count++;
+  }
+  for (let i = 0; i < d8; i++){
+    let roll = Math.ceil(Math.random()*8);
+    final += roll;
+    results.push(roll);
+    count++;
+  }
+  for (let i = 0; i < d10; i++){
+    let roll = Math.ceil(Math.random()*10);
+    final += roll;
+    results.push(roll);
+    count++;
+  }
+  for (let i = 0; i < d12; i++){
+    let roll = Math.ceil(Math.random()*12);
+    final += roll;
+    results.push(roll);
+    count++;
+  }
+  for (let i = 0; i < d20; i++){
+    let roll = Math.ceil(Math.random()*20);
+    final += roll;
+    results.push(roll);
+    count++;
+  }
+  
+
+  document.getElementById("result").innerHTML = "Result: ";
+  for (let x in results){
+    document.getElementById("result").innerHTML += results[x] + ", ";
+  }
+  document.getElementById("total").innerHTML = "Total: " + final;
 }
