@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--A favicon is the icon that shows as the "tab icon"-->
+    <link rel="icon" type="image" href="../assets/favicon.png">
+
+    <!--Link the CSS file styles.css-->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--Import font from Google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <!--Title bar of the site-->
+    <title>D&D Character Generator</title>
+</head>
+
+<body>
+    <div class="container">     
+        <header>
+            <h1>D&D Character Generator</h1>
+        </header>
+
+        <section>
+            <p>Generate your Dungeons & Dragons character with a click of a button. Customize your race, class, stats,
+                and background to embark on your next adventure.</p>
+
+            <h2>Enter Character Information</h2>
+            <form id="characterInfoForm" onsubmit="createCharacter(event)">
+                <!--Text based form input for string information-->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
+
+                <!--Dropdown menu for race-->
+                <label for="race">Race:</label>
+                <select name="race" id="race">
+                    <option value="human">👦🏻 Human</option>
+                    <option value="elf">🧝🏻 Elf</option>
+                    <option value="dwarf">🤏🏼 Dwarf</option>
+                    <option value="halfling">🧔🏻‍♂️ Halfling</option>
+                    <option value="dragonborn">🐲 Dragonborn</option>
+                    <option value="gnome">🍄 Gnome</option>
+                    <option value="half-elf">🧝🏻 Half-Elf</option>
+                    <option value="half-orc">🧌 Half-Orc</option>
+                    <option value="tiefling">😈 Tiefling</option>
+                    <option value="custom">Custom</option>
+                </select><br>
+
+                <!--Dropdown menu for class-->
+                <label for="class">Class:</label>
+                <select name="class" id="class">
+                    <option value="barbarian">💪🏼 Barbarian</option>
+                    <option value="bard">🧑‍🎤 Bard</option>
+                    <option value="cleric">🔮 Cleric</option>
+                    <option value="druid">🌿 Druid</option>
+                    <option value="fighter">⚔️ Fighter</option>
+                    <option value="monk">🧘🏻‍♂️ Monk</option>
+                    <option value="paladin">🛡️ Paladin</option>
+                    <option value="ranger">🎯 Ranger</option>
+                    <option value="rogue">🥷🏼 Rogue</option>
+                    <option value="sorcerer">🔥 Sorcerer</option>
+                    <option value="warlock">🪄 Warlock</option>
+                    <option value="wizard">🧙🏼‍♂️ Wizard</option>
+                </select><br>
+
+                <!--Character level starts at 1 by default-->
+                <label for="level">Level:</label>
+                <input type="number" id="level" name="level" value="1"><br>
+
+                <!--Character alignment-->
+                <label for="alignment">Alignment:</label>
+                <select name="alignment" id="alignment">
+                    <option value="lawful_good">Lawful Good</option>
+                    <option value="neutral_good">Neutral Good</option>
+                    <option value="chaotic_good">Chaotic Good</option>
+                    <option value="lawful_neutral">Lawful Neutral</option>
+                    <option value="true_neutral">True Neutral</option>
+                    <option value="chaotic_neutral">Chaotic Neutral</option>
+                    <option value="lawful_evil">Lawful Evil</option>
+                    <option value="neutral_evil">Neutral Evil</option>
+                    <option value="chaotic_evil">Chaotic Evil</option>
+                </select><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="3"></textarea>
+                <br>
+                <!--Buttons like this can have ids to be referenced by our script file-->
+                <button onclick="navigateToWorkFlow()">Generate Character</button>
+                <script>
+                    function navigateToWorkFlow() {
+                        window.location.href = 'index.html';
+                    }
+                </script>
+                
+                
+
+
+            </form>
+        </section>
+        
+        <form id="DiceRollPanel" onsubmit="openDiceRollPanel(event)">
+            <button id="openPopup">Open Dice Panel</button>
+
+            <section id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <p>This is a popup!</p>
+                    <nobr>
+                        <input type="text" id="d4Count" name="d4Count" value="0">
+                        <label for="d4Count">d4</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d6Count" name="d6Count" value="0">
+                        <label for="d4Count">d6</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d8Count" name="d8Count" value="0">
+                        <label for="d4Count">d8</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d10Count" name="d10Count" value="0">
+                        <label for="d4Count">d10</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d12Count" name="d12Count" value="0">
+                        <label for="d4Count">d12</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d20Count" name="d20Count" value="0">
+                        <label for="d4Count">d20</label>
+                    </nobr>
+                    <!--<label for="roll">test</label>-->
+                    <button id="roll" name="roll" onclick="rollDice(event)">roll</button>
+                    <p id="result">result: </p>
+                    <p id="total">total: </p>
+                </div>
+            </section>
+        </form>
+
+        <!--Sections divide content, just like divs-->
+        <section>
+            <h2>Information</h2>
+            <p>Check out the source code on <a href="https://github.com/vonerdenRyguy/D-D-Character-Creation/tree/main">GitHub</a>.</p>
+        </section>
+
+        <!-- Dev credits-->
+        <section class="developers">
+            <h2>Developed By</h2>
+            <div class="developer-names">
+                <span>Roric Dunifon</span>
+                <span>Victor Hearn</span>
+                <span>Gage Wickner</span>
+                <span>Gunnar Von Bergen</span>
+                <span>Ryan vonErden</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 D&D Character Generator. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!--Link the Javascript file script.js-->
+    <script src="script.js"></script>
+</body>
+
+</html>

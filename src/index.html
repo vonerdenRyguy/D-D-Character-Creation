@@ -26,6 +26,11 @@
         <input type="text" id="response">
         <button onclick="back()">Back</button>
         <button onclick="next()">Next</button>
+        <button onclick="navigateBackToMenu()">
+            <span class="icon">&#127968;</span>
+            Home
+        </button>
+
     </div>
 
     <script>
@@ -75,6 +80,10 @@
                 alert("You're dumb! go forward");
                 currentQuestionIndex = 0;
             }
+        }
+        
+        function navigateBackToMenu() {
+             window.location.href = 'mainPanel.html';
         }
         displayQuestion();
     </script>
