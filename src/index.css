@@ -492,6 +492,7 @@ form.charsheet main section.combat > div.deathsaves > div div.bubbles input[type
   height: 10px;
   border: 1px solid black;
   border-radius: 10px;
+  margin: 0px;
 }
 form.charsheet main section.combat > div.deathsaves > div div.bubbles input[type=checkbox]:checked {
   background-color: black;
@@ -622,4 +623,4 @@ form.charsheet main section.features div textarea {
   border: 0;
   padding: 5px;
   height: 43em;
-}/*# sourceMappingURL=charSheetStyle.css.map */
+}/*# sourceMappingURL=index.css.map */
