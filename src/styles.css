@@ -50,7 +50,7 @@ a:hover {
 
 /* Specific styles for form elements */
 input:not(#d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count),
-button,
+button:not(#subD4,#subD6,#subD8,#subD10,#subD12,#subD20,#addD4,#addD6,#addD8,#addD10,#addD12,#addD20),
 select,
 textarea {
     background-color: #333;
@@ -71,6 +71,29 @@ textarea {
     font-family: 'Inter', sans-serif;
     /* Ensure font consistency */
 }
+
+#d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count,
+#subD4,#subD6,#subD8,#subD10,#subD12,#subD20,
+#addD4,#addD6,#addD8,#addD10,#addD12,#addD20 {
+    background-color: #333;
+    /* Dark background for input fields */
+    color: #ffffff;
+    /* Light text for visibility */
+    border: 1px solid #555;
+    /* Slightly lighter border for some contrast */
+    padding: 10px;
+    margin-top: 5px;
+    /* Ensure there's some space above inputs */
+    border-radius: 5px;
+    /* Match the border-radius for consistency */
+    /*width: 30%;
+    /* width */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width */
+    font-family: 'Inter', sans-serif;
+    /* Ensure font consistency */
+}
+
 
 input:focus,
 select:focus,

@@ -99,7 +99,7 @@
         </section>
         
         <form id="DiceRollPanel" onsubmit="openDiceRollPanel(event)">
-            <button id="openPopup">Open Dice Panel</button>
+            <button id="openPopup" onclick="openDiceRollPanel(event)">Open Dice Panel</button>
 
             <section id="popup" class="popup">
                 <div class="popup-content">
@@ -107,32 +107,47 @@
                     <p>This is a popup!</p>
                     <nobr>
                         <input type="text" id="d4Count" name="d4Count" value="0">
+                        <button id="subD4" onclick="d4Count.value--; if (d4Count.value < 0){d4Count.value = 0;}">-</button>
+                        <button id="addD4" onclick="d4Count.value++">+</button>
                         <label for="d4Count">d4</label>
                     </nobr>
                     <nobr>
                         <input type="text" id="d6Count" name="d6Count" value="0">
-                        <label for="d4Count">d6</label>
+                        <button id="subD6" onclick="d6Count.value--; if (d6Count.value < 0){d6Count.value = 0;}">-</button>
+                        <button id="addD6" onclick="d6Count.value++">+</button>
+                        <label for="d6Count">d6</label>
                     </nobr>
                     <nobr>
                         <input type="text" id="d8Count" name="d8Count" value="0">
-                        <label for="d4Count">d8</label>
+                        <button id="subD8" onclick="d8Count.value--; if (d8Count.value < 0){d8Count.value = 0;}">-</button>
+                        <button id="addD8" onclick="d8Count.value++">+</button>
+                        <label for="d8Count">d8</label>
                     </nobr>
                     <nobr>
                         <input type="text" id="d10Count" name="d10Count" value="0">
-                        <label for="d4Count">d10</label>
+                        <button id="subD10" onclick="d10Count.value--; if (d10Count.value < 0){d10Count.value = 0;}">-</button>
+                        <button id="addD10" onclick="d10Count.value++">+</button>
+                        <label for="d10Count">d10</label>
                     </nobr>
                     <nobr>
                         <input type="text" id="d12Count" name="d12Count" value="0">
-                        <label for="d4Count">d12</label>
+                        <button id="subD12" onclick="d12Count.value--; if (d12Count.value < 0){d12Count.value = 0;}">-</button>
+                        <button id="addD12" onclick="d12Count.value++">+</button>
+                        <label for="d12Count">d12</label>
                     </nobr>
                     <nobr>
                         <input type="text" id="d20Count" name="d20Count" value="0">
-                        <label for="d4Count">d20</label>
+                        <button id="subD20" onclick="d20Count.value--; if (d20Count.value < 0){d20Count.value = 0;}">-</button>
+                        <button id="addD20" onclick="d20Count.value++">+</button>
+                        <label for="d20Count">d20</label>
                     </nobr>
                     <!--<label for="roll">test</label>-->
                     <button id="roll" name="roll" onclick="rollDice(event)">roll</button>
-                    <p id="result">result: </p>
                     <p id="total">total: </p>
+                    <nobr><img id="die1" src=""><img id="die2" src=""><img id="die3" src=""></nobr>
+                    <nobr><img id="die4" src=""><img id="die5" src=""><img id="die6" src=""></nobr>
+                    <nobr><img id="die7" src=""><img id="die8" src=""><img id="die9" src=""></nobr>
+                    <nobr><img id="die10" src=""><img id="die11" src=""><img id="die12" src=""></nobr>
                 </div>
             </section>
         </form>

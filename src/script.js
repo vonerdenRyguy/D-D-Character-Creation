@@ -102,12 +102,18 @@ function openDiceRollPanel(event){
 
   event.preventDefault();
 
-  document.getElementById('openPopup').addEventListener('click', function() {
-    document.getElementById('popup').style.display = 'block';
-});
+  
+document.getElementById('popup').style.display = 'block';
 
 document.getElementById('closePopup').addEventListener('click', function() {
     document.getElementById('popup').style.display = 'none';
+    
+    document.getElementById("d4Count").value = 0;
+    document.getElementById("d6Count").value = 0;
+    document.getElementById("d8Count").value = 0;
+    document.getElementById("d10Count").value = 0;
+    document.getElementById("d12Count").value = 0;
+    document.getElementById("d20Count").value = 0;
 });
 }
 
@@ -164,10 +170,5 @@ let count = 0;
     count++;
   }
   
-
-  document.getElementById("result").innerHTML = "Result: ";
-  for (let x in results){
-    document.getElementById("result").innerHTML += results[x] + ", ";
-  }
   document.getElementById("total").innerHTML = "Total: " + final;
 }
