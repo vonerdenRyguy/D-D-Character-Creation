@@ -150,24 +150,36 @@ let count = 0;
     console.log("test" + count);
   }
   for (let i = 0; i < d6; i++){
+    document.getElementById(dice[count]).style.background = "url('d6_sheet_vertical.png')";
+    document.getElementById(dice[count]).style.display = "inline-block";
+
     let roll = Math.ceil(Math.random()*6);
     final += roll;
     results.push(roll);
     count++;
   }
   for (let i = 0; i < d8; i++){
+    document.getElementById(dice[count]).style.background = "url('d8_sheet_vertical.png')";
+    document.getElementById(dice[count]).style.display = "inline-block";
+
     let roll = Math.ceil(Math.random()*8);
     final += roll;
     results.push(roll);
     count++;
   }
   for (let i = 0; i < d10; i++){
+    document.getElementById(dice[count]).style.background = "url('d10_sheet_vertical.png')";
+    document.getElementById(dice[count]).style.display = "inline-block";
+
     let roll = Math.ceil(Math.random()*10);
     final += roll;
     results.push(roll);
     count++;
   }
   for (let i = 0; i < d12; i++){
+    document.getElementById(dice[count]).style.background = "url('d12_sheet_vertical.png')";
+    document.getElementById(dice[count]).style.display = "inline-block";
+
     let roll = Math.ceil(Math.random()*12);
     final += roll;
     results.push(roll);

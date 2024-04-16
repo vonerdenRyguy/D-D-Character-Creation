@@ -173,8 +173,8 @@ button:hover {
 #die7,#die8,#die9,
 #die10,#die11,#die12{
     display: none;
-    width: 150px;
-    height: 150px;
+    width: 139px;
+    height: 139px;
     background: url('d4_sheet.png');
     background-position: top left;
     animation: animate-horizontal 1.2s steps(48) 3;
