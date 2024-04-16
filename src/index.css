@@ -76,7 +76,7 @@ form.charsheet label {
 }
 form.charsheet header {
   display: flex;
-  align-contents: stretch;
+  align-content: stretch;
   align-items: stretch;
 }
 form.charsheet header section.charname {
