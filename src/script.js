@@ -121,6 +121,9 @@ function rollDice(event){
 
   event.preventDefault();
 
+  //document.getElementById("die1").style.background = "url('spritesheet.png')";
+  //document.getElementById("die1").style.display = "block";
+
   d4 = document.getElementById("d4Count").value;
   d6 = document.getElementById("d6Count").value;
   d8 = document.getElementById("d8Count").value;
@@ -130,9 +133,16 @@ function rollDice(event){
 
 let final = 0;
 const results = [];
+const dice = ["die1",'die2','die3',
+              'die4','die5','die6',
+              'die7','die8','die9',
+              'die10','die11','die12'];
 let count = 0;
 
   for (let i = 0; i < d4; i++){
+    document.getElementById(dice[count]).style.background = "url('d4_sheet_vertical.png')";
+    document.getElementById(dice[count]).style.display = "inline-block";
+
     let roll = Math.ceil(Math.random()*4);
     final += roll;
     results.push(roll);
@@ -164,6 +174,9 @@ let count = 0;
     count++;
   }
   for (let i = 0; i < d20; i++){
+    document.getElementById(dice[count]).style.background = "url('d20_sheet_vertical.png')";
+    document.getElementById(dice[count]).style.display = "inline-block";
+    
     let roll = Math.ceil(Math.random()*20);
     final += roll;
     results.push(roll);

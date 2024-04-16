@@ -167,3 +167,19 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
 }
+
+#die1,#die2,#die3,
+#die4,#die5,#die6,
+#die7,#die8,#die9,
+#die10,#die11,#die12{
+    display: none;
+    width: 150px;
+    height: 150px;
+    background: url('d4_sheet.png');
+    background-position: top left;
+    animation: animate-horizontal 1.2s steps(48) 3;
+}
+@keyframes animate-horizontal {
+    from { background-position: 0px 0px; }
+    to {background-position: 0px -6496px;}
+ }

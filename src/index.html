@@ -141,13 +141,14 @@
                         <button id="addD20" onclick="d20Count.value++">+</button>
                         <label for="d20Count">d20</label>
                     </nobr>
-                    <!--<label for="roll">test</label>-->
-                    <button id="roll" name="roll" onclick="rollDice(event)">roll</button>
+                    <button id="roll" name="roll" onclick="rollDice(event); animateDice(event);">roll</button>
                     <p id="total">total: </p>
-                    <nobr><img id="die1" src=""><img id="die2" src=""><img id="die3" src=""></nobr>
-                    <nobr><img id="die4" src=""><img id="die5" src=""><img id="die6" src=""></nobr>
-                    <nobr><img id="die7" src=""><img id="die8" src=""><img id="die9" src=""></nobr>
-                    <nobr><img id="die10" src=""><img id="die11" src=""><img id="die12" src=""></nobr>
+                    <nobr><div id="die1" onclick="document.getElementById(dice[count]).style.display = 'none'"></div><div id="die2"></div><br>
+                        <div id="die3"></div><div id="die4"></div><br>
+                        <div id="die5"></div><div id="die6"></div><br>
+                        <div id="die7"></div><div id="die8"></div><br>
+                        <div id="die9"></div><div id="die10"></div><br>
+                        <div id="die11"></div><div id="die12"></div></nobr>
                 </div>
             </section>
         </form>
