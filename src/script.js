@@ -121,9 +121,6 @@ function rollDice(event){
 
   event.preventDefault();
 
-  //document.getElementById("die1").style.background = "url('spritesheet.png')";
-  //document.getElementById("die1").style.display = "block";
-
   d4 = document.getElementById("d4Count").value;
   d6 = document.getElementById("d6Count").value;
   d8 = document.getElementById("d8Count").value;
@@ -140,6 +137,7 @@ const dice = ["die1",'die2','die3',
 let count = 0;
 
   for (let i = 0; i < d4; i++){
+
     document.getElementById(dice[count]).style.background = "url('d4_sheet_vertical.png')";
     document.getElementById(dice[count]).style.display = "inline-block";
 
@@ -147,7 +145,6 @@ let count = 0;
     final += roll;
     results.push(roll);
     count++;
-    console.log("test" + count);
   }
   for (let i = 0; i < d6; i++){
     document.getElementById(dice[count]).style.background = "url('d6_sheet_vertical.png')";

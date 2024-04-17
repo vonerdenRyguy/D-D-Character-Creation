@@ -175,11 +175,12 @@ button:hover {
     display: none;
     width: 139px;
     height: 139px;
-    background: url('d4_sheet.png');
+    background: none;
     background-position: top left;
     animation: animate-horizontal 1.2s steps(48) 3;
 }
+
 @keyframes animate-horizontal {
-    from { background-position: 0px 0px; }
+    from {background-position: 0px 0px;}
     to {background-position: 0px -6496px;}
  }
