@@ -1,4 +1,16 @@
 /*Placeholder CSS*/
+body {
+    background-color: #121212;
+    /* Dark background */
+    color: #e0e0e0;
+    /* Light gray text for readability */
+    font-family: 'Inter', sans-serif;
+    /* Modern, clean font */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
 
 
 h1,
@@ -23,9 +35,22 @@ a:hover {
     /* Underline on hover for accessibility */
 }
 
+.container {
+    max-width: 800px;
+    /* Optimal line length for readability */
+    margin: auto;
+    background: #1e1e1e;
+    /* Slightly lighter dark shade for content background */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    /* More pronounced shadow for depth on dark themes */
+    border-radius: 8px;
+    /* Rounded corners for a softer look */
+}
+
 /* Specific styles for form elements */
-input,
-button,
+input:not(#d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count),
+button:not(#subD4,#subD6,#subD8,#subD10,#subD12,#subD20,#addD4,#addD6,#addD8,#addD10,#addD12,#addD20),
 select,
 textarea {
     background-color: #333;
@@ -46,6 +71,29 @@ textarea {
     font-family: 'Inter', sans-serif;
     /* Ensure font consistency */
 }
+
+#d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count,
+#subD4,#subD6,#subD8,#subD10,#subD12,#subD20,
+#addD4,#addD6,#addD8,#addD10,#addD12,#addD20 {
+    background-color: #333;
+    /* Dark background for input fields */
+    color: #ffffff;
+    /* Light text for visibility */
+    border: 1px solid #555;
+    /* Slightly lighter border for some contrast */
+    padding: 10px;
+    margin-top: 5px;
+    /* Ensure there's some space above inputs */
+    border-radius: 5px;
+    /* Match the border-radius for consistency */
+    /*width: 30%;
+    /* width */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width */
+    font-family: 'Inter', sans-serif;
+    /* Ensure font consistency */
+}
+
 
 input:focus,
 select:focus,
@@ -76,30 +124,62 @@ button:hover {
     border-radius: 6px;
 }
 
-#name {
-    visibility: hidden;
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 91.5%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(124, 124, 124, 0.5);
+    width: 15vw;
+    height: 100vh;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 999;
+    text-align: center;
 }
 
-#race {
-    visibility: hidden;
+.popup-content {
+    color: rgb(255, 255, 255);
+    
 }
 
-#class {
-    visibility: hidden;
+.close {
+    color: white;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-#level {
-    visibility: hidden;
+.developers {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-#alignment {
-    visibility: hidden;
+.developer-names {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
 }
 
-#description {
-    visibility: hidden;
+.developer-names span {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-#submitButton {
-    visibility: hidden;
+#die1,#die2,#die3,
+#die4,#die5,#die6,
+#die7,#die8,#die9,
+#die10,#die11,#die12{
+    display: none;
+    width: 139px;
+    height: 139px;
+    background: url('d4_sheet.png');
+    background-position: top left;
+    animation: animate-horizontal 1.2s steps(48) 3;
 }
+@keyframes animate-horizontal {
+    from { background-position: 0px 0px; }
+    to {background-position: 0px -6496px;}
+ }
