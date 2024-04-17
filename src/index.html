@@ -119,6 +119,17 @@
                     select.appendChild(optionElement);
                 });
                 responseContainer.appendChild(select);
+            } else if (currentQuestionIndex === 2) {
+                const select = document.createElement('select');
+                select.id = 'response';
+                const raceOptions = ['💪🏼 Barbarian', '🧑‍🎤 Bard', '🔮 Cleric', '🌿 Druid', '⚔️ Fighter', '🧘🏻‍♂️ Monk', '🛡️ Paladin', '🎯 Ranger', '🥷🏼 Rogue', '🔥 Sorcerer', '🪄 Warlock', '🧙🏼‍♂️ Wizard'];
+                raceOptions.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    select.appendChild(optionElement);
+                });
+                responseContainer.appendChild(select);
             } else {
                 const input = document.createElement('input');
                 input.type = 'text';
