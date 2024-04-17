@@ -4,87 +4,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--A favicon is the icon that shows as the "tab icon"-->
-    <link rel="icon" type="image" href="../assets/favicon.png">
-
-    <!--Link the CSS file styles.css-->
     <link rel="stylesheet" href="styles.css">
-
-    <!--Import font from Google-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-
-    <!--Title bar of the site-->
     <title>D&D Character Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            background-image: url('https://t4.ftcdn.net/jpg/06/06/51/05/360_F_606510500_h2XawF0YOpA9HoLhECVl0uoXJk2DC3GI.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        #questionContainer {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            margin: 20px;
+            max-width: 600px;
+            width: 523px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        #speechBubbleContainer {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        #speechBubble {
+            position: fixed;
+            left: 495px;
+            width: 523px;
+            padding: 10px;
+            background-color: #312d2d;
+            background-image: url('https://cdn.vectorstock.com/i/500p/87/46/vintage-scroll-isolated-vector-2798746.jpg');
+            background-size: 600px;
+            background-position: center;
+            border: 2px solid #312d2d;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            color: #f3ecec;
+            margin-top: 300px;
+            height: 160px;
+        }
+
+        #dwarf {
+            position: fixed;
+            bottom: 0px;
+            right: 600px;
+            max-width: 100px;
+            height: auto;
+            
+        }
+    </style>
 </head>
 
 <body>
     <div id="questionContainer">
         <h2 id="question">Question 1: What is your character's name?</h2>
-        <input type="text" id="response">
-        <button onclick="back()">Back</button>
-        <button onclick="next()">Next</button>
-        <button onclick="navigateBackToMenu()">
-            <span class="icon">&#127968;</span>
-            Home
-        </button>
+        <div id="responseContainer"></div>
+        <button id="backButton">Back</button>
+        <button id="nextButton">Next</button>
+        <button id="homeButton">Home</button>
+    </div>
 
+    <div id="speechBubbleContainer">
+        <div id="speechBubble"></div>
+    </div>
+
+    <div id="dwarf">
+        <img src="C:\Users\Ryan the Avatar\OneDrive\Documents\GitHub\D-D-Character-Creation\assets\file.png" alt="Dwarf">
     </div>
 
     <script>
         const questions = [
             "What is your character's name?",
+            "What's your race?",
             "What's your class?",
-            "What's your race?"
-            // more questions to put down
+            "Time to roll for stats!"
         ];
 
-        const responses = [];
-
+        const responses = {};
         let currentQuestionIndex = 0;
 
-        // display the current question and response
         function displayQuestion() {
-            document.getElementById('question').textContent = `Question ${currentQuestionIndex + 1}: ${questions[currentQuestionIndex]}`;
-            document.getElementById('response').value = responses[currentQuestionIndex] || ''; // Display previous response if exists
+            const questionElement = document.getElementById('question');
+            questionElement.textContent = `Question ${currentQuestionIndex + 1}: ${questions[currentQuestionIndex]}`;
+
+            const responseContainer = document.getElementById('responseContainer');
+            responseContainer.innerHTML = '';
+
+            if (currentQuestionIndex === 0) {
+                displayHelpText("this is the helpful tip", 90);
+            }
+
+            if (currentQuestionIndex === 1) {
+                const select = document.createElement('select');
+                select.id = 'response';
+                const raceOptions = ['Dwarf', 'Elf', 'Human', 'Halfling'];
+                raceOptions.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    select.appendChild(optionElement);
+                });
+                responseContainer.appendChild(select);
+            } else {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = 'response';
+                responseContainer.appendChild(input);
+            }
         }
 
-        // navigates to enxt question
-        function next() {
-            // Saves response
-            responses[currentQuestionIndex] = document.getElementById('response').value;
+        async function displayHelpText(text, delay) {
+            const speechBubble = document.getElementById('speechBubble');
+            const speechBubbleContainer = document.getElementById('speechBubbleContainer');
+            speechBubble.style.display = 'block';
+            speechBubble.textContent = '';
 
-            // goes to enxt question
+            for (let i = 0; i < text.length; i++) {
+                await new Promise(resolve => setTimeout(resolve, delay));
+
+                const char = text.charAt(i);
+                speechBubble.textContent += char;
+            }
+        }
+
+        function next() {
+            const responseInput = document.getElementById('response');
+            responses[currentQuestionIndex] = responseInput.value;
             currentQuestionIndex++;
 
             if (currentQuestionIndex < questions.length) {
                 displayQuestion();
+                
+                if (currentQuestionIndex == 1) {
+                    displayHelpText("This is another helpful tip.", 90);
+                }
             } else {
-                alert("You did it");
+                alert("You have completed all questions!");
             }
         }
 
-        // navigates to the previous question
         function back() {
-            // Saves response
-            responses[currentQuestionIndex] = document.getElementById('response').value;
-
-            // goes to previous question
+            const responseInput = document.getElementById('response');
+            responses[currentQuestionIndex] = responseInput.value;
             currentQuestionIndex--;
 
             if (currentQuestionIndex >= 0) {
                 displayQuestion();
             } else {
-                alert("You're dumb! go forward");
+                alert("You're at the first question.");
                 currentQuestionIndex = 0;
             }
         }
-        
+
         function navigateBackToMenu() {
-             window.location.href = 'mainPanel.html';
+            window.location.href = 'mainPanel.html';
         }
+
+        // Event listeners
+        document.getElementById('nextButton').addEventListener('click', next);
+        document.getElementById('backButton').addEventListener('click', back);
+        document.getElementById('homeButton').addEventListener('click', navigateBackToMenu);
+
+        // Initial display
         displayQuestion();
     </script>
 </body>
