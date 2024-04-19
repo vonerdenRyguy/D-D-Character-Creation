@@ -98,6 +98,8 @@ function createCharacter(event) {
   
 }
 
+
+//everything below is related to dice rolling.
 function openDiceRollPanel(event){
 
   event.preventDefault();
@@ -117,9 +119,58 @@ document.getElementById('closePopup').addEventListener('click', function() {
 });
 }
 
+function animateDice(element, die){
+  switch (die) {
+    case 'd4':
+      element.style.background = "url('d4_sheet_vertical.png')";
+      break;
+    case 'd6':
+      element.style.background = "url('d6_sheet_vertical.png')";
+      break;
+    case 'd8':
+      element.style.background = "url('d8_sheet_vertical.png')";
+      break;
+    case 'd10':
+      element.style.background = "url('d10_sheet_vertical.png')";
+      break;
+    case 'd12':
+      element.style.background = "url('d12_sheet_vertical.png')";
+      break;
+    case 'd20':
+      element.style.background = "url('d20_sheet_vertical.png')";
+      break;
+  }
+  
+  
+  setTimeout(function(){element.style.display = "inline-block";},0)
+}
+
+function clearDice(){
+  
+  const dice = [
+    'die1', 'die2', 'die3', 'die4', 'die5', 'die6'
+  ].map(id => document.getElementById(id));
+
+  for (let i = 0; i < dice.length; i++){
+    dice[i].style.display = "none";
+    dice[i].innerHTML = "";
+  }
+
+  document.getElementById("total").innerHTML = "Total: ";
+}
+
 function rollDice(event){
 
   event.preventDefault();
+
+  let total = 0;
+  const results = [];
+  
+  const dice = [
+    'die1', 'die2', 'die3', 'die4', 'die5', 'die6'
+  ].map(id => document.getElementById(id));
+  
+  let count = 0;
 
   d4 = document.getElementById("d4Count").value;
   d6 = document.getElementById("d6Count").value;
@@ -128,69 +179,67 @@ function rollDice(event){
   d12 = document.getElementById("d12Count").value;
   d20 = document.getElementById("d20Count").value;
 
-let final = 0;
-const results = [];
-const dice = ["die1",'die2','die3',
-              'die4','die5','die6',
-              'die7','die8','die9',
-              'die10','die11','die12'];
-let count = 0;
+  clearDice();
+
+//event listener to display number after dice finish rolling animation
+dice[count].addEventListener('animationend', () => {
+  for (let j = 0; j < count; j++){
+    dice[j].innerHTML = results[j];
+    document.getElementById("total").innerHTML = "Total: " + total;
+  }
+});
 
   for (let i = 0; i < d4; i++){
+    
+    animateDice(dice[count], "d4");
 
-    document.getElementById(dice[count]).style.background = "url('d4_sheet_vertical.png')";
-    document.getElementById(dice[count]).style.display = "inline-block";
-
-    let roll = Math.ceil(Math.random()*4);
-    final += roll;
+    var roll = Math.ceil(Math.random()*4);
+    total += roll;
     results.push(roll);
+
+    
     count++;
   }
   for (let i = 0; i < d6; i++){
-    document.getElementById(dice[count]).style.background = "url('d6_sheet_vertical.png')";
-    document.getElementById(dice[count]).style.display = "inline-block";
+    animateDice(dice[count], "d6");
 
     let roll = Math.ceil(Math.random()*6);
-    final += roll;
+    total += roll;
     results.push(roll);
     count++;
   }
   for (let i = 0; i < d8; i++){
-    document.getElementById(dice[count]).style.background = "url('d8_sheet_vertical.png')";
-    document.getElementById(dice[count]).style.display = "inline-block";
+    animateDice(dice[count], "d8");
 
     let roll = Math.ceil(Math.random()*8);
-    final += roll;
+    total += roll;
     results.push(roll);
     count++;
   }
   for (let i = 0; i < d10; i++){
-    document.getElementById(dice[count]).style.background = "url('d10_sheet_vertical.png')";
-    document.getElementById(dice[count]).style.display = "inline-block";
+    animateDice(dice[count], "d10");
 
     let roll = Math.ceil(Math.random()*10);
-    final += roll;
+    total += roll;
     results.push(roll);
     count++;
   }
   for (let i = 0; i < d12; i++){
-    document.getElementById(dice[count]).style.background = "url('d12_sheet_vertical.png')";
-    document.getElementById(dice[count]).style.display = "inline-block";
+    animateDice(dice[count], "d12");
 
     let roll = Math.ceil(Math.random()*12);
-    final += roll;
+    total += roll;
     results.push(roll);
     count++;
   }
   for (let i = 0; i < d20; i++){
-    document.getElementById(dice[count]).style.background = "url('d20_sheet_vertical.png')";
-    document.getElementById(dice[count]).style.display = "inline-block";
+    animateDice(dice[count], "d20");
     
     let roll = Math.ceil(Math.random()*20);
-    final += roll;
+    total += roll;
     results.push(roll);
     count++;
   }
   
-  document.getElementById("total").innerHTML = "Total: " + final;
+  
 }

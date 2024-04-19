@@ -169,18 +169,32 @@ button:hover {
 }
 
 #die1,#die2,#die3,
-#die4,#die5,#die6,
-#die7,#die8,#die9,
-#die10,#die11,#die12{
+#die4,#die5,#die6{
+    /*hide the div until needed*/
     display: none;
+    /*139px; set width of div to 139px*/
     width: 139px;
+    /*set height of div to 139px*/
     height: 139px;
-    background: none;
+    /*postition image to be top left related to the div*/
     background-position: top left;
-    animation: animate-horizontal 1.2s steps(48) 3;
+    /*align text centered*/
+    text-align: center;
+    /*set line height so that text is centered vertically*/
+    line-height: 139px;
+    /*make text bigger to be more readable*/
+    font-size: 25px; 
+    /*make text bold to be more clear*/
+    font-weight: bold;
+    /*add dice rolling animation*/
+    animation: animate-dice 1.2s steps(48) 2;
 }
 
-@keyframes animate-horizontal {
+#clear{
+    position: bottom;
+}
+
+@keyframes animate-dice {
     from {background-position: 0px 0px;}
     to {background-position: 0px -6496px;}
  }
