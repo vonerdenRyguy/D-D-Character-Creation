@@ -101,27 +101,30 @@ function createCharacter(event) {
 
 //everything below is related to dice rolling.
 function openDiceRollPanel(event){
-
   event.preventDefault();
 
-  
-document.getElementById('popup').style.display = 'block';
+  //show the popup
+  document.getElementById('popup').style.display = 'block';
 
-document.getElementById('closePopup').addEventListener('click', function() {
+  //close the dice rolling popup
+  document.getElementById('closePopup').addEventListener('click', function() {
     document.getElementById('popup').style.display = 'none';
     
+    //reset the values for dice counts
     document.getElementById("d4Count").value = 0;
     document.getElementById("d6Count").value = 0;
     document.getElementById("d8Count").value = 0;
     document.getElementById("d10Count").value = 0;
     document.getElementById("d12Count").value = 0;
     document.getElementById("d20Count").value = 0;
-
+  
+    //hide the dice images and roll total
     clearDice();
-});
+  });
 }
 
 function animateDice(element, die){
+  //set background image to the correct sprite sheet for animation
   switch (die) {
     case 'd4':
       element.style.background = "url('d4_sheet_vertical.png')";
@@ -143,37 +146,41 @@ function animateDice(element, die){
       break;
   }
   
-  
+  //show element to trigger animation sequence
+  //setTimeout() causes renderer to function right for some reason, breaks without it.
   setTimeout(function(){element.style.display = "inline-block";},0)
 }
 
 function clearDice(){
-  
+  //create array holding each die div
   const dice = [
     'die1', 'die2', 'die3', 'die4', 'die5', 'die6'
   ].map(id => document.getElementById(id));
 
+  //hide each one and reset text overlay
   for (let i = 0; i < dice.length; i++){
     dice[i].style.display = "none";
     dice[i].innerHTML = "";
   }
 
+  //reset total tag
   document.getElementById("total").innerHTML = "Total: ";
 }
 
 function rollDice(event){
-
   event.preventDefault();
 
+  //declare varibles
   let total = 0;
+  let count = 0;
   const results = [];
-  
+
+  //create array of die elements
   const dice = [
     'die1', 'die2', 'die3', 'die4', 'die5', 'die6'
   ].map(id => document.getElementById(id));
   
-  let count = 0;
-
+  //get the value from each dice count element to know how many of each dice to roll;
   d4 = document.getElementById("d4Count").value;
   d6 = document.getElementById("d6Count").value;
   d8 = document.getElementById("d8Count").value;
@@ -183,65 +190,90 @@ function rollDice(event){
 
   clearDice();
 
-//event listener to display number after dice finish rolling animation
-dice[count].addEventListener('animationend', () => {
-  for (let j = 0; j < count; j++){
-    dice[j].innerHTML = results[j];
-    document.getElementById("total").innerHTML = "Total: " + total;
-  }
-});
+  //event listener to display number after dice finish rolling animation
+  dice[count].addEventListener('animationend', () => {
+    for (let j = 0; j < count; j++){
+      dice[j].innerHTML = results[j];
+      document.getElementById("total").innerHTML = "Total: " + total;
+    }
+  });
 
+  //roll values for each die
+  //d4
   for (let i = 0; i < d4; i++){
-    
     animateDice(dice[count], "d4");
 
+    //get random value for roll, add to the total, store value in an array
     var roll = Math.ceil(Math.random()*4);
     total += roll;
     results.push(roll);
 
-    
+    //move to the next die;
     count++;
   }
+
+  //d6
   for (let i = 0; i < d6; i++){
     animateDice(dice[count], "d6");
 
+    //get random value for roll, add to the total, store value in an array
     let roll = Math.ceil(Math.random()*6);
     total += roll;
     results.push(roll);
+
+    //move to the next die;
     count++;
   }
+
+  //d8
   for (let i = 0; i < d8; i++){
     animateDice(dice[count], "d8");
 
+    //get random value for roll, add to the total, store value in an array
     let roll = Math.ceil(Math.random()*8);
     total += roll;
     results.push(roll);
+
+    //move to the next die;
     count++;
   }
+
+  //d10
   for (let i = 0; i < d10; i++){
     animateDice(dice[count], "d10");
 
+    //get random value for roll, add to the total, store value in an array
     let roll = Math.ceil(Math.random()*10);
     total += roll;
     results.push(roll);
+
+    //move to the next die;
     count++;
   }
+
+  //d12
   for (let i = 0; i < d12; i++){
     animateDice(dice[count], "d12");
 
+    //get random value for roll, add to the total, store value in an array
     let roll = Math.ceil(Math.random()*12);
     total += roll;
     results.push(roll);
+
+    //move to the next die;
     count++;
   }
+
+  //d20
   for (let i = 0; i < d20; i++){
     animateDice(dice[count], "d20");
     
+    //get random value for roll, add to the total, store value in an array
     let roll = Math.ceil(Math.random()*20);
     total += roll;
     results.push(roll);
+
+    //move to the next die;
     count++;
   }
-  
-  
 }
