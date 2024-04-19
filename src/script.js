@@ -116,6 +116,8 @@ document.getElementById('closePopup').addEventListener('click', function() {
     document.getElementById("d10Count").value = 0;
     document.getElementById("d12Count").value = 0;
     document.getElementById("d20Count").value = 0;
+
+    clearDice();
 });
 }
 

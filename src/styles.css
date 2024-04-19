@@ -141,7 +141,6 @@ button:hover {
 
 .popup-content {
     color: rgb(255, 255, 255);
-    
 }
 
 .close {
@@ -188,10 +187,6 @@ button:hover {
     font-weight: bold;
     /*add dice rolling animation*/
     animation: animate-dice 1.2s steps(48) 2;
-}
-
-#clear{
-    position: bottom;
 }
 
 @keyframes animate-dice {
