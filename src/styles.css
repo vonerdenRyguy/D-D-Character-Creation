@@ -50,7 +50,7 @@ a:hover {
 
 /* Specific styles for form elements */
 input:not(#d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count),
-button:not(#subD4,#subD6,#subD8,#subD10,#subD12,#subD20,#addD4,#addD6,#addD8,#addD10,#addD12,#addD20),
+button:not(#subD4,#subD6,#subD8,#subD10,#subD12,#subD20,#addD4,#addD6,#addD8,#addD10,#addD12,#addD20, #openPopup),
 select,
 textarea {
     background-color: #333;
@@ -125,28 +125,75 @@ button:hover {
 }
 
 .popup {
+    /*hide popup until needed*/
     display: none;
+    /*make popup position be relative to window*/
     position: fixed;
+    /*set vertical position of popup*/
     top: 50%;
+    /*put popup window on right side of the screen*/
     left: 91.5%;
+    /*set final position of the popup*/
     transform: translate(-50%, -50%);
+    /*set background colour*/
     background-color: rgba(124, 124, 124, 0.5);
+    /*set the width to be 15% of the windows visual width*/
     width: 15vw;
+    /*set the height to be 100% of the windows visual height*/
     height: 100vh;
+    /*force elements to be a certain distance away from the edge of the popup*/
     padding: 20px;
+    /*make border thicker*/
     border-radius: 10px;
+    /*force popup to show in front of all other elements on the page*/
     z-index: 999;
+    /*align text to center*/
     text-align: center;
 }
 
+button{
+    /*set cursor to be a pointer on buttons*/
+    cursor: pointer;
+}
+
+#openPopup{
+    position:fixed;
+    /*fixed position to always see the button*/
+    top: 0%;
+    left: 94%;
+    /*set position in the top left so it is out of the way*/
+    width: 5.9%;
+    /*set button width*/
+    background-color: #333;
+    /* Dark background for input fields */
+    color: #ffffff;
+    /* Light text for visibility */
+    border: 1px solid #555;
+    /* Slightly lighter border for some contrast */
+    padding: 10px;
+    margin-top: 5px;
+    /* Ensure there's some space above inputs */
+    border-radius: 5px;
+    /* Match the border-radius for consistency */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width */
+    font-family: 'Inter', sans-serif;
+    /* Ensure font consistency */
+}
+
 .popup-content {
+    /*set text colour for dice rolling popup*/
     color: rgb(255, 255, 255);
 }
 
 .close {
+    /*close button x colour*/
     color: white;
+    /**/
     float: right;
+    /*increase font size to be visible*/
     font-size: 24px;
+    /*change cursor to show it can be clicked*/
     cursor: pointer;
 }
 
