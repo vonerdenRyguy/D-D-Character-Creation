@@ -1,13 +1,32 @@
 $sheet-width: 800px
-$bg: white
-$faded: #ddd
-$faded-light: #eee
-$faded-dark: #bbb
+//$bg: #803D3B
+$bg: #c65353
+$faded: #C9A37F
+$faded-light: #E4C59E
+$faded-dark: #AF8260
 $radius: 10px
 $gutter: 10px
 $bubble-size: 10px
 $small-box-width: 30px
 $large-box-width: 70px
+$checked: #E4C59E
+
+input
+  background-color: #803D3B
+  color: #E4C59E
+
+textarea
+  background-color: #803D3B
+
+textarea:focus
+  outline: none
+
+input:focus
+  outline: none
+  
+body
+  background-color: #322C2B
+  color: #E4C59E
 
 .red
   background: red
@@ -124,7 +143,7 @@ form.charsheet
 
           input
             border: 0
-            border-bottom: 1px solid $faded
+            border-bottom: 1px solid $faded-dark
   main
     display: flex
     justify-content: space-between
@@ -283,7 +302,7 @@ form.charsheet
                   border-radius: $bubble-size
                   order: 1
                   &:checked
-                    background-color: black
+                    background-color: $checked
 
       div.passive-perception
         display: flex
@@ -359,7 +378,7 @@ form.charsheet
               input
                 width: 40%
                 border: 0
-                border-bottom: 1px solid $faded
+                border-bottom: 1px solid $faded-dark
                 font-size: 12px
                 text-align: center
 
@@ -498,7 +517,7 @@ form.charsheet
                 border-radius: $bubble-size
                 margin: 0px // Added to make the bubbles not wrap
                 &:checked
-                  background-color: black
+                  background-color: $checked
 
     section.attacksandspellcasting
       border: 1px solid black
