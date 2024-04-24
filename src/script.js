@@ -200,12 +200,12 @@ function rollDice(event){
   clearDice();
 
   //event listener to display number on dice and total after dice finish rolling animation
-  diceDivs[count].addEventListener('animationend', () => {
-    for (let j = 0; j < count; j++){
-      diceDivs[j].innerHTML = results[j];
+  for (let i = 0; i < diceDivs.length; i++){
+    diceDivs[i].addEventListener('animationend', () => {
+      diceDivs[i].innerHTML = results[i];
       document.getElementById("total").innerHTML = "Total: " + total;
-    }
-  });
+    });
+  }
 
   //roll values for each die
   for (let k = 0; k < diceCounts.length; k++){ //for each type of dice
