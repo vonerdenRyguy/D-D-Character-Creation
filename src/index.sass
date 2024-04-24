@@ -1,5 +1,5 @@
 $sheet-width: 800px
-//$bg: #803D3B
+$bg-dark: #803D3B
 $bg: #c65353
 $faded: #C9A37F
 $faded-light: #E4C59E
@@ -12,11 +12,11 @@ $large-box-width: 70px
 $checked: #E4C59E
 
 input
-  background-color: #803D3B
+  background-color: $bg-dark
   color: #E4C59E
 
 textarea
-  background-color: #803D3B
+  background-color: $bg-dark
 
 textarea:focus
   outline: none
@@ -79,6 +79,7 @@ form.charsheet
 
     textarea
       border: 1px solid black
+      color: $faded-light
 
   ul
     margin: 0
@@ -105,7 +106,7 @@ form.charsheet
       border-right: 0
       border-radius: $radius 0 0 $radius
       padding: 5px 0
-      background-color: $faded-light
+      background-color: $faded-dark
       width: 30%
       display: flex
       flex-direction: column-reverse
@@ -117,9 +118,11 @@ form.charsheet
         padding: 0.5em
         margin: 5px
         border: 0
+        font-weight: bold
 
       label
         padding-left: 1em
+        color: $faded-light
 
     section.misc
       width: 70%
@@ -240,9 +243,10 @@ form.charsheet
             justify-content: flex-end
 
             input
-              appearance: none
+              width: $small-box-width
+              height: $small-box-width - 2
               border: 1px solid black
-              padding: $small-box-width / 2
+              text-align: center
               border-radius: $radius
 
           div.proficiencybonus
@@ -319,7 +323,7 @@ form.charsheet
         height: 26em
 
     section.combat
-      background-color: $faded-light
+      background-color: $faded-dark
       display: flex
       flex-wrap: wrap
       border-radius: $radius
@@ -373,7 +377,7 @@ form.charsheet
               label
                 font-size: 10px
                 text-transform: none
-                color: $faded-dark
+                color: $faded-light
 
               input
                 width: 40%
@@ -444,7 +448,7 @@ form.charsheet
 
             label
               font-size: 10px
-              color: $faded-dark
+              color: $faded-light
               margin: 0.25em
               text-transform: none
 
@@ -523,6 +527,7 @@ form.charsheet
       border: 1px solid black
       border-radius: $radius
       margin-top: $gutter
+      background-color : $faded-dark
 
       > div
         margin: $gutter
@@ -538,22 +543,25 @@ form.charsheet
 
           th
             font-size: 10px
-            color: $faded
+            color: $faded-light
 
           input
             width: calc(100% - 4px)
             border: 0
-            background-color: $faded-light
+            background-color: $bg-dark
             font-size: 10px
             padding: 3px
+            border: 1px solid black
 
         textarea
-          border: 0
+          border: 1px solid black
+          color: $faded-light
 
     section.equipment
       border: 1px solid black
       border-radius: $radius
       margin-top: $gutter
+      background-color: $faded-dark
 
       > div
         padding: $gutter
@@ -596,6 +604,7 @@ form.charsheet
         > textarea
           flex: 1
           border: 0
+          color: $faded-light
 
     section.flavor
       padding: $gutter
@@ -618,6 +627,7 @@ form.charsheet
           border: 0
           border-radius: 0
           height: 4em
+          color: $faded-light
 
         &:first-child
           border-radius: $radius $radius 0 0
@@ -637,9 +647,11 @@ form.charsheet
         border-radius: $radius
         display: flex
         flex-direction: column-reverse
+        background-color: $faded-dark
         label
           text-align: center
         textarea
           border: 0
           padding: 5px
           height: 43em
+          color: $faded-light
