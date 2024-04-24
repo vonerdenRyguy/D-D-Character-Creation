@@ -77,6 +77,7 @@ form.charsheet div.textblock label {
 }
 form.charsheet div.textblock textarea {
   border: 1px solid black;
+  color: #E4C59E;
 }
 form.charsheet ul {
   margin: 0;
@@ -106,7 +107,7 @@ form.charsheet header section.charname {
   border-right: 0;
   border-radius: 10px 0 0 10px;
   padding: 5px 0;
-  background-color: #E4C59E;
+  background-color: #AF8260;
   width: 30%;
   display: flex;
   flex-direction: column-reverse;
@@ -118,9 +119,11 @@ form.charsheet header section.charname input {
   padding: 0.5em;
   margin: 5px;
   border: 0;
+  font-weight: bold;
 }
 form.charsheet header section.charname label {
   padding-left: 1em;
+  color: #E4C59E;
 }
 form.charsheet header section.misc {
   width: 70%;
@@ -235,11 +238,10 @@ form.charsheet main > section section.attributes div.attr-applications div.inspi
   justify-content: flex-end;
 }
 form.charsheet main > section section.attributes div.attr-applications div.inspiration input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  width: 30px;
+  height: 28px;
   border: 1px solid black;
-  padding: 15px;
+  text-align: center;
   border-radius: 10px;
 }
 form.charsheet main > section section.attributes div.attr-applications div.proficiencybonus {
@@ -320,7 +322,7 @@ form.charsheet main > section div.otherprofs textarea {
   height: 26em;
 }
 form.charsheet main section.combat {
-  background-color: #E4C59E;
+  background-color: #AF8260;
   display: flex;
   flex-wrap: wrap;
   border-radius: 10px;
@@ -374,7 +376,7 @@ form.charsheet main section.combat > div.hp > div.regular > div.max {
 form.charsheet main section.combat > div.hp > div.regular > div.max label {
   font-size: 10px;
   text-transform: none;
-  color: #AF8260;
+  color: #E4C59E;
 }
 form.charsheet main section.combat > div.hp > div.regular > div.max input {
   width: 40%;
@@ -444,7 +446,7 @@ form.charsheet main section.combat > div.hitdice > div > div.total {
 }
 form.charsheet main section.combat > div.hitdice > div > div.total label {
   font-size: 10px;
-  color: #AF8260;
+  color: #E4C59E;
   margin: 0.25em;
   text-transform: none;
 }
@@ -523,6 +525,7 @@ form.charsheet main section.attacksandspellcasting {
   border: 1px solid black;
   border-radius: 10px;
   margin-top: 10px;
+  background-color: #AF8260;
 }
 form.charsheet main section.attacksandspellcasting > div {
   margin: 10px;
@@ -538,22 +541,25 @@ form.charsheet main section.attacksandspellcasting > div > table {
 }
 form.charsheet main section.attacksandspellcasting > div > table th {
   font-size: 10px;
-  color: #C9A37F;
+  color: #E4C59E;
 }
 form.charsheet main section.attacksandspellcasting > div > table input {
   width: calc(100% - 4px);
   border: 0;
-  background-color: #E4C59E;
+  background-color: #803D3B;
   font-size: 10px;
   padding: 3px;
+  border: 1px solid black;
 }
 form.charsheet main section.attacksandspellcasting > div textarea {
-  border: 0;
+  border: 1px solid black;
+  color: #E4C59E;
 }
 form.charsheet main section.equipment {
   border: 1px solid black;
   border-radius: 10px;
   margin-top: 10px;
+  background-color: #AF8260;
 }
 form.charsheet main section.equipment > div {
   padding: 10px;
@@ -596,6 +602,7 @@ form.charsheet main section.equipment > div > label {
 form.charsheet main section.equipment > div > textarea {
   flex: 1;
   border: 0;
+  color: #E4C59E;
 }
 form.charsheet main section.flavor {
   padding: 10px;
@@ -618,6 +625,7 @@ form.charsheet main section.flavor div textarea {
   border: 0;
   border-radius: 0;
   height: 4em;
+  color: #E4C59E;
 }
 form.charsheet main section.flavor div:first-child {
   border-radius: 10px 10px 0 0;
@@ -637,6 +645,7 @@ form.charsheet main section.features div {
   border-radius: 10px;
   display: flex;
   flex-direction: column-reverse;
+  background-color: #AF8260;
 }
 form.charsheet main section.features div label {
   text-align: center;
@@ -645,4 +654,5 @@ form.charsheet main section.features div textarea {
   border: 0;
   padding: 5px;
   height: 43em;
+  color: #E4C59E;
 }/*# sourceMappingURL=index.css.map */
