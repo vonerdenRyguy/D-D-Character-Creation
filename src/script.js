@@ -1,5 +1,9 @@
 // Javascript will be used to provide the interactive elements of our site.
 
+const wrapper = document.querySelector('.wrapper');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
+
 function createCharacter(event) {
   event.preventDefault();
 
