@@ -1,4 +1,12 @@
-// Javascript will be used to provide the interactive elements of our site.
+// On page run, loads saved character from local storage
+document.addEventListener('DOMContentLoaded', function() {
+  loadCharacter();  // Load character data from local storage
+
+  document.getElementById('characterForm').addEventListener('submit', function(event) {
+      event.preventDefault();  // Prevent the form from submitting normally
+      saveCharacter();  // Save character to local storage
+  });
+});
 
 function createCharacter(event) {
   event.preventDefault();
