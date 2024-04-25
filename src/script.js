@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+function saveCharacter() {
+  const character = {
+
+  }
+}
+
 function createCharacter(event) {
   event.preventDefault();
 
@@ -99,10 +105,11 @@ function createCharacter(event) {
       hair: ""
     }
   };  // End of character object definition
-  function calcAbilityMod(score){
-    if (score < 1){
-      return 0;
-    }
-    return (Math.floor((score - 10) / 2));
+  
+}
+function calcAbilityMod(score){
+  if (score < 1){
+    return 0;
   }
+  return (Math.floor((score - 10) / 2));
 }
