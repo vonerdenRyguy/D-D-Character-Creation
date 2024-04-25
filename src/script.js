@@ -33,6 +33,14 @@ function createCharacter(event) {
       wisdom: 0,
       charisma: 0
     },
+    abilityMods: {
+      strength: calcAbilityMod(abilityScores.strength),
+      dexterity: calcAbilityMod(abilityScores.dexterity),
+      constitution: calcAbilityMod(abilityScores.constitution),
+      intelligence: calcAbilityMod(abilityScores.intelligence),
+      wisdom: calcAbilityMod(abilityScores.wisdom),
+      charisma: calcAbilityMod(abilityScores.charisma)
+    },
     passiveWisdom: 0,
     combat: {
       armorClass: 0,

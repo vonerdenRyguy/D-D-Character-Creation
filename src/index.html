@@ -26,43 +26,78 @@
 
         #questionContainer {
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: #803D3B;
             border-radius: 10px;
             margin: 20px;
-            max-width: 600px;
-            width: 523px;
+            width: 70vh;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
 
         #speechBubbleContainer {
-            position: relative;
-            margin-top: 20px;
+            margin-top: 25vh;
+        }
+
+        #question {
+            color: #C9A37F;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #backButton,
+        #nextButton,
+        #homeButton {
+            background-color: #C9A37F; /* Change background color to beige */
+            color: #803D3B; /* Change text color to dark grey */
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }   
+
+        input#response {
+            background-color: #C9A37F;
+            color: #803D3B;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        select#response {
+            background-color: #C9A37F;
+            color: #803D3B;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
         }
 
         #speechBubble {
             position: fixed;
-            left: 35.75%;
-            width: 523px;
+            left: 61vh;
+            width: 73vh;
             padding: 10px;
             background-color: #312d2d;
             background-image: url('https://cdn.vectorstock.com/i/500p/87/46/vintage-scroll-isolated-vector-2798746.jpg');
-            background-size: 600px;
+            background-size: 110vh;
             background-position: center;
             border: 2px solid #312d2d;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: none;
             color: #f3ecec;
-            margin-top: 300px;
-            height: 160px;
+            margin-top: 16vh;
+            height: 18vh;
         }
 
         #dwarf {
             position: fixed;
-            bottom: -2%;
-            right: 25%;
-            max-width: 40vw;
+            bottom: -2vh;
+            right: 50vh;
+            max-width: 20vh;
             height: auto;
             
         }
@@ -83,7 +118,7 @@
     </div>
 
     <div id="dwarf">
-        <img src="..\assets\dwarf.png" alt="Dwarf">
+        <img src="../assets/dwarf.png" alt="Dwarf">
     </div>
 
     <script>
@@ -106,7 +141,7 @@
             responseContainer.innerHTML = '';
 
             if (currentQuestionIndex === 0) {
-                displayHelpText("A character's name is important. It will follow you throughout your entire journey. Those you meet along the way will refer to you by this name. Choose Wisely!", 90);
+                displayHelpText("A character's name is important. It will follow you throughout your entire journey. Those you meet along the way will refer to you by this name. Choose Wisely!", 70);
             }
 
             if (currentQuestionIndex === 1) {
@@ -165,15 +200,19 @@
         }
 
         function next() {
-            const responseInput = document.getElementById('response');
-            responses[currentQuestionIndex] = responseInput.value;
-            currentQuestionIndex++;
+        const responseInput = document.getElementById('response');
+        responses[currentQuestionIndex] = responseInput.value;
 
-            if (currentQuestionIndex < questions.length) {
-                displayQuestion();
-                
-                if (currentQuestionIndex == 1) {
-                    displayHelpText("This is another helpful tip.", 90);
+        // Store responses in localStorage
+        localStorage.setItem('userResponses', JSON.stringify(responses));
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+            
+            if (currentQuestionIndex == 1) {
+                displayHelpText("In D&D, a character's name is a profound reflection of their essence, heritage, and journey. As characters navigate the diverse landscapes of D&D, their name becomes a guiding light, shaping perceptions, influencing choices, and serving as a reminder of past triumphs and future adventures.", 60);
                 }
             } else {
                 alert("You have completed all questions!");
@@ -208,3 +247,4 @@
 </body>
 
 </html>
+
