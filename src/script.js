@@ -80,6 +80,7 @@ function saveCharacter() {
       other: []
     }
   };  // End of character object definition
+  console.log("Character saved!")
 }
 
 function createCharacter(event) {
