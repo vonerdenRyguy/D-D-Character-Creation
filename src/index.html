@@ -75,7 +75,6 @@
 
         #speechBubble {
             position: fixed;
-            /* left: 61vh; */
             width: 73vh;
             padding: 10px;
             background-color: #312d2d;
@@ -88,15 +87,14 @@
             display: none;
             color: #803D3B;
             font-weight: bold;
-            /* margin-top: 16vh; */
             height: 18vh;
         }
 
         #dwarf {
-            position: absolute;
-            bottom: -8vh;
-            right: 50vh;
+            position: relative;
             max-width: 20vh;
+            right: -60%;
+            bottom: 0%;
             height: auto;
             z-index: 1000;
         }
@@ -118,7 +116,7 @@
                     <div id="speechBubble"></div>
                 </div>
 
-                <div id="dwarf">
+                <div class= "d-none d-lg-block"id="dwarf">
                     <img src="../assets/dwarf.png" alt="Dwarf">
                 </div>
             </div>
