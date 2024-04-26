@@ -11,6 +11,15 @@ label {
   border-radius: 10px;
 }
 
+#loadButton {
+  margin-top: 2vh;
+  font-size: 18px;
+  padding: 10px 10px;
+  color: #E4C59E;
+  background-color: #803D3B;
+  border-radius: 10px;
+}
+
 input {
   background-color: #803D3B;
   color: #E4C59E;
