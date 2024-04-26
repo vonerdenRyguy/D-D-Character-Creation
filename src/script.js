@@ -78,7 +78,11 @@ function saveCharacter() {
 function loadCharacter() {
   const responses = JSON.parse(localStorage.getItem('userResponses'));
   character.name = responses[0];
-  console.log(name);
+  character.race = responses[1];
+  character.alignment = responses[2];
+
+  document.getElementById("charname").value = character.name;
+  console.log(character.name);
 }
 
 function createCharacter(event) {
