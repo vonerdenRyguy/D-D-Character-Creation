@@ -1,3 +1,16 @@
+label {
+  font-family: "Times New Roman", Times, serif;
+}
+
+#submitButton {
+  margin-top: 2vh;
+  font-size: 18px;
+  padding: 10px 10px;
+  color: #E4C59E;
+  background-color: #803D3B;
+  border-radius: 10px;
+}
+
 input {
   background-color: #803D3B;
   color: #E4C59E;
@@ -317,6 +330,9 @@ form.charsheet main > section div.passive-perception input {
   text-align: center;
   border: 1px solid black;
   border-radius: 10px;
+}
+form.charsheet main > section div.otherprofs label {
+  font-weight: normal;
 }
 form.charsheet main > section div.otherprofs textarea {
   height: 26em;
