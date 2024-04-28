@@ -1,6 +1,6 @@
 // On page run, loads saved character from local storage
 document.addEventListener('DOMContentLoaded', function() {
-  loadCharacter();  // Load character data from local storage
+  loadCharacterFromLocalStorage();  // Load character data from local storage
 });
 
 const character = {
@@ -66,11 +66,18 @@ const character = {
 };
 
 function saveCharacter() {
-  localStorage.setItem('savedCharacter', JSON.stringify(character));
-  console.log("Character saved!")
+  character.name = document.getElementById("charname").value;
+  character.race = document.getElementById("race").value;
+  character.alignment = document.getElementById("alignment").value;
+  saveCharacterToLocalStorage();
 }
 
-function loadCharacter() {
+function saveCharacterToLocalStorage() {
+  localStorage.setItem('savedCharacter', JSON.stringify(character));
+  console.log("Character saved to local data!");
+}
+
+function loadCharacterFromLocalStorage() {
   const responses = JSON.parse(localStorage.getItem('userResponses'));
   character.name = responses[0];
   character.race = responses[1];
