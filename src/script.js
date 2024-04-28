@@ -98,8 +98,15 @@ const character = {
     EP,
     GP,
     PP
-  }
+  },
+  weapons: []
 };
+
+const weapon = {
+  weaponName,
+  atkBonus,
+  dmgType
+}
 
 function calcAbilityMod(score){
   if (score < 1){
