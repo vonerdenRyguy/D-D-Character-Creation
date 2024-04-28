@@ -1,4 +1,179 @@
 /*Placeholder CSS*/
+header {
+    position:fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.navigation .btnLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #e0e0e0;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #e0e0e0;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #e0e0e0;
+    color: #121212;
+}
+
+.wrapper {
+    position: relative;
+    width: 480px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid hsl(0, 0%, 88%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+  }
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active {
+    height: 440px;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login {
+    transition: transform .2s ease;
+    translate: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-480px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(480px);
+}
+
+.wrapper.active .form-box.register {
+    transition: transform .2s ease;
+    transform: translateX(0);
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    font-size: 2em;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.close-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 80%;
+    height: 50px;
+    border-bottom: 2px solid #e0e0e0;
+    color: #e0e0e0;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #e0e0e0;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #3b3b3b;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 1em;
+    color: #e0e0e0;
+    font-weight: 500;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-register {
+    font-size: .9em;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 body {
     background-color: #121212;
     /* Dark background */
@@ -9,6 +184,12 @@ body {
     margin: 0;
     padding: 20px;
     line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
 
 h1,
