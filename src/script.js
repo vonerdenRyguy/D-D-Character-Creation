@@ -45,12 +45,12 @@ const character = {
     charisma: 0
   },
   abilityMods: {
-    strength: 0,
-    dexterity: 0,
-    constitution: 0,
-    intelligence: 0,
-    wisdom: 0,
-    charisma: 0
+    strength: calcAbilityMod(abilityScores.strength),
+    dexterity: calcAbilityMod(abilityScores.dexterity),
+    constitution: calcAbilityMod(abilityScores.constitution),
+    intelligence: calcAbilityMod(abilityScores.intelligence),
+    wisdom: calcAbilityMod(abilityScores.wisdom),
+    charisma: calcAbilityMod(abilityScores.charisma)
   },
   passiveWisdom: 0,
   combat: {
@@ -85,6 +85,19 @@ const character = {
     sleightOfHand: 0,
     stealth: 0,
     survival: 0
+  },
+  characterTraits: {
+    personality,
+    ideals,
+    bonds,
+    flaws
+  },
+  currency: {
+    CP,
+    SP,
+    EP,
+    GP,
+    PP
   }
 };
 
