@@ -133,9 +133,12 @@ function loadCharacterFromLocalStorage() {
 }
 
 function logCharData() {
-  console.log(character.name);
-  console.log(character.race);
-  console.log(character.alignment);
+  console.log("Name: " + character.basicInfo.name);
+  console.log("Race: " + character.basicInfo.race);
+  console.log("Alignment: " + character.basicInfo.alignment);
+  console.log("Class: " + character.basicInfo.class);
+  console.log("Experience Points: " + character.basicInfo.experiencePoints);
+  console.log("Playername: " + character.playername);
 }
 
 function calcAbilityMod(score){
