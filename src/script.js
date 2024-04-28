@@ -193,3 +193,135 @@ function calcAbilityMod(score){
   }
   return (Math.floor((score - 10) / 2));
 }
+
+//everything below is dice rolling
+function openDiceRollPanel(event){
+  event.preventDefault();
+
+  //show the popup
+  document.getElementById('popup').style.display = 'block';
+
+  //hide openPopup button
+  document.getElementById('openPopup').style.display = 'none';
+  
+  //close the dice rolling popup
+  document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+    
+    //show openPopup button
+    document.getElementById('openPopup').style.display = 'initial';
+
+    //reset the values for dice counts
+    document.getElementById("d4Count").value = 0;
+    document.getElementById("d6Count").value = 0;
+    document.getElementById("d8Count").value = 0;
+    document.getElementById("d10Count").value = 0;
+    document.getElementById("d12Count").value = 0;
+    document.getElementById("d20Count").value = 0;
+  
+    //hide the dice images and roll total
+    clearDice();
+  });
+}
+
+function animateDice(element, die){
+  //set background image to the correct sprite sheet for animation
+  switch (die) {
+    case 'd4Count':
+      element.style.background = "url('d4_sheet_vertical.png')";
+      break;
+    case 'd6Count':
+      element.style.background = "url('d6_sheet_vertical.png')";
+      break;
+    case 'd8Count':
+      element.style.background = "url('d8_sheet_vertical.png')";
+      break;
+    case 'd10Count':
+      element.style.background = "url('d10_sheet_vertical.png')";
+      break;
+    case 'd12Count':
+      element.style.background = "url('d12_sheet_vertical.png')";
+      break;
+    case 'd20Count':
+      element.style.background = "url('d20_sheet_vertical.png')";
+      break;
+  }
+  
+  //show element to trigger animation sequence
+  //setTimeout() causes renderer to function right for some reason, breaks without it.
+  setTimeout(function(){element.style.display = "inline-block";},0)
+}
+
+function clearDice(){
+  //create array holding each die div
+  const diceDivs = [
+    'die1', 'die2', 'die3', 'die4', 'die5', 'die6'
+  ].map(id => document.getElementById(id));
+
+  //hide each one and reset text overlay
+  for (let i = 0; i < diceDivs.length; i++){
+    diceDivs[i].style.display = "none";
+    diceDivs[i].innerHTML = "";
+  }
+
+  //reset total tag
+  document.getElementById("total").innerHTML = "Total: ";
+}
+
+function rollDice(event){
+  event.preventDefault();
+
+  //declare varibles
+  let total = 0;
+  let count = 0;
+  const results = [];
+
+  //create array of die elements
+  const diceDivs = [
+    'die1', 'die2', 'die3', 'die4', 'die5', 'die6'
+  ].map(id => document.getElementById(id));
+
+  //array of all the counts needed
+  const diceCountElements = [
+    'd4Count', 'd6Count', 'd8Count', 'd10Count', 'd12Count', 'd20Count'
+  ]
+  
+  //array of the value from each dice count element to know how many of each dice to roll;
+  const diceCounts = [
+    diceCountElements[0], diceCountElements[1], diceCountElements[2], diceCountElements[3], diceCountElements[4], diceCountElements[5]
+  ].map(id => document.getElementById(id).value);
+
+  //clear the dice and total
+  clearDice();
+
+  //event listener to display number on dice and total after dice finish rolling animation
+  for (let i = 0; i < diceDivs.length; i++){
+    diceDivs[i].addEventListener('animationend', () => {
+      diceDivs[i].innerHTML = results[i];
+      document.getElementById("total").innerHTML = "Total: " + total;
+    });
+  }
+
+  //roll values for each die
+  for (let k = 0; k < diceCounts.length; k++){ //for each type of dice
+    for (let i = 0; i < diceCounts[k]; i++){ //roll the amount of times determined by diceCounts
+      animateDice(diceDivs[count], diceCountElements[k]);
+
+      //get random value for roll
+      let roll;
+      if (k == 5){ //if on d20
+        roll  = Math.ceil(Math.random()*20);
+      } else {
+        roll  = Math.ceil(Math.random()*((k+1)*2 +2)); //d4,d6,d8,d10,d12
+      }
+
+      // add roll to the total, store value in an array for later use
+      total += roll;
+      results.push(roll);
+
+      //move to the next die;
+      count++;
+    }
+  }
+  
+}
