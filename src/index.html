@@ -285,27 +285,7 @@
                     select.appendChild(optionElement);
                 });
                 responseContainer.appendChild(select);
-            } else if (currentQuestionIndex === 4) {
-                responseContainer.classList.add('grid-container');
-                const statLabels = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
-                for (let i = 0; i < statLabels.length; i++) {
-                    const row = document.createElement('div');
-                    row.classList.add('response-row');
-                    
-                    const label = document.createElement('label');
-                    label.textContent = statLabels[i] + ':';
-                    
-                    const input = document.createElement('input');
-                    input.type = 'number';
-                    input.id = `response${i + 1}`;
-                    input.min = '1';
-                    input.max = '20'; 
-                    
-                    row.appendChild(label);
-                    row.appendChild(input);
             
-                    responseContainer.appendChild(row);
-                }
             } else {
                 const input = document.createElement('input');
                 input.type = 'text';
@@ -330,12 +310,10 @@
 
         function next() {
         const responseInput = document.getElementById('response');
-        if (responseInput) {
             responses[currentQuestionIndex] = responseInput.value;
 
             // Store responses in localStorage
             localStorage.setItem('userResponses', JSON.stringify(responses));
-        }
         currentQuestionIndex++;
 
             if (currentQuestionIndex < questions.length) {
@@ -355,7 +333,7 @@
 
         function back() {
             const responseInput = document.getElementById('response');
-            responses[currentQuestionIndex] = responseInput.value;
+                responses[currentQuestionIndex] = responseInput.value;
             currentQuestionIndex--;
 
             if (currentQuestionIndex >= 0) {
