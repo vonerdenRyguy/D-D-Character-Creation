@@ -167,16 +167,24 @@ function saveCharacterToLocalStorage() {
   localStorage.setItem('savedCharacter', JSON.stringify(character));
   console.log("Character saved to local data!");
 }
+
 function loadCharacterFromTutorial() {
   const responses = JSON.parse(localStorage.getItem('userResponses'));
   character.basicInfo.name = responses[0];
   character.basicInfo.race = responses[1];
   character.basicInfo.class = responses[2];
   character.basicInfo.alignment = responses[3];
+
+  document.getElementById("charname").value = character.basicInfo.name;
+  document.getElementById("race").value = character.basicInfo.race;
+  document.getElementById("alignment").value = character.basicInfo.alignment;
+  document.getElementById("classlevel").value = character.basicInfo.class;
+  document.getElementById("experiencepoints").value = character.basicInfo.experiencePoints;
+  document.getElementById("playername").value = character.playername;
 }
 
 function loadCharacterFromLocalStorage() {
-  const responses = JSON.parse(localStorage.getItem('savedCharacter'));
+  const character = JSON.parse(localStorage.getItem('savedCharacter'));
 
   // Load basic info
   document.getElementById("charname").value = character.basicInfo.name;
