@@ -90,7 +90,17 @@ const iconClose = document.querySelector('.icon-close');
 
 // On page run, loads saved character from local storage
 document.addEventListener('DOMContentLoaded', function() {
-  loadCharacterFromLocalStorage();  // Load character data from local storage
+  const urlParams = new URLSearchParams(window.location.search);
+  const fromPage = urlParams.get('from');
+
+  if (fromPage === 'index') {
+    // Load character data when coming specifically from index.html
+    loadCharacterFromTutorial();
+    console.log("Loaded character from tutorial data.");
+  } else {
+    loadCharacterFromLocalStorage();
+    console.log("Loaded character from local storage.");
+  }
 });
 
 registerLink.addEventListener('click', ()=> {
@@ -138,6 +148,7 @@ function saveCharacter() {
   character.basicInfo.alignment = document.getElementById("alignment").value;
   character.basicInfo.class = document.getElementById("classlevel").value;
   character.basicInfo.experiencePoints = document.getElementById("experiencepoints").value;
+  character.basicInfo.background = document.getElementById("background").value;
   character.playername = document.getElementById("playername").value;
 
   // Ability scores box
@@ -156,13 +167,16 @@ function saveCharacterToLocalStorage() {
   localStorage.setItem('savedCharacter', JSON.stringify(character));
   console.log("Character saved to local data!");
 }
-
-function loadCharacterFromLocalStorage() {
+function loadCharacterFromTutorial() {
   const responses = JSON.parse(localStorage.getItem('userResponses'));
   character.basicInfo.name = responses[0];
   character.basicInfo.race = responses[1];
   character.basicInfo.class = responses[2];
   character.basicInfo.alignment = responses[3];
+}
+
+function loadCharacterFromLocalStorage() {
+  const responses = JSON.parse(localStorage.getItem('savedCharacter'));
 
   // Load basic info
   document.getElementById("charname").value = character.basicInfo.name;
