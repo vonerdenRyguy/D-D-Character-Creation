@@ -303,9 +303,9 @@ button:hover {
     /*make popup position be relative to window*/
     position: fixed;
     /*set vertical position of popup*/
-    top: 50%;
+    top: 50vh;
     /*put popup window on right side of the screen*/
-    left: 91.5%;
+    left: 92vw;
     /*set final position of the popup*/
     transform: translate(-50%, -50%);
     /*set background colour*/
@@ -332,10 +332,10 @@ button{
 #openPopup{
     position:fixed;
     /*fixed position to always see the button*/
-    top: 0%;
-    left: 94%;
+    top: 0vh;
+    left: 94vw;
     /*set position in the top left so it is out of the way*/
-    width: 5.9%;
+    width: 5.9vw;
     /*set button width*/
     background-color: #333;
     /* Dark background for input fields */
