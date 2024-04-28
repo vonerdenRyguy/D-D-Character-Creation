@@ -82,7 +82,16 @@ function loadCharacter() {
   character.alignment = responses[2];
 
   document.getElementById("charname").value = character.name;
+  document.getElementById("race").value = character.race;
+  document.getElementById("alignment").value = character.alignment;
+  
+  logCharData();
+}
+
+function logCharData() {
   console.log(character.name);
+  console.log(character.race);
+  console.log(character.alignment);
 }
 
 function createCharacter(event) {
