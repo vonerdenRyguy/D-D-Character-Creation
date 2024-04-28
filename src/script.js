@@ -45,12 +45,12 @@ const character = {
     charisma: 0
   },
   abilityMods: {
-    strength: calcAbilityMod(abilityScores.strength),
-    dexterity: calcAbilityMod(abilityScores.dexterity),
-    constitution: calcAbilityMod(abilityScores.constitution),
-    intelligence: calcAbilityMod(abilityScores.intelligence),
-    wisdom: calcAbilityMod(abilityScores.wisdom),
-    charisma: calcAbilityMod(abilityScores.charisma)
+    strength: 0,
+    dexterity: 0,
+    constitution: 0,
+    intelligence: 0,
+    wisdom: 0,
+    charisma: 0
   },
   passiveWisdom: 0,
   combat: {
@@ -66,6 +66,7 @@ const character = {
       failures: 0
     }
   },
+  proficiencyBonus: 2,
   skills: {
     acrobatics: 0,
     animalHandling: 0,
@@ -87,19 +88,25 @@ const character = {
     survival: 0
   },
   characterTraits: {
-    personality,
-    ideals,
-    bonds,
-    flaws
+    personality: "",
+    ideals: "",
+    bonds: "",
+    flaws: ""
   },
   currency: {
-    CP,
-    SP,
-    EP,
-    GP,
-    PP
+    CP: 0,
+    SP: 0,
+    EP: 0,
+    GP: 0,
+    PP: 0
   },
-  weapons: []
+  proficiencies: {
+    languages: [],
+    skills: [],
+    other: []
+  },
+  weapons: [],
+  equipement: []
 };
 
 const weapon = {
@@ -113,6 +120,15 @@ function calcAbilityMod(score){
     return 0;
   }
   return (Math.floor((score - 10) / 2));
+}
+
+function calcSkillMod(skill, score){
+  let out = 0;
+  if (character.proficiencies.skills.includes(skill)){
+    out += character.proficiencyBonus;
+  }
+  out += score;
+  return out;
 }
 
 function saveCharacter() {
