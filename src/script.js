@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const character = {
+  playername: "",
   basicInfo: {
     name: "",
     race: "",
@@ -66,9 +67,13 @@ const character = {
 };
 
 function saveCharacter() {
-  character.name = document.getElementById("charname").value;
-  character.race = document.getElementById("race").value;
-  character.alignment = document.getElementById("alignment").value;
+  character.basicInfo.name = document.getElementById("charname").value;
+  character.basicInfo.race = document.getElementById("race").value;
+  character.basicInfo.alignment = document.getElementById("alignment").value;
+  character.basicInfo.class = document.getElementById("classlevel").value;
+  character.basicInfo.experiencePoints = document.getElementById("experiencepoints").value;
+  character.playername = document.getElementById("playername").value;
+
   saveCharacterToLocalStorage();
 }
 
@@ -79,14 +84,17 @@ function saveCharacterToLocalStorage() {
 
 function loadCharacterFromLocalStorage() {
   const responses = JSON.parse(localStorage.getItem('userResponses'));
-  character.name = responses[0];
-  character.race = responses[1];
-  character.alignment = responses[2];
+  character.basicInfo.name = responses[0];
+  character.basicInfo.race = responses[1];
+  character.basicInfo.class = responses[2];
+  character.basicInfo.alignment = responses[3];
 
-  document.getElementById("charname").value = character.name;
-  document.getElementById("race").value = character.race;
-  document.getElementById("alignment").value = character.alignment;
-  
+  document.getElementById("charname").value = character.basicInfo.name;
+  document.getElementById("race").value = character.basicInfo.race;
+  document.getElementById("alignment").value = character.basicInfo.alignment;
+  document.getElementById("classlevel").value = character.basicInfo.class;
+  document.getElementById("playername").value = character.playername;
+
   logCharData();
 }
 
