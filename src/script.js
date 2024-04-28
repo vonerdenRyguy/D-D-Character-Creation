@@ -101,6 +101,13 @@ const character = {
   }
 };
 
+function calcAbilityMod(score){
+  if (score < 1){
+    return 0;
+  }
+  return (Math.floor((score - 10) / 2));
+}
+
 function saveCharacter() {
   // Top Box of information
   character.basicInfo.name = document.getElementById("charname").value;
@@ -139,13 +146,6 @@ function logCharData() {
   console.log(character.name);
   console.log(character.race);
   console.log(character.alignment);
-}
-
-function calcAbilityMod(score){
-  if (score < 1){
-    return 0;
-  }
-  return (Math.floor((score - 10) / 2));
 }
 
 //everything below is dice rolling
