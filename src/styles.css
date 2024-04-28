@@ -124,7 +124,7 @@ button:hover {
     /*set vertical position of popup*/
     top: 50%;
     /*put popup window on right side of the screen*/
-    left: 91.5%;
+    left: 92vw;
     /*set final position of the popup*/
     transform: translate(-50%, -50%);
     /*set background colour*/
