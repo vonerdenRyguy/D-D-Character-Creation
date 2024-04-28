@@ -26,6 +26,7 @@ iconClose.addEventListener('click', ()=> {
 });
 
 const character = {
+  playername: "",
   basicInfo: {
     name: "",
     race: "",
@@ -44,12 +45,12 @@ const character = {
     charisma: 0
   },
   abilityMods: {
-    strength: 0,
-    dexterity: 0,
-    constitution: 0,
-    intelligence: 0,
-    wisdom: 0,
-    charisma: 0
+    strength: calcAbilityMod(abilityScores.strength),
+    dexterity: calcAbilityMod(abilityScores.dexterity),
+    constitution: calcAbilityMod(abilityScores.constitution),
+    intelligence: calcAbilityMod(abilityScores.intelligence),
+    wisdom: calcAbilityMod(abilityScores.wisdom),
+    charisma: calcAbilityMod(abilityScores.charisma)
   },
   passiveWisdom: 0,
   combat: {
@@ -84,13 +85,54 @@ const character = {
     sleightOfHand: 0,
     stealth: 0,
     survival: 0
-  }
+  },
+  characterTraits: {
+    personality,
+    ideals,
+    bonds,
+    flaws
+  },
+  currency: {
+    CP,
+    SP,
+    EP,
+    GP,
+    PP
+  },
+  weapons: []
 };
 
+const weapon = {
+  weaponName,
+  atkBonus,
+  dmgType
+}
+
+function calcAbilityMod(score){
+  if (score < 1){
+    return 0;
+  }
+  return (Math.floor((score - 10) / 2));
+}
+
 function saveCharacter() {
-  character.name = document.getElementById("charname").value;
-  character.race = document.getElementById("race").value;
-  character.alignment = document.getElementById("alignment").value;
+  // Top Box of information
+  character.basicInfo.name = document.getElementById("charname").value;
+  character.basicInfo.race = document.getElementById("race").value;
+  character.basicInfo.alignment = document.getElementById("alignment").value;
+  character.basicInfo.class = document.getElementById("classlevel").value;
+  character.basicInfo.experiencePoints = document.getElementById("experiencepoints").value;
+  character.playername = document.getElementById("playername").value;
+
+  // Ability scores box
+  character.abilityScores.strength = document.getElementById("Strengthscore").value;
+  character.abilityScores.dexterity = document.getElementById("Dexterityscore").value;
+  character.abilityScores.constitution = document.getElementById("Constitutionscore").value;
+  character.abilityScores.wisdom = document.getElementById("Wisdomscore").value;
+  character.abilityScores.intelligence = document.getElementById("Intelligencescore").value;
+  character.abilityScores.charisma = document.getElementById("Charismascore").value;
+
+  // character.passiveWisdom <- set by formula?
   saveCharacterToLocalStorage();
 }
 
@@ -101,28 +143,29 @@ function saveCharacterToLocalStorage() {
 
 function loadCharacterFromLocalStorage() {
   const responses = JSON.parse(localStorage.getItem('userResponses'));
-  character.name = responses[0];
-  character.race = responses[1];
-  character.alignment = responses[2];
+  character.basicInfo.name = responses[0];
+  character.basicInfo.race = responses[1];
+  character.basicInfo.class = responses[2];
+  character.basicInfo.alignment = responses[3];
 
-  document.getElementById("charname").value = character.name;
-  document.getElementById("race").value = character.race;
-  document.getElementById("alignment").value = character.alignment;
-  
+  // Load basic info
+  document.getElementById("charname").value = character.basicInfo.name;
+  document.getElementById("race").value = character.basicInfo.race;
+  document.getElementById("alignment").value = character.basicInfo.alignment;
+  document.getElementById("classlevel").value = character.basicInfo.class;
+  document.getElementById("experiencepoints").value = character.basicInfo.experiencePoints;
+  document.getElementById("playername").value = character.playername;
+
   logCharData();
 }
 
 function logCharData() {
-  console.log(character.name);
-  console.log(character.race);
-  console.log(character.alignment);
-}
-
-function calcAbilityMod(score){
-  if (score < 1){
-    return 0;
-  }
-  return (Math.floor((score - 10) / 2));
+  console.log("Name: " + character.basicInfo.name);
+  console.log("Race: " + character.basicInfo.race);
+  console.log("Alignment: " + character.basicInfo.alignment);
+  console.log("Class: " + character.basicInfo.class);
+  console.log("Experience Points: " + character.basicInfo.experiencePoints);
+  console.log("Playername: " + character.playername);
 }
 
 //everything below is dice rolling

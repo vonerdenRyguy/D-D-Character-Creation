@@ -2,6 +2,12 @@ label {
   font-family: "Times New Roman", Times, serif;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 #submitButton {
   margin-top: 2vh;
   font-size: 18px;

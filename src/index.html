@@ -94,7 +94,7 @@
             position: relative;
             max-width: 20vh;
             right: -60%;
-            bottom: 0%;
+            bottom: 20vh;
             height: auto;
             z-index: 998;
         }
@@ -164,7 +164,7 @@
                         <button id="addD20" onclick="d20Count.value++">+</button>
                         <label for="d20Count">d20</label>
                     </nobr>
-                    <button id="roll" name="roll" onclick="rollDice(event);">roll</button>
+                    <button id="roll" name="Roll" onclick="rollDice(event);">roll</button>
                     <p id="total">Total: </p>
                     <div class="dice">
                         <nobr>
@@ -285,6 +285,27 @@
                     select.appendChild(optionElement);
                 });
                 responseContainer.appendChild(select);
+            } else if (currentQuestionIndex === 4) {
+                responseContainer.classList.add('grid-container');
+                const statLabels = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
+                for (let i = 0; i < statLabels.length; i++) {
+                    const row = document.createElement('div');
+                    row.classList.add('response-row');
+                    
+                    const label = document.createElement('label');
+                    label.textContent = statLabels[i] + ':';
+                    
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.id = `response${i + 1}`;
+                    input.min = '1';
+                    input.max = '20'; 
+                    
+                    row.appendChild(label);
+                    row.appendChild(input);
+            
+                    responseContainer.appendChild(row);
+                }
             } else {
                 const input = document.createElement('input');
                 input.type = 'text';
@@ -309,11 +330,12 @@
 
         function next() {
         const responseInput = document.getElementById('response');
-        responses[currentQuestionIndex] = responseInput.value;
+        if (responseInput) {
+            responses[currentQuestionIndex] = responseInput.value;
 
-        // Store responses in localStorage
-        localStorage.setItem('userResponses', JSON.stringify(responses));
-
+            // Store responses in localStorage
+            localStorage.setItem('userResponses', JSON.stringify(responses));
+        }
         currentQuestionIndex++;
 
             if (currentQuestionIndex < questions.length) {
