@@ -124,7 +124,15 @@ function saveCharacter() {
   character.basicInfo.experiencePoints = document.getElementById("experiencepoints").value;
   character.playername = document.getElementById("playername").value;
 
-  // Ability scores and such
+  // Ability scores box
+  character.abilityScores.strength = document.getElementById("Strengthscore").value;
+  character.abilityScores.dexterity = document.getElementById("Dexterityscore").value;
+  character.abilityScores.constitution = document.getElementById("Constitutionscore").value;
+  character.abilityScores.wisdom = document.getElementById("Wisdomscore").value;
+  character.abilityScores.intelligence = document.getElementById("Intelligencescore").value;
+  character.abilityScores.charisma = document.getElementById("Charismascore").value;
+
+  // character.passiveWisdom <- set by formula?
   saveCharacterToLocalStorage();
 }
 
@@ -140,19 +148,24 @@ function loadCharacterFromLocalStorage() {
   character.basicInfo.class = responses[2];
   character.basicInfo.alignment = responses[3];
 
+  // Load basic info
   document.getElementById("charname").value = character.basicInfo.name;
   document.getElementById("race").value = character.basicInfo.race;
   document.getElementById("alignment").value = character.basicInfo.alignment;
   document.getElementById("classlevel").value = character.basicInfo.class;
+  document.getElementById("experiencepoints").value = character.basicInfo.experiencePoints;
   document.getElementById("playername").value = character.playername;
 
   logCharData();
 }
 
 function logCharData() {
-  console.log(character.name);
-  console.log(character.race);
-  console.log(character.alignment);
+  console.log("Name: " + character.basicInfo.name);
+  console.log("Race: " + character.basicInfo.race);
+  console.log("Alignment: " + character.basicInfo.alignment);
+  console.log("Class: " + character.basicInfo.class);
+  console.log("Experience Points: " + character.basicInfo.experiencePoints);
+  console.log("Playername: " + character.playername);
 }
 
 //everything below is dice rolling
