@@ -89,6 +89,7 @@ const character = {
 };
 
 function saveCharacter() {
+  // Top Box of information
   character.basicInfo.name = document.getElementById("charname").value;
   character.basicInfo.race = document.getElementById("race").value;
   character.basicInfo.alignment = document.getElementById("alignment").value;
@@ -96,6 +97,7 @@ function saveCharacter() {
   character.basicInfo.experiencePoints = document.getElementById("experiencepoints").value;
   character.playername = document.getElementById("playername").value;
 
+  // Ability scores and such
   saveCharacterToLocalStorage();
 }
 
