@@ -384,7 +384,7 @@ button{
     /* Ensure there's some space above inputs */
     border-radius: 5px;
     /* Match the border-radius for consistency */
-    /*width: 30%;
+    width: 30%;
     /* width */
     box-sizing: border-box;
     /* Include padding and border in the element's total width */
