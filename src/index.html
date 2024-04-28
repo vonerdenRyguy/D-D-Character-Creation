@@ -7,6 +7,7 @@
 
     <!--A favicon is the icon that shows as the "tab icon"-->
     <link rel="icon" type="image" href="../assets/favicon.png">
+    <link rel="icon" type="image" href="../assets/close_icon.png">
 
     <!--Link the CSS file styles.css-->
     <link rel="stylesheet" href="styles.css">
@@ -28,52 +29,48 @@
     </header>
 
     <div class="wrapper">
-        <span class="icon-close">
-            <ion-icon name="close"></ion-icon>
-        </span>
+        <a href="#" class="icon-close">
+            <img src="../assets/close_icon.png" alt="Close icon" class="close-icon">
+        </a>
         <div class="form-box login">
             <h2>Login</h2>
-            <form action="#">
+            <form id="loginForm">
                 <div class = "input-box">
-                    <span class="icon"></span>
-                    <input type="username" required>
-                    <label>Username</label>
+                    <input type="text" id="loginUsernameInput" required>
+                    <label for="loginUsernameInput">Username</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"></span>
-                    <input type="password" required>
-                    <label>Password</label>
+                    <input type="password" id="loginPasswordInput" required>
+                    <label for="loginPasswordInput">Password</label>
                 </div>
                 <button type="submit" class="btn">Login</button>
-                <div class="login-register">
-                    <p><a href="#"
-                        class="register-link">Register</a>
-                    </p>
-                </div>
             </form>
+            <div class="login-register">
+                <p><a href="#" class="register-link">Register</a></p>
+            </div>
         </div>
         <div class="form-box register">
             <h2>Registration</h2>
-            <form action="#">
+            <form id="registerForm">
                 <div class = "input-box">
-                    <span class="icon"></span>
-                    <input type="text" required>
-                    <label>Username</label>
+                    <input type="text" id="registerUsernameInput" required>
+                    <label for="registerUsernameInput">Username</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"></span>
-                    <input type="password" required>
-                    <label>Password</label>
+                    <input type="password" id="registerPasswordInput" required>
+                    <label for="registerPasswordInput">Password</label>
                 </div>
                 <button type="submit" class="btn">Register</button>
+                </form>
                 <div class="login-register">
-                    <p><a href="#"
-                        class="login-link">Login</a>
-                    </p>
+                    <p><a href="#" class="login-link">Login</a></p>
                 </div>
-            </form>
         </div>
     </div>
+
+
+
+
     <div id="questionContainer">
         <h2 id="question">Question 1: What is your character's name?</h2>
         <input type="text" id="response">
@@ -131,6 +128,9 @@
         }
         displayQuestion();
     </script>
+    <script src = "script.js"></script>
+    <script src = "register.js"></script>
+    <script src = "login.js"></script>
 </body>
 
 </html>
