@@ -30,8 +30,7 @@
             padding: 20px;
             background-color: #803D3B;
             border-radius: 10px;
-            margin: 20px;
-            width: 70vh;
+            width: 75vh;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
             border: 4px solid #312d2d;
@@ -75,7 +74,7 @@
         }
 
         #speechBubble {
-            width: 73vh;
+            width: 75vh;
             padding: 10px;
             background-color: #312d2d;
             background-image: url('https://cdn.vectorstock.com/i/500p/87/46/vintage-scroll-isolated-vector-2798746.jpg');
@@ -97,6 +96,16 @@
             bottom: 20vh;
             height: auto;
             z-index: 998;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            gap: 10px;
+        }
+
+        #responseContainer input {
+            width: calc(100% / 3 - 10px);
         }
     </style>
 </head>
@@ -185,7 +194,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         const questions = [
-            "What is your character's name?",
+            "Choose a name?",
             "What's your race?",
             "What's your class?",
             "What's your alignment",
@@ -203,7 +212,7 @@
             responseContainer.innerHTML = '';
 
             if (currentQuestionIndex === 0) {
-                displayHelpText("A character's name is important. It will follow you throughout your entire journey. Those you meet along the way will refer to you by this name. Choose Wisely!", 70);
+                displayHelpText("A character's name is important. It will follow you throughout your entire journey. Those you meet along the way will refer to you by this name. Choose Wisely!", 50); 
             }
 
             if (currentQuestionIndex === 1) {
@@ -240,66 +249,133 @@
                 });
                 responseContainer.appendChild(select);
             
+            } else if (currentQuestionIndex === 4) {
+                const placeholders = [
+                    "Strength",
+                    "Dexterity",
+                    "Constitution",
+                    "Intelligence",
+                    "Wisdom",
+                    "Charisma"
+                ];
+
+                questionElement.classList.add('grid-layout');
+
+                for (let i = 0; i < 6; i++) {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = `response${i}`;
+                    input.placeholder = placeholders[i];
+                    responseContainer.appendChild(input);
+                }
             } else {
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.id = 'response';
+                input.style.width = '100%';
                 responseContainer.appendChild(input);
             }
         }
+
+        let hintInterval;
 
         async function displayHelpText(text, delay) {
             const speechBubble = document.getElementById('speechBubble');
             const speechBubbleContainer = document.getElementById('speechBubbleContainer');
             speechBubble.style.display = 'block';
             speechBubble.textContent = '';
+            clearInterval(hintInterval); // Clear the interval before starting a new one
 
-            for (let i = 0; i < text.length; i++) {
-                await new Promise(resolve => setTimeout(resolve, delay));
-
+            let i = 0;
+            hintInterval = setInterval(() => {
                 const char = text.charAt(i);
                 speechBubble.textContent += char;
-            }
+                i++;
+                if (i >= text.length) {
+                    clearInterval(hintInterval);
+                }
+            }, delay);
         }
 
+
         function next() {
-        const responseInput = document.getElementById('response');
-            responses[currentQuestionIndex] = responseInput.value;
+            if (currentQuestionIndex === 4) {
+                for (let i = 0; i < 6; i++) {
+                    const input = document.getElementById(`response${i}`);
+                    responses[currentQuestionIndex + i] = input.value;
+                }
+            } else {
+                const responseInput = document.getElementById('response');
+                responses[currentQuestionIndex] = responseInput.value;
+            }
 
             // Store responses in localStorage
             localStorage.setItem('userResponses', JSON.stringify(responses));
-        currentQuestionIndex++;
+
+            console.log(responses);
+            currentQuestionIndex++;
 
             if (currentQuestionIndex < questions.length) {
                 displayQuestion();
                 
                 if (currentQuestionIndex == 1) {
-                    displayHelpText("In D&D, a character's name is a profound reflection of their essence, heritage, and journey. As characters navigate the diverse landscapes of D&D, their name becomes a guiding light, shaping perceptions, influencing choices, and serving as a reminder of past triumphs and future adventures.", 60);
+                    displayHelpText("In D&D, a character's name is a profound reflection of their essence, heritage, and journey. As characters navigate the diverse landscapes of D&D, their name becomes a guiding light, shaping perceptions, influencing choices, and serving as a reminder of past triumphs and future adventures.", 50);
                 } else  if (currentQuestionIndex == 2) {
-                    displayHelpText("");
+                    displayHelpText("One's chosen class is a manifestation of their talents, aspirations, and the path they've chosen to tread. Embrace your character's class not only as a means to navigate battles and challenges but also as a vessel for storytelling and self-discovery. ", 50);
+                } else if (currentQuestionIndex == 3) {
+                    displayHelpText("Your alignment is the essence of your character's ethos, guiding every decision and action like a celestial map in the night sky. Embrace the spectrum from Lawful to Chaotic and Good to Evil, for within its interstellar dance lies the tapestry of your character's destiny.", 50);
+                } else if (currentQuestionIndex == 4) {
+                    displayHelpText("PAY CLOSE ATTENTION NOW! Click on the Dice Panel in the top right to access your dice. You will choose 4 d6 dice and roll them. Sum up the 3 highest rolls and set this to any of the core stats. Do this for all 6 core stats.", 50);
                 } else {
                     displayHelpText("");
                 }
             } else {
                 navigateToSheet();
             }
-    }
+        }
+
 
         function back() {
-            const responseInput = document.getElementById('response');
+            if (currentQuestionIndex === 4) {
+                for (let i = 0; i < 6; i++) {
+                    const input = document.getElementById(`response${i}`);
+                    responses[currentQuestionIndex + i] = input.value;
+                }
+            } else {
+                const responseInput = document.getElementById('response');
                 responses[currentQuestionIndex] = responseInput.value;
+            }
+
             currentQuestionIndex--;
+
+            if (currentQuestionIndex == 1) {
+                    displayHelpText("In D&D, a character's name is a profound reflection of their essence, heritage, and journey. As characters navigate the diverse landscapes of D&D, their name becomes a guiding light, shaping perceptions, influencing choices, and serving as a reminder of past triumphs and future adventures.", 50);
+                } else  if (currentQuestionIndex == 2) {
+                    displayHelpText("One's chosen class is a manifestation of their talents, aspirations, and the path they've chosen to tread. Embrace your character's class not only as a means to navigate battles and challenges but also as a vessel for storytelling and self-discovery. ", 50);
+                } else if (currentQuestionIndex == 3) {
+                    displayHelpText("Your alignment is the essence of your character's ethos, guiding every decision and action like a celestial map in the night sky. Embrace the spectrum from Lawful to Chaotic and Good to Evil, for within its interstellar dance lies the tapestry of your character's destiny.", 50);
+                } else if (currentQuestionIndex == 4) {
+                    displayHelpText("PAY CLOSE ATTENTION NOW! Click on the Dice Panel in the top right to access your dice. You will choose 4 d6 dice and roll them. Sum up the 3 highest rolls and set this to any of the core stats. Do this for all 6 core stats.", 50);
+                } else {
+                    displayHelpText("");
+                }
 
             if (currentQuestionIndex >= 0) {
                 displayQuestion();
+                const responseInput = document.getElementById('response');
+                const previousResponse = responses[currentQuestionIndex];
+                if (previousResponse !== undefined) {
+                    responseInput.value = previousResponse;
+                }
             } else {
                 alert("You're at the first question.");
                 currentQuestionIndex = 0;
             }
         }
 
+
         function navigateBackToMenu() {
-            window.location.href = 'mainPanel.html';
+            window.location.href = 'welcomePage.html';
         }
 
         function navigateToSheet() {
