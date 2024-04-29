@@ -339,6 +339,7 @@ function loadCharacterFromLocalStorage() {
   document.getElementById("alignment").value = character.basicInfo.alignment;
   document.getElementById("classlevel").value = character.basicInfo.class;
   document.getElementById("experiencepoints").value = character.basicInfo.experiencePoints;
+  document.getElementById("background").value = character.basicInfo.background;
   document.getElementById("playername").value = character.playername;
 
   logCharData();
