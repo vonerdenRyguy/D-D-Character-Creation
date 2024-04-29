@@ -1,26 +1,24 @@
-// Function to check login credentials
+// function to check login credentials
 function checkLoginCredentials(username, password) {
-    // Retrieve existing user data from localStorage
     var userData = JSON.parse(localStorage.getItem("userData")) || [];
 
-    // Check if the provided username and password match any registered user
+    // check if the user already exists
     var user = userData.find(user => user.username === username && user.password === password);
-    return user !== undefined; // Return true if a matching user is found, otherwise false
+    return user !== undefined;
 }
 
-// Event listener for login form submission
+// event listener for login form submission
 document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     var username = document.getElementById("loginUsernameInput").value;
     var password = document.getElementById("loginPasswordInput").value;
 
-    // Check if login credentials are valid
     if (checkLoginCredentials(username, password)) {
-        alert("Login successful!");
+        alert(username + " logged in");
+        // clear localStorage after login. Should be removed for presentation.
         localStorage.clear();
-        // Redirect or perform other actions upon successful login
-    } else {
-        alert("Invalid username or password!");
     }
+    else
+        alert("Username or password is invalid");
 });

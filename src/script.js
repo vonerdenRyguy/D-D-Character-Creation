@@ -121,12 +121,6 @@ const character = {
   }
 };
 
-const wrapper = document.querySelector('.wrapper');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
-const btnPopup = document.querySelector('.btnLogin-popup');
-const iconClose = document.querySelector('.icon-close');
-
 // On page run, loads saved character from local storage
 document.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
@@ -140,22 +134,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loadCharacterFromLocalStorage();
     console.log("Loaded character from local storage.");
   }
-});
-
-registerLink.addEventListener('click', () => {
-  wrapper.classList.add('active');
-});
-
-loginLink.addEventListener('click', () => {
-  wrapper.classList.remove('active');
-});
-
-btnPopup.addEventListener('click', () => {
-  wrapper.classList.add('active-popup');
-});
-
-iconClose.addEventListener('click', () => {
-  wrapper.classList.remove('active-popup');
 });
 
 const weapon = {
