@@ -315,6 +315,9 @@ function saveCharacterToLocalStorage() {
   console.log("Character saved to local data!");
 }
 
+// When loading the character data from the tutorial, we only
+// fill the applicable information we recieved from the prompts.
+// We then calculate other applicable values.
 function loadCharacterFromTutorial() {
   const responses = JSON.parse(localStorage.getItem('userResponses'));
   character.basicInfo.name = responses[0];
@@ -328,6 +331,8 @@ function loadCharacterFromTutorial() {
   document.getElementById("classlevel").value = character.basicInfo.class;
   document.getElementById("experiencepoints").value = character.basicInfo.experiencePoints;
   document.getElementById("playername").value = character.playername;
+  
+  // updateCharacter();  Call this once this method is completed fully
 }
 
 function loadCharacterFromLocalStorage() {
@@ -342,6 +347,14 @@ function loadCharacterFromLocalStorage() {
   document.getElementById("background").value = character.basicInfo.background;
   document.getElementById("playername").value = character.playername;
 
+  // Load ability scores
+  document.getElementById("Strengthscore").value = character.abilityScores.strength;
+  document.getElementById("Dexterityscore").value = character.abilityScores.dexterity;
+  document.getElementById("Constitutionscore").value = character.abilityScores.constitution;    document.getElementById("Wisdomscore").value = character.abilityScores.wisdom;
+  document.getElementById("Intelligencescore").value = character.abilityScores.intelligence;
+  document.getElementById("Charismascore").value = character.abilityScores.charisma;
+  
+  
   logCharData();
 }
 
