@@ -5,90 +5,178 @@
 # Visit the Live Deployment
 [Character Creation Tool](https://vonerdenryguy.github.io/D-D-Character-Creation/src/index.html)
 
-## Table of Contents
-- [Table of Contents](#table-of-contents)
-- [Objectives](#objectives)
-- [D&D Character Object Structure](#dd-character-object-structure)
-  - [Basic Info](#basic-info)
-  - [Ability Scores](#ability-scores)
-  - [Modifiers](#modifiers)
-  - [Skills](#skills)
-  - [Combat](#combat)
-  - [Equipment](#equipment)
-  - [Features and Traits, Proficiencies and Languages, Spells](#features-and-traits-proficiencies-and-languages-spells)
-  - [Backstory, Allies and Organizations, Additional Features and Traits, Treasure](#backstory-allies-and-organizations-additional-features-and-traits-treasure)
+# Table of Contents
+
+- [D&D Character Object Documentation](#dd-character-object-documentation)
+  - [Structure](#structure)
+    - [Player Name](#playername)
+    - [Basic Information](#basicinfo)
+    - [Ability Scores](#abilityscores)
+    - [Ability Modifiers](#abilitymods)
+    - [Passive Wisdom](#passivewisdom)
+    - [Inspiration](#inspiration)
+    - [Combat](#combat)
+    - [Proficiency Bonus](#proficiencybonus)
+    - [Skills](#skills)
+    - [Saves](#saves)
+    - [Character Traits](#charactertraits)
+    - [Currency](#currency)
+    - [Proficiencies](#proficiencies)
+    - [Weapons](#weapons)
+    - [Equipment](#equipement)
+    - [Spellcasting](#spellcasting)
+  - [Example Usage](#example-usage)
 - [Notes](#notes)
-- [Credits](#credits)
 
 
-## Objectives:
+# Objectives:
 As a cumulative assignment for CSE 201, this project hopes to:
 1. Apply the learned contents of the course into a small real-life project, which allows the students to explore and experience tackling industry-based working environments.
 2. Provide students the opportunity to work in groups and learn industry-based communication skills.
 
-## D&D Character Object Structure
+# D&D Character Object Documentation
 
-The `character` object is designed to comprehensively represent a Dungeons & Dragons (D&D) character, covering all essential aspects such as basic information, ability scores, skills, and more. Here's a breakdown of each section within the `character` object:
+This documentation describes the structure of the `character` object used to represent a Dungeons and Dragons character in digital form. The object includes various properties that hold character details, abilities, equipment, and more.
 
-### Basic Info
+## Structure
 
-- **name**: Character's name.
-- **race**: Character's race (e.g., Elf, Dwarf, Human).
-- **class**: Character's class (e.g., Wizard, Rogue, Fighter).
-- **level**: Character's current level, indicating experience and abilities.
-- **background**: Character's backstory or profession before adventuring.
-- **alignment**: Character's ethical and moral perspective (e.g., Chaotic Good, Neutral Evil).
-- **experiencePoints**: Experience points gained by the character.
+The `character` object is structured as follows:
 
-### Ability Scores
+### `playername`
+- **Type:** `String`
+- **Description:** The name of the player controlling the character.
 
-Core attributes defining the character's physical and mental characteristics:
-- **strength**: Physical power.
-- **dexterity**: Agility and reflexes.
-- **constitution**: Endurance and health.
-- **intelligence**: Reasoning and memory.
-- **wisdom**: Perception and insight.
-- **charisma**: Leadership and personality.
+### `basicInfo`
+- **Type:** `Object`
+- **Description:** Contains basic information about the character.
+  - `name`: Character's name.
+  - `race`: Character's race (e.g., Elf, Dwarf).
+  - `class`: Character's class (e.g., Wizard, Fighter).
+  - `level`: Character's current level.
+  - `background`: Character's background story.
+  - `alignment`: Character's ethical and moral perspective.
+  - `experiencePoints`: Current total of experience points.
 
-### Modifiers
+### `abilityScores`
+- **Type:** `Object`
+- **Description:** Character's ability scores.
+  - `strength`: Score for physical power.
+  - `dexterity`: Score for agility.
+  - `constitution`: Score for endurance.
+  - `intelligence`: Score for reasoning and memory.
+  - `wisdom`: Score for perception and insight.
+  - `charisma`: Score for force of personality.
 
-Derived from ability scores, affecting rolls for actions related to that ability:
-- **strengthModifier**, **dexterityModifier**, etc., corresponding to each ability score.
+### `abilityMods`
+- **Type:** `Object`
+- **Description:** Ability modifiers derived from ability scores.
+  - `strength`: Modifier for Strength.
+  - `dexterity`: Modifier for Dexterity.
+  - `constitution`: Modifier for Constitution.
+  - `intelligence`: Modifier for Intelligence.
+  - `wisdom`: Modifier for Wisdom.
+  - `charisma`: Modifier for Charisma.
 
-### Skills
+### `passiveWisdom`
+- **Type:** `Integer`
+- **Description:** Passive Wisdom (Perception) score.
 
-Specific competencies tied to an ability score, with numerical values indicating proficiency:
-- Skills like **acrobatics**, **arcana**, **stealth**, etc.
+### `inspiration`
+- **Type:** `Integer`
+- **Description:** Inspiration points.
 
-### Combat
+### `combat`
+- **Type:** `Object`
+- **Description:** Combat related stats.
+  - `armorClass`: Defense capability score.
+  - `initiative`: Modifier for turn order in combat.
+  - `speed`: Movement speed.
+  - `hitPoints`: Object holding health points data.
+    - `maximum`: Maximum health points.
+    - `current`: Current health points.
+    - `temporary`: Temporary health points.
+  - `hitDice`: Type of dice used for health points.
+  - `deathSaves`: Record of passed and failed death saves.
+    - `successes`: Number of successful saves.
+    - `failures`: Number of failures.
 
-Details related to combat scenarios:
-- **armorClass**: Defense against being hit.
-- **initiative**: Turn order in combat.
-- **speed**: Movement distance per turn.
-- **hitPointMaximum**: Max hit points.
-- **currentHitPoints**: Current hit points.
-- **temporaryHitPoints**: Additional, temporary hit points.
-- **hitDice**: Used for healing during rests.
-- **deathSaves**: Survival tracking after dropping to 0 hit points.
+### `proficiencyBonus`
+- **Type:** `Integer`
+- **Description:** Bonus applied to proficient skills and abilities.
 
-### Equipment
+### `skills`
+- **Type:** `Object`
+- **Description:** Skill proficiency scores.
+  - List each skill (e.g., `acrobatics`, `animalHandling`, etc.) with an integer value representing the proficiency level.
 
-Items carried by the character, including:
-- **coins**: Currency.
-- **weapons**: Weapons carried.
-- **armor**: Armor worn.
-- **otherItems**: Other significant items.
+### `saves`
+- **Type:** `Object`
+- **Description:** Saving throw modifiers.
+  - `strengthSave`: Modifier for Strength saves.
+  - `dexteritySave`: Modifier for Dexterity saves.
+  - `constitutionSave`: Modifier for Constitution saves.
+  - `intelligenceSave`: Modifier for Intelligence saves.
+  - `wisdomSave`: Modifier for Wisdom saves.
+  - `charismaSave`: Modifier for Charisma saves.
 
-### Features and Traits, Proficiencies and Languages, Spells
+### `characterTraits`
+- **Type:** `Object`
+- **Description:** Descriptive traits of the character.
+  - `personality`: Personality traits.
+  - `ideals`: Core beliefs and ideals.
+  - `bonds`: Emotional bonds and connections.
+  - `flaws`: Character flaws and weaknesses.
 
-- **featuresAndTraits**: Special abilities or passive benefits.
-- **proficienciesAndLanguages**: Proficiencies and languages known.
-- **spells**: Spellcasting details, including spell slots and known spells.
+### `currency`
+- **Type:** `Object`
+- **Description:** Financial resources in different denominations.
+  - `CP`: Copper Pieces.
+  - `SP`: Silver Pieces.
+  - `EP`: Electrum Pieces.
+  - `GP`: Gold Pieces.
+  - `PP`: Platinum Pieces.
 
-### Backstory, Allies and Organizations, Additional Features and Traits, Treasure
+### `proficiencies`
+- **Type:** `Object`
+- **Description:** Lists of proficiencies.
+  - `languages`: Array of known languages.
+  - `skills`: Array of proficient skills.
+  - `other`: Array of other proficiencies.
 
-- Fleshing out the character's personal story, connections, unique traits, and treasures acquired.
+### `weapons`
+- **Type:** `Array`
+- **Description:** List of weapons.
+
+### `equipement`
+- **Type:** `Array`
+- **Description:** List of equipment items.
+
+### `spellcasting`
+- **Type:** `Object`
+- **Description:** Spellcasting abilities and spells known.
+  - `spellCastingAbility`: Primary ability for spellcasting.
+  - `spellAttackBonus`: Attack bonus for spells.
+  - `spellSaveDC`: Difficulty Class for saving throws against spells.
+  - `slots`: Object with arrays representing available spell slots for each spell level.
+  - `spells`: Object with arrays of spells known for each spell level.
+
+## Example Usage
+
+```javascript
+const myCharacter = {
+  playername: "John Doe",
+  basicInfo: {
+    name: "Eldrin",
+    race: "Elf",
+    class: "Wizard",
+    level: 5,
+    background: "Sage",
+    alignment: "Chaotic Good",
+    experiencePoints: 6500
+  },
+  // Add other properties as shown above
+};
+```
 
 This structure serves as a digital character sheet for tracking a character's progression through a D&D campaign, designed to be comprehensive and easily accessible.
 
