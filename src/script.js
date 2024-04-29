@@ -26,13 +26,16 @@ const character = {
     charisma: 0
   },
   passiveWisdom: 0,
+  inspiration: 0,
   combat: {
     armorClass: 0,
     initiative: 0,
     speed: 0,
-    hitPointMaximum: 0,
-    currentHitPoints: 0,
-    temporaryHitPoints: 0,
+    hitPoints: {
+      maximum: 0,
+      current: 0,
+      temporary: 0
+    },
     hitDice: "",
     deathSaves: {
       successes: 0,
@@ -79,7 +82,35 @@ const character = {
     other: []
   },
   weapons: [],
-  equipement: []
+  equipement: [],
+  spellcasting: {
+    spellCastingAbility: "",
+    spellAttackBonus: 0,
+    spellSaveDC: 0,
+    slots: {
+      level1: [],
+      level2: [],
+      level3: [],
+      level4: [],
+      level5: [],
+      level6: [],
+      level7: [],
+      level8: [],
+      level9: []
+    },
+    spells: {
+      cantrip: [],
+      level1: [],
+      level2: [],
+      level3: [],
+      level4: [],
+      level5: [],
+      level6: [],
+      level7: [],
+      level8: [],
+      level9: []
+    }
+  }
 };
 
 const wrapper = document.querySelector('.wrapper');
@@ -139,6 +170,122 @@ function calcSkillMod(skill, score){
   }
   out += score;
   return out;
+}
+
+function updateCharacter(){
+  character = {
+    playername: document.getElementById(""),
+    basicInfo: {
+      name: document.getElementById(""),
+      race: document.getElementById(""),
+      class: document.getElementById(""),
+      level: document.getElementById(""),
+      background: document.getElementById(""),
+      alignment: document.getElementById(""),
+      experiencePoints: document.getElementById("")
+    },
+    abilityScores: {
+      strength: document.getElementById(""),
+      dexterity: document.getElementById(""),
+      constitution: document.getElementById(""),
+      intelligence: document.getElementById(""),
+      wisdom: document.getElementById(""),
+      charisma: document.getElementById("")
+    },
+    abilityMods: {
+      strength: calcAbilityMod(document.getElementById("")),
+      dexterity: calcAbilityMod(document.getElementById("")),
+      constitution: calcAbilityMod(document.getElementById("")),
+      intelligence: calcAbilityMod(document.getElementById("")),
+      wisdom: calcAbilityMod(document.getElementById("")),
+      charisma: calcAbilityMod(document.getElementById(""))
+    },
+    passiveWisdom: document.getElementById(""),
+    inspiration: document.getElementById(""),
+    combat: {
+      armorClass: document.getElementById(""),
+      initiative: document.getElementById(""),
+      speed: document.getElementById(""),
+      hitPoints: {
+        maximum: document.getElementById(""),
+        current: document.getElementById(""),
+        temporary: document.getElementById("")
+      },
+      hitDice: document.getElementById(""),
+      deathSaves: {
+        successes: document.getElementById(""),
+        failures: document.getElementById("")
+      }
+    },
+    proficiencyBonus: document.getElementById(""),
+    skills: {
+      acrobatics: calcSkillMod(acrobatics, dexterity),
+      animalHandling: calcSkillMod(animalHandling, score),
+      arcana: calcSkillMod(arcana, score),
+      athletics: calcSkillMod(athletics, score),
+      deception: calcSkillMod(deception, score),
+      history: calcSkillMod(history, score),
+      insight: calcSkillMod(insight, score),
+      intimidation: calcSkillMod(intimidation, score),
+      investigation: calcSkillMod(investigation, score),
+      medicine: calcSkillMod(medicine, score),
+      nature: calcSkillMod(nature, score),
+      perception: calcSkillMod(perception, score),
+      performance: calcSkillMod(performance, score),
+      persuasion: calcSkillMod(persuasion, score),
+      religion: calcSkillMod(religion, score),
+      sleightOfHand: calcSkillMod(sleightOfHand, score),
+      stealth: calcSkillMod(stealth, score),
+      survival: calcSkillMod(survival, score)
+    },
+    characterTraits: {
+      personality: document.getElementById(""),
+      ideals: document.getElementById(""),
+      bonds: document.getElementById(""),
+      flaws: document.getElementById("")
+    },
+    currency: {
+      CP: document.getElementById(""),
+      SP: document.getElementById(""),
+      EP: document.getElementById(""),
+      GP: document.getElementById(""),
+      PP: document.getElementById("")
+    },
+    proficiencies: {
+      languages: [],
+      skills: [],
+      other: []
+    },
+    weapons: [],
+    equipement: [],
+    spellcasting: {
+      spellCastingAbility: "",
+      spellAttackBonus: 0,
+      spellSaveDC: 0,
+      slots: {
+        level1: [],
+        level2: [],
+        level3: [],
+        level4: [],
+        level5: [],
+        level6: [],
+        level7: [],
+        level8: [],
+        level9: []
+      },
+      spells: {
+        cantrip: [],
+        level1: [],
+        level2: [],
+        level3: [],
+        level4: [],
+        level5: [],
+        level6: [],
+        level7: [],
+        level8: [],
+        level9: []
+      }
+    }
 }
 
 function saveCharacter() {
