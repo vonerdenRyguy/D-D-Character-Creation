@@ -63,6 +63,14 @@ const character = {
     stealth: 0,
     survival: 0
   },
+  saves: {
+    strengthSave: 0,
+    dexteritySave: 0,
+    constitutionSave: 0,
+    intelligenceSave: 0,
+    wisdomSave: 0,
+    charismaSave: 0,
+  },
   characterTraits: {
     personality: "",
     ideals: "",
@@ -172,52 +180,55 @@ function calcSkillMod(skill, score) {
   return out;
 }
 
+function calcPassivePerception(perception){
+  return 10 + perception;
+}
+
 function updateCharacter() {
   character = {
-    playername: document.getElementById(""),
+    playername: document.getElementById("playername"),
     basicInfo: {
-      name: document.getElementById(""),
-      race: document.getElementById(""),
-      class: document.getElementById(""),
-      level: document.getElementById(""),
-      background: document.getElementById(""),
-      alignment: document.getElementById(""),
-      experiencePoints: document.getElementById("")
+      name: document.getElementById("charname").value,
+      race: document.getElementById("race").value,
+      class: document.getElementById("classlevel").value,
+      level: document.getElementById("classlevel").value.slice(-1),
+      background: document.getElementById("background").value,
+      alignment: document.getElementById("alignment").value,
+      experiencePoints: document.getElementById("experiencepoints").value
     },
     abilityScores: {
-      strength: document.getElementById(""),
-      dexterity: document.getElementById(""),
-      constitution: document.getElementById(""),
-      intelligence: document.getElementById(""),
-      wisdom: document.getElementById(""),
-      charisma: document.getElementById("")
+      strength: document.getElementById("Strengthscore").value,
+      dexterity: document.getElementById("Dexterityscore").value,
+      constitution: document.getElementById("Constitutionscore").value,
+      intelligence: document.getElementById("Intelligencescore").value,
+      wisdom: document.getElementById("Wisdomscore").value,
+      charisma: document.getElementById("Charismascore").value
     },
     abilityMods: {
-      strength: calcAbilityMod(document.getElementById("")),
-      dexterity: calcAbilityMod(document.getElementById("")),
-      constitution: calcAbilityMod(document.getElementById("")),
-      intelligence: calcAbilityMod(document.getElementById("")),
-      wisdom: calcAbilityMod(document.getElementById("")),
-      charisma: calcAbilityMod(document.getElementById(""))
+      strength: calcAbilityMod(document.getElementById("modifier").value),
+      dexterity: calcAbilityMod(document.getElementById("Dexteritymod").value),
+      constitution: calcAbilityMod(document.getElementById("Constitutionmod").value),
+      intelligence: calcAbilityMod(document.getElementById("Intelligencemod").value),
+      wisdom: calcAbilityMod(document.getElementById("Wisdommod").value),
+      charisma: calcAbilityMod(document.getElementById("Charismamod").value)
     },
-    passiveWisdom: document.getElementById(""),
-    inspiration: document.getElementById(""),
+    inspiration: document.getElementById("inspiration").value,
     combat: {
-      armorClass: document.getElementById(""),
-      initiative: document.getElementById(""),
-      speed: document.getElementById(""),
+      armorClass: document.getElementById("ac").value,
+      initiative: document.getElementById("initiative").value,
+      speed: document.getElementById("speed").value,
       hitPoints: {
-        maximum: document.getElementById(""),
-        current: document.getElementById(""),
-        temporary: document.getElementById("")
+        maximum: document.getElementById("maxhp").value,
+        current: document.getElementById("currenthp").value,
+        temporary: document.getElementById("temphp").value
       },
-      hitDice: document.getElementById(""),
+      hitDice: document.getElementById("totalhd").value,
       deathSaves: {
-        successes: document.getElementById(""),
-        failures: document.getElementById("")
+        successes: 0,
+        failures: 0
       }
     },
-    proficiencyBonus: document.getElementById(""),
+    proficiencyBonus: document.getElementById("proficiencybonus").value,
     skills: {
       acrobatics: calcSkillMod(acrobatics, dexterity),
       animalHandling: calcSkillMod(animalHandling, score),
@@ -238,18 +249,27 @@ function updateCharacter() {
       stealth: calcSkillMod(stealth, score),
       survival: calcSkillMod(survival, score)
     },
+    passiveWisdom: calcPassivePerception(skills.perception),
+    saves: {
+      strengthSave: document.getElementById("Strength-save").value,
+      dexteritySave: document.getElementById("Dexterity-save").value,
+      constitutionSave: document.getElementById("Constitution-save").value,
+      intelligenceSave: document.getElementById("Intelligence-save").value,
+      wisdomSave: document.getElementById("Wisdom-save").value,
+      charismaSave: document.getElementById("Charisma-save").value
+    },
     characterTraits: {
-      personality: document.getElementById(""),
-      ideals: document.getElementById(""),
-      bonds: document.getElementById(""),
-      flaws: document.getElementById("")
+      personality: document.getElementById("personality").value,
+      ideals: document.getElementById("ideals").value,
+      bonds: document.getElementById("bonds").value,
+      flaws: document.getElementById("flaws").value
     },
     currency: {
-      CP: document.getElementById(""),
-      SP: document.getElementById(""),
-      EP: document.getElementById(""),
-      GP: document.getElementById(""),
-      PP: document.getElementById("")
+      CP: document.getElementById("cp").value,
+      SP: document.getElementById("sp").value,
+      EP: document.getElementById("ep").value,
+      GP: document.getElementById("gp").value,
+      PP: document.getElementById("pp").value
     },
     proficiencies: {
       languages: [],
