@@ -311,7 +311,7 @@ button:hover {
     /*set background colour*/
     background-color: rgba(124, 124, 124, 0.5);
     /*set the width to be 15% of the windows visual width*/
-    width: 15vw;
+    width: 16vw;
     /*set the height to be 100% of the windows visual height*/
     height: 100vh;
     /*force elements to be a certain distance away from the edge of the popup*/
