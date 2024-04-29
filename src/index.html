@@ -369,7 +369,9 @@
                 } else  if (currentQuestionIndex == 2) {
                     displayHelpText("One's chosen class is a manifestation of their talents, aspirations, and the path they've chosen to tread. Embrace your character's class not only as a means to navigate battles and challenges but also as a vessel for storytelling and self-discovery. ", 50);
                 } else if (currentQuestionIndex == 3) {
-                    displayHelpText("", 50);
+                    displayHelpText("Your alignment is the essence of your character's ethos, guiding every decision and action like a celestial map in the night sky. Embrace the spectrum from Lawful to Chaotic and Good to Evil, for within its interstellar dance lies the tapestry of your character's destiny.", 50);
+                } else if (currentQuestionIndex == 4) {
+                    displayHelpText("PAY CLOSE ATTENTION NOW! Click on the Dice Panel in the top right to access your dice. You will choose 4 d6 dice and roll them. Sum up the 3 highest rolls and set this to any of the core stats. Do this for all 6 core stats.", 50);
                 } else {
                     displayHelpText("");
                 }
@@ -391,6 +393,18 @@
             }
 
             currentQuestionIndex--;
+
+            if (currentQuestionIndex == 1) {
+                    displayHelpText("In D&D, a character's name is a profound reflection of their essence, heritage, and journey. As characters navigate the diverse landscapes of D&D, their name becomes a guiding light, shaping perceptions, influencing choices, and serving as a reminder of past triumphs and future adventures.", 50);
+                } else  if (currentQuestionIndex == 2) {
+                    displayHelpText("One's chosen class is a manifestation of their talents, aspirations, and the path they've chosen to tread. Embrace your character's class not only as a means to navigate battles and challenges but also as a vessel for storytelling and self-discovery. ", 50);
+                } else if (currentQuestionIndex == 3) {
+                    displayHelpText("Your alignment is the essence of your character's ethos, guiding every decision and action like a celestial map in the night sky. Embrace the spectrum from Lawful to Chaotic and Good to Evil, for within its interstellar dance lies the tapestry of your character's destiny.", 50);
+                } else if (currentQuestionIndex == 4) {
+                    displayHelpText("PAY CLOSE ATTENTION NOW! Click on the Dice Panel in the top right to access your dice. You will choose 4 d6 dice and roll them. Sum up the 3 highest rolls and set this to any of the core stats. Do this for all 6 core stats.", 50);
+                } else {
+                    displayHelpText("");
+                }
 
             if (currentQuestionIndex >= 0) {
                 displayQuestion();
