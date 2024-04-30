@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log("Loaded character from tutorial data.");
   } else {
     loadCharacterFromLocalStorage();
+    updateCharacter();
     console.log("Loaded character from local storage.");
   }
 });
