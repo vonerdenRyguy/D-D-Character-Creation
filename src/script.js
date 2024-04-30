@@ -230,7 +230,7 @@ function calcAbilityMod(score) {
 function calcSkillMod(skill, score) {
   let out = 0;
   if (character.proficiencies.skills.includes(skill)) {
-    out += character.proficiencyBonus;
+    out += character.parseInt(proficiencyBonus);
   }
   out += score;
   return out;
