@@ -6,7 +6,7 @@ const character = {
     name: "",
     race: "",
     class: "",
-    level: 0,
+    level: 1,
     background: "",
     alignment: "",
     experiencePoints: 0
@@ -87,12 +87,11 @@ const character = {
     PP: 0
   },
   proficiencies: {
-    languages: [],
     skills: [],
-    other: []
+    other: ""
   },
   weapons: [],
-  equipement: [],
+  equipment: "",
   spellcasting: {
     spellCastingAbility: "",
     spellAttackBonus: 0,
@@ -139,37 +138,37 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCharacter();
 });
 
-document.getElementById("Strengthscore").addEventListener("input", function() {
+document.getElementById("Strengthscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Strengthmod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Dexterityscore").addEventListener("input", function() {
+document.getElementById("Dexterityscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Dexteritymod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Constitutionscore").addEventListener("input", function() {
+document.getElementById("Constitutionscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Constitutionmod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Wisdomscore").addEventListener("input", function() {
+document.getElementById("Wisdomscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Wisdommod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Intelligencescore").addEventListener("input", function() {
+document.getElementById("Intelligencescore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Intelligencemod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Charismascore").addEventListener("input", function() {
+document.getElementById("Charismascore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Charismamod").value = (modifier >= 0 ? "+" : "") + modifier;
@@ -248,45 +247,27 @@ function updateCharacter() {
 
   updateAbilityMods();
 
-  updateProficiencies();  // only applies to skills rn
+  updateProficiencies();
 
-  character.inspiration = document.getElementById("inspiration").value;
+  updateInspiration();
 
   updateCombat();
 
-  character.proficiencyBonus = document.getElementById("proficiencybonus").value;
+  updateProficiencyBonus();
 
   updateSkills();
 
-  character.passiveWisdom = calcPassivePerception(character.perception);
-  character.saves = {
-    strengthSave: parseInt(document.getElementById("Strength-save").value),
-    dexteritySave: parseInt(document.getElementById("Dexterity-save").value),
-    constitutionSave: parseInt(document.getElementById("Constitution-save").value),
-    intelligenceSave: parseInt(document.getElementById("Intelligence-save").value),
-    wisdomSave: parseInt(document.getElementById("Wisdom-save").value),
-    charismaSave: parseInt(document.getElementById("Charisma-save").value)
-  };
-  character.characterTraits = {
-    personality: document.getElementById("personality").value,
-    ideals: document.getElementById("ideals").value,
-    bonds: document.getElementById("bonds").value,
-    flaws: document.getElementById("flaws").value
-  };
-  character.currency = {
-    CP: parseInt(document.getElementById("cp").value),
-    SP: parseInt(document.getElementById("sp").value),
-    EP: parseInt(document.getElementById("ep").value),
-    GP: parseInt(document.getElementById("gp").value),
-    PP: parseInt(document.getElementById("pp").value)
-  };
+  updatePassiveWisdom();
 
-  character.proficiencies = {
-    languages: [],
-    other: []
-  };
+  updateSaves();
+
+  updateTraits();
+
+  updateCurrency();
+
   character.weapons = parseWeapons();
-  character.equipment = [];
+  character.equipment = document.getElementById("equipmentBox").value;
+
   character.spellcasting = {
     spellCastingAbility: "",
     spellAttackBonus: 0,
@@ -342,9 +323,50 @@ function updateProficiencies() {
       character.proficiencies.skills.push(skill);
     }
   });
+  character.proficiencies.other = document.getElementById("otherprofs").value;
   console.log("Updated Skills:", character.proficiencies.skills); // Debugging line
 }
 
+function updateCurrency() {
+  character.currency = {
+    CP: parseInt(document.getElementById("cp").value),
+    SP: parseInt(document.getElementById("sp").value),
+    EP: parseInt(document.getElementById("ep").value),
+    GP: parseInt(document.getElementById("gp").value),
+    PP: parseInt(document.getElementById("pp").value)
+  };
+}
+
+function updateTraits() {
+  character.characterTraits = {
+    personality: document.getElementById("personality").value,
+    ideals: document.getElementById("ideals").value,
+    bonds: document.getElementById("bonds").value,
+    flaws: document.getElementById("flaws").value
+  };
+}
+
+function updatePassiveWisdom() {
+  character.passiveWisdom = calcPassivePerception(character.perception);
+}
+
+function updateProficiencyBonus() {
+  character.proficiencyBonus = document.getElementById("proficiencybonus").value;
+}
+function updateInspiration() {
+  character.inspiration = document.getElementById("inspiration").value;
+}
+
+function updateSaves() {
+  character.saves = {
+    strengthSave: parseInt(document.getElementById("Strength-save").value),
+    dexteritySave: parseInt(document.getElementById("Dexterity-save").value),
+    constitutionSave: parseInt(document.getElementById("Constitution-save").value),
+    intelligenceSave: parseInt(document.getElementById("Intelligence-save").value),
+    wisdomSave: parseInt(document.getElementById("Wisdom-save").value),
+    charismaSave: parseInt(document.getElementById("Charisma-save").value)
+  };
+}
 
 function updateAbilityMods() {
   character.abilityMods.strength = calcAbilityMod(parseInt(document.getElementById("Strengthscore").value));
@@ -523,7 +545,7 @@ function loadCharacterFromTutorial() {
   document.getElementById("Wisdomscore").value = character.abilityScores.wisdom;
   document.getElementById("Charismascore").value = character.abilityScores.charisma;
 
-   updateCharacter();  //Call this once this method is completed fully
+  updateCharacter();  //Call this once this method is completed fully
 }
 
 function loadCharacterFromLocalStorage() {
@@ -563,6 +585,9 @@ function loadCharacterFromLocalStorage() {
     // Load inspiration
     document.getElementById("inspiration").value = character.inspiration;
 
+    // Load equipment Box
+    document.getElementById("equipmentBox").value = character.equipment;
+    
     // Load skills
     document.getElementById("Acrobatics").value = character.skills.acrobatics;
     document.getElementById("Animal Handling").value = character.skills.animalHandling;
@@ -588,6 +613,9 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("ideals").value = character.characterTraits.ideals;
     document.getElementById("bonds").value = character.characterTraits.bonds;
     document.getElementById("flaws").value = character.characterTraits.flaws;
+
+    // Load proficiencies
+    document.getElementById("otherprofs").value = character.proficiencies.other;
 
     // Load currency
     document.getElementById("cp").value = character.currency.CP;
@@ -627,6 +655,7 @@ function logCharData() {
 //everything below is dice rolling
 function openDiceRollPanel(event) {
   event.preventDefault();
+  event.stopPropagation();
 
   //show the popup
   document.getElementById('popup').style.display = 'block';
