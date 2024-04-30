@@ -501,6 +501,13 @@ function loadCharacterFromTutorial() {
   character.basicInfo.class = responses[2];
   character.basicInfo.alignment = responses[3];
 
+  character.abilityScores.strength = responses[4];
+  character.abilityScores.dexterity = responses[5];
+  character.abilityScores.constitution = responses[6];
+  character.abilityScores.intelligence = responses[7];
+  character.abilityScores.wisdom = responses[8];
+  character.abilityScores.charisma = responses[9];
+
   document.getElementById("charname").value = character.basicInfo.name;
   document.getElementById("race").value = character.basicInfo.race;
   document.getElementById("alignment").value = character.basicInfo.alignment;
@@ -508,7 +515,14 @@ function loadCharacterFromTutorial() {
   document.getElementById("experiencepoints").value = character.basicInfo.experiencePoints;
   document.getElementById("playername").value = character.playername;
 
-  // updateCharacter();  Call this once this method is completed fully
+  document.getElementById("Strengthscore").value = character.abilityScores.strength;
+  document.getElementById("Dexterityscore").value = character.abilityScores.dexterity;
+  document.getElementById("Constitutionscore").value = character.abilityScores.constitution;
+  document.getElementById("Intelligencescore").value = character.abilityScores.intelligence;
+  document.getElementById("Wisdomscore").value = character.abilityScores.wisdom;
+  document.getElementById("Charismascore").value = character.abilityScores.charisma;
+
+   updateCharacter();  //Call this once this method is completed fully
 }
 
 function loadCharacterFromLocalStorage() {
