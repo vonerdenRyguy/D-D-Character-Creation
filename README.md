@@ -3,7 +3,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/vonerdenRyguy/D-D-Character-Creation?label=updated)](https://github.com/vonerdenRyguy/D-D-Character-Creation/commits)
 
 # Visit the Live Deployment
-[Character Creation Tool](https://vonerdenryguy.github.io/D-D-Character-Creation/src/index.html)
+[Character Creation Tool](https://vonerdenryguy.github.io/D-D-Character-Creation/src/welcomePage.html)
 
 # Table of Contents
 

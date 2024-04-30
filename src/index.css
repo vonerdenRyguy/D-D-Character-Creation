@@ -678,3 +678,125 @@ form.charsheet main section.features div textarea {
   height: 43em;
   color: #E4C59E;
 }/*# sourceMappingURL=index.css.map */
+
+.popup {
+  /*hide popup until needed*/
+  display: none;
+  /*make popup position be relative to window*/
+  position: fixed;
+  /*set vertical position of popup*/
+  top: 50vh;
+  /*put popup window on right side of the screen*/
+  left: 92vw;
+  /*set final position of the popup*/
+  transform: translate(-50%, -50%);
+  /*set background colour*/
+  background-color: rgba(124, 124, 124, 0.5);
+  /*set the width to be 15% of the windows visual width*/
+  width: 16vw;
+  /*set the height to be 100% of the windows visual height*/
+  height: 100vh;
+  /*force elements to be a certain distance away from the edge of the popup*/
+  padding: 20px;
+  /*make border thicker*/
+  border-radius: 10px;
+  /*force popup to show in front of all other elements on the page*/
+  z-index: 999;
+  /*align text to center*/
+  text-align: center;
+}
+
+button{
+  /*set cursor to be a pointer on buttons*/
+  cursor: pointer;
+}
+
+#openPopup{
+  position:fixed;
+  /*fixed position to always see the button*/
+  top: 0vh;
+  left: 94vw;
+  /*set position in the top left so it is out of the way*/
+  width: 5.9vw;
+  /*set button width*/
+  background-color: #333;
+  /* Dark background for input fields */
+  color: #ffffff;
+  /* Light text for visibility */
+  border: 1px solid #555;
+  /* Slightly lighter border for some contrast */
+  padding: 10px;
+  margin-top: 5px;
+  /* Ensure there's some space above inputs */
+  border-radius: 5px;
+  /* Match the border-radius for consistency */
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width */
+  font-family: 'Inter', sans-serif;
+  /* Ensure font consistency */
+}
+
+.popup-content {
+  /*set text colour for dice rolling popup*/
+  color: rgb(255, 255, 255);
+}
+
+.close {
+  /*close button x colour*/
+  color: white;
+  /**/
+  float: right;
+  /*increase font size to be visible*/
+  font-size: 24px;
+  /*change cursor to show it can be clicked*/
+  cursor: pointer;
+}
+
+#d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count,
+#subD4,#subD6,#subD8,#subD10,#subD12,#subD20,
+#addD4,#addD6,#addD8,#addD10,#addD12,#addD20 {
+  background-color: #333;
+  /* Dark background for input fields */
+  color: #ffffff;
+  /* Light text for visibility */
+  border: 1px solid #555;
+  /* Slightly lighter border for some contrast */
+  padding: 10px;
+  margin-top: 5px;
+  /* Ensure there's some space above inputs */
+  border-radius: 5px;
+  /* Match the border-radius for consistency */
+  width: 30%;
+  /* width */
+  box-sizing: border-box;
+  /* Include padding and border in the element's total width */
+  font-family: 'Inter', sans-serif;
+  /* Ensure font consistency */
+}
+
+#die1,#die2,#die3,
+#die4,#die5,#die6{
+  /*hide the div until needed*/
+  display: none;
+  /*139px; set width of div to 139px*/
+  width: 139px;
+  /*set height of div to 139px*/
+  height: 139px;
+  /*postition image to be top left related to the div*/
+  background-position: top left;
+  /*align text centered*/
+  text-align: center;
+  /*set line height so that text is centered vertically*/
+  line-height: 139px;
+  /*make text bigger to be more readable*/
+  font-size: 25px; 
+  /*make text bold to be more clear*/
+  font-weight: bold;
+  /*add dice rolling animation*/
+  animation: animate-dice 1.2s steps(48) 2;
+}
+
+@keyframes animate-dice {
+  from {background-position: 0px 0px;}
+  to {background-position: 0px -6496px;}
+}
