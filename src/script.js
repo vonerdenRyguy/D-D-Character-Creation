@@ -1,3 +1,5 @@
+// const { update } = require("firebase/database");
+
 const character = {
   playername: "",
   basicInfo: {
@@ -142,6 +144,42 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+document.getElementById("Strengthscore").addEventListener("input", function() {
+  var score = parseInt(this.value);
+  var modifier = Math.floor((score - 10) / 2);
+  document.getElementById("Strengthmod").value = (modifier >= 0 ? "+" : "") + modifier;
+});
+
+document.getElementById("Dexterityscore").addEventListener("input", function() {
+  var score = parseInt(this.value);
+  var modifier = Math.floor((score - 10) / 2);
+  document.getElementById("Dexteritymod").value = (modifier >= 0 ? "+" : "") + modifier;
+});
+
+document.getElementById("Constitutionscore").addEventListener("input", function() {
+  var score = parseInt(this.value);
+  var modifier = Math.floor((score - 10) / 2);
+  document.getElementById("Constitutionmod").value = (modifier >= 0 ? "+" : "") + modifier;
+});
+
+document.getElementById("Wisdomscore").addEventListener("input", function() {
+  var score = parseInt(this.value);
+  var modifier = Math.floor((score - 10) / 2);
+  document.getElementById("Wisdommod").value = (modifier >= 0 ? "+" : "") + modifier;
+});
+
+document.getElementById("Intelligencescore").addEventListener("input", function() {
+  var score = parseInt(this.value);
+  var modifier = Math.floor((score - 10) / 2);
+  document.getElementById("Intelligencemod").value = (modifier >= 0 ? "+" : "") + modifier;
+});
+
+document.getElementById("Charismascore").addEventListener("input", function() {
+  var score = parseInt(this.value);
+  var modifier = Math.floor((score - 10) / 2);
+  document.getElementById("Charismamod").value = (modifier >= 0 ? "+" : "") + modifier;
+});
+
 registerLink.addEventListener('click', () => {
   wrapper.classList.add('active');
 });
@@ -158,10 +196,33 @@ iconClose.addEventListener('click', () => {
   wrapper.classList.remove('active-popup');
 });
 
-const weapon = {
-  weaponName,
-  atkBonus,
-  dmgType
+class Weapon {
+  constructor(name, type, damage) {
+    this.name = name;
+    this.type = type;
+    this.damage = damage;
+  }
+}
+
+function parseWeapons() {
+  let weapons = [];
+  const weaponRows = document.querySelectorAll('.attacksandspellcasting tbody tr');
+
+  weaponRows.forEach((row, index) => {
+    const name = document.getElementById(`atkname${index + 1}`).value;
+    const attackBonus = document.getElementById(`atkbonus${index + 1}`).value;
+    const damageType = document.getElementById(`atkdamage${index + 1}`).value;
+
+    if (name || attackBonus || damageType) {  // This check ensures that empty rows are not added
+      weapons.push({
+        name: name,
+        attackBonus: attackBonus,
+        damageType: damageType
+      });
+    }
+  });
+
+  return weapons;
 }
 
 function calcAbilityMod(score) {
@@ -180,134 +241,198 @@ function calcSkillMod(skill, score) {
   return out;
 }
 
-function calcPassivePerception(perception){
+function calcPassivePerception(perception) {
   return 10 + perception;
 }
 
 function updateCharacter() {
-  character = {
-    playername: document.getElementById("playername"),
-    basicInfo: {
-      name: document.getElementById("charname").value,
-      race: document.getElementById("race").value,
-      class: document.getElementById("classlevel").value,
-      level: document.getElementById("classlevel").value.slice(-1),
-      background: document.getElementById("background").value,
-      alignment: document.getElementById("alignment").value,
-      experiencePoints: document.getElementById("experiencepoints").value
+  character.playername = document.getElementById("playername").value;
+  updateBasicInfo();
+
+  updateAbilityScores();
+
+  updateAbilityMods();
+
+  updateProficiencies();  // only applies to skills rn
+
+  character.inspiration = document.getElementById("inspiration").value;
+
+  updateCombat();
+
+  character.proficiencyBonus = document.getElementById("proficiencybonus").value;
+
+  updateSkills();
+
+  character.passiveWisdom = calcPassivePerception(character.perception);
+  character.saves = {
+    strengthSave: parseInt(document.getElementById("Strength-save").value),
+    dexteritySave: parseInt(document.getElementById("Dexterity-save").value),
+    constitutionSave: parseInt(document.getElementById("Constitution-save").value),
+    intelligenceSave: parseInt(document.getElementById("Intelligence-save").value),
+    wisdomSave: parseInt(document.getElementById("Wisdom-save").value),
+    charismaSave: parseInt(document.getElementById("Charisma-save").value)
+  };
+  character.characterTraits = {
+    personality: document.getElementById("personality").value,
+    ideals: document.getElementById("ideals").value,
+    bonds: document.getElementById("bonds").value,
+    flaws: document.getElementById("flaws").value
+  };
+  character.currency = {
+    CP: parseInt(document.getElementById("cp").value),
+    SP: parseInt(document.getElementById("sp").value),
+    EP: parseInt(document.getElementById("ep").value),
+    GP: parseInt(document.getElementById("gp").value),
+    PP: parseInt(document.getElementById("pp").value)
+  };
+
+  character.proficiencies = {
+    languages: [],
+    other: []
+  };
+  character.weapons = parseWeapons();
+  character.equipment = [];
+  character.spellcasting = {
+    spellCastingAbility: "",
+    spellAttackBonus: 0,
+    spellSaveDC: 0,
+    slots: {
+      level1: [],
+      level2: [],
+      level3: [],
+      level4: [],
+      level5: [],
+      level6: [],
+      level7: [],
+      level8: [],
+      level9: []
     },
-    abilityScores: {
-      strength: document.getElementById("Strengthscore").value,
-      dexterity: document.getElementById("Dexterityscore").value,
-      constitution: document.getElementById("Constitutionscore").value,
-      intelligence: document.getElementById("Intelligencescore").value,
-      wisdom: document.getElementById("Wisdomscore").value,
-      charisma: document.getElementById("Charismascore").value
-    },
-    abilityMods: {
-      strength: calcAbilityMod(document.getElementById("modifier").value),
-      dexterity: calcAbilityMod(document.getElementById("Dexteritymod").value),
-      constitution: calcAbilityMod(document.getElementById("Constitutionmod").value),
-      intelligence: calcAbilityMod(document.getElementById("Intelligencemod").value),
-      wisdom: calcAbilityMod(document.getElementById("Wisdommod").value),
-      charisma: calcAbilityMod(document.getElementById("Charismamod").value)
-    },
-    inspiration: document.getElementById("inspiration").value,
-    combat: {
-      armorClass: document.getElementById("ac").value,
-      initiative: document.getElementById("initiative").value,
-      speed: document.getElementById("speed").value,
-      hitPoints: {
-        maximum: document.getElementById("maxhp").value,
-        current: document.getElementById("currenthp").value,
-        temporary: document.getElementById("temphp").value
-      },
-      hitDice: document.getElementById("totalhd").value,
-      deathSaves: {
-        successes: 0,
-        failures: 0
-      }
-    },
-    proficiencyBonus: document.getElementById("proficiencybonus").value,
-    skills: {
-      acrobatics: calcSkillMod(acrobatics, dexterity),
-      animalHandling: calcSkillMod(animalHandling, score),
-      arcana: calcSkillMod(arcana, score),
-      athletics: calcSkillMod(athletics, score),
-      deception: calcSkillMod(deception, score),
-      history: calcSkillMod(history, score),
-      insight: calcSkillMod(insight, score),
-      intimidation: calcSkillMod(intimidation, score),
-      investigation: calcSkillMod(investigation, score),
-      medicine: calcSkillMod(medicine, score),
-      nature: calcSkillMod(nature, score),
-      perception: calcSkillMod(perception, score),
-      performance: calcSkillMod(performance, score),
-      persuasion: calcSkillMod(persuasion, score),
-      religion: calcSkillMod(religion, score),
-      sleightOfHand: calcSkillMod(sleightOfHand, score),
-      stealth: calcSkillMod(stealth, score),
-      survival: calcSkillMod(survival, score)
-    },
-    passiveWisdom: calcPassivePerception(skills.perception),
-    saves: {
-      strengthSave: document.getElementById("Strength-save").value,
-      dexteritySave: document.getElementById("Dexterity-save").value,
-      constitutionSave: document.getElementById("Constitution-save").value,
-      intelligenceSave: document.getElementById("Intelligence-save").value,
-      wisdomSave: document.getElementById("Wisdom-save").value,
-      charismaSave: document.getElementById("Charisma-save").value
-    },
-    characterTraits: {
-      personality: document.getElementById("personality").value,
-      ideals: document.getElementById("ideals").value,
-      bonds: document.getElementById("bonds").value,
-      flaws: document.getElementById("flaws").value
-    },
-    currency: {
-      CP: document.getElementById("cp").value,
-      SP: document.getElementById("sp").value,
-      EP: document.getElementById("ep").value,
-      GP: document.getElementById("gp").value,
-      PP: document.getElementById("pp").value
-    },
-    proficiencies: {
-      languages: [],
-      skills: [],
-      other: []
-    },
-    weapons: [],
-    equipement: [],
-    spellcasting: {
-      spellCastingAbility: "",
-      spellAttackBonus: 0,
-      spellSaveDC: 0,
-      slots: {
-        level1: [],
-        level2: [],
-        level3: [],
-        level4: [],
-        level5: [],
-        level6: [],
-        level7: [],
-        level8: [],
-        level9: []
-      },
-      spells: {
-        cantrip: [],
-        level1: [],
-        level2: [],
-        level3: [],
-        level4: [],
-        level5: [],
-        level6: [],
-        level7: [],
-        level8: [],
-        level9: []
-      }
+    spells: {
+      cantrip: [],
+      level1: [],
+      level2: [],
+      level3: [],
+      level4: [],
+      level5: [],
+      level6: [],
+      level7: [],
+      level8: [],
+      level9: []
     }
-  }
+  };
+  saveCharacterToLocalStorage();
+  loadCharacterFromLocalStorage();
 }
+
+function calcSkillMod(skill, abilityMod) {
+  console.log(`Calculating skill modifier for ${skill}`);
+  let output = abilityMod;
+  if (character.proficiencies.skills.includes(skill)) {
+    output += character.proficiencyBonus;
+  }
+  return output;
+}
+
+function updateProficiencies() {
+  const skillNames = [
+    "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+    "History", "Insight", "Intimidation", "Investigation", "Medicine",
+    "Nature", "Perception", "Performance", "Persuasion", "Religion",
+    "Sleight of Hand", "Stealth", "Survival"
+  ];
+  character.proficiencies.skills = [];  // Clear and reinitialize the array
+  skillNames.forEach(skill => {
+    const checkBox = document.getElementById(`${skill}-prof`);
+    if (checkBox && checkBox.checked) {
+      character.proficiencies.skills.push(skill);
+    }
+  });
+  console.log("Updated Skills:", character.proficiencies.skills); // Debugging line
+}
+
+
+function updateAbilityMods() {
+  character.abilityMods.strength = calcAbilityMod(parseInt(document.getElementById("Strengthscore").value));
+  character.abilityMods.dexterity = calcAbilityMod(parseInt(document.getElementById("Dexterityscore").value));
+  character.abilityMods.constitution = calcAbilityMod(parseInt(document.getElementById("Constitutionscore").value));
+  character.abilityMods.intelligence = calcAbilityMod(parseInt(document.getElementById("Intelligencescore").value));
+  character.abilityMods.wisdom = calcAbilityMod(parseInt(document.getElementById("Wisdomscore").value));
+  character.abilityMods.charisma = calcAbilityMod(parseInt(document.getElementById("Charismascore").value));
+
+  console.log("Strength Modifier:", character.abilityMods.strength);
+  console.log("Dexterity Modifier:", character.abilityMods.dexterity);
+  console.log("Constitution Modifier:", character.abilityMods.constitution);
+  console.log("Intelligence Modifier:", character.abilityMods.intelligence);
+  console.log("Wisdom Modifier:", character.abilityMods.wisdom);
+  console.log("Charisma Modifier:", character.abilityMods.charisma);
+}
+
+function updateBasicInfo() {
+  character.basicInfo = {
+    name: document.getElementById("charname").value,
+    race: document.getElementById("race").value,
+    class: document.getElementById("classlevel").value.split(" ")[0],
+    level: parseInt(document.getElementById("classlevel").value.split(" ")[1]),
+    background: document.getElementById("background").value,
+    alignment: document.getElementById("alignment").value,
+    experiencePoints: parseInt(document.getElementById("experiencepoints").value)
+  };
+}
+
+function updateAbilityScores() {
+  character.abilityScores = {
+    strength: parseInt(document.getElementById("Strengthscore").value),
+    dexterity: parseInt(document.getElementById("Dexterityscore").value),
+    constitution: parseInt(document.getElementById("Constitutionscore").value),
+    intelligence: parseInt(document.getElementById("Intelligencescore").value),
+    wisdom: parseInt(document.getElementById("Wisdomscore").value),
+    charisma: parseInt(document.getElementById("Charismascore").value)
+  };
+}
+
+function updateCombat() {
+  character.combat = {
+    armorClass: parseInt(document.getElementById("ac").value),
+    initiative: parseInt(document.getElementById("initiative").value),
+    speed: parseInt(document.getElementById("speed").value),
+    hitPoints: {
+      maximum: parseInt(document.getElementById("maxhp").value),
+      current: parseInt(document.getElementById("currenthp").value),
+      temporary: parseInt(document.getElementById("temphp").value)
+    },
+    hitDice: document.getElementById("totalhd").value,
+    deathSaves: {
+      successes: 0,
+      failures: 0
+    }
+  };
+}
+
+function updateSkills() {
+  console.log('Updating skills...');
+  character.skills = {
+    acrobatics: calcSkillMod(character.proficiencyBonus, character.abilityMods.dexterity),
+    animalHandling: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
+    arcana: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
+    athletics: calcSkillMod(character.proficiencyBonus, character.abilityMods.strength),
+    deception: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
+    history: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
+    insight: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
+    intimidation: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
+    investigation: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
+    medicine: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
+    nature: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
+    perception: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
+    performance: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
+    persuasion: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
+    religion: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
+    sleightOfHand: calcSkillMod(character.proficiencyBonus, character.abilityMods.dexterity),
+    stealth: calcSkillMod(character.proficiencyBonus, character.abilityMods.dexterity),
+    survival: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom)
+  };
+  console.log('Updated skills:', character.skills);
+}
+
 function saveCharacter() {
   // Top Box of information
   character.basicInfo.name = document.getElementById("charname").value;
@@ -326,6 +451,14 @@ function saveCharacter() {
   character.abilityScores.wisdom = parseInt(document.getElementById("Wisdomscore").value);
   character.abilityScores.intelligence = parseInt(document.getElementById("Intelligencescore").value);
   character.abilityScores.charisma = parseInt(document.getElementById("Charismascore").value);
+
+  // Ability modifiers
+  character.abilityMods.strength = parseInt(document.getElementById("Strengthmod").value) || 0;
+  character.abilityMods.dexterity = parseInt(document.getElementById("Dexteritymod").value) || 0;
+  character.abilityMods.constitution = parseInt(document.getElementById("Constitutionmod").value) || 0;
+  character.abilityMods.intelligence = parseInt(document.getElementById("Intelligencemod").value) || 0;
+  character.abilityMods.wisdom = parseInt(document.getElementById("Wisdommod").value) || 0;
+  character.abilityMods.charisma = parseInt(document.getElementById("Charismamod").value) || 0;
 
   // Combat stats
   character.combat.armorClass = parseInt(document.getElementById("ac").value);
@@ -355,6 +488,7 @@ function saveCharacter() {
   character.currency.PP = parseInt(document.getElementById("pp").value);
 
   // character.passiveWisdom <- set by formula?
+  updateCharacter();
   saveCharacterToLocalStorage();
 }
 
@@ -404,6 +538,8 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("Intelligencescore").value = character.abilityScores.intelligence;
     document.getElementById("Charismascore").value = character.abilityScores.charisma;
 
+    displayAbilityModifiers();
+    
     // Load combat stats
     document.getElementById("ac").value = character.combat.armorClass;
     document.getElementById("initiative").value = character.combat.initiative;
@@ -417,6 +553,26 @@ function loadCharacterFromLocalStorage() {
 
     // Load inspiration
     document.getElementById("inspiration").value = character.inspiration;
+
+    // Load skills
+    document.getElementById("Acrobatics").value = character.skills.acrobatics;
+    document.getElementById("Animal Handling").value = character.skills.animalHandling;
+    document.getElementById("Arcana").value = character.skills.arcana;
+    document.getElementById("Athletics").value = character.skills.athletics;
+    document.getElementById("Deception").value = character.skills.deception;
+    document.getElementById("History").value = character.skills.history;
+    document.getElementById("Insight").value = character.skills.insight;
+    document.getElementById("Intimidation").value = character.skills.intimidation;
+    document.getElementById("Investigation").value = character.skills.investigation;
+    document.getElementById("Medicine").value = character.skills.medicine;
+    document.getElementById("Nature").value = character.skills.nature;
+    document.getElementById("Perception").value = character.skills.perception;
+    document.getElementById("Performance").value = character.skills.performance;
+    document.getElementById("Persuasion").value = character.skills.persuasion;
+    document.getElementById("Religion").value = character.skills.religion;
+    document.getElementById("Sleight of Hand").value = character.skills.sleightOfHand;
+    document.getElementById("Stealth").value = character.skills.stealth;
+    document.getElementById("Survival").value = character.skills.survival;
 
     // Load character traits
     document.getElementById("personality").value = character.characterTraits.personality;
@@ -433,6 +589,21 @@ function loadCharacterFromLocalStorage() {
   }
   // updateCharacter();  remove comment once implemented
   logCharData();
+}
+
+function displayAbilityModifiers() {
+  // Update the HTML input fields with the ability modifier values from the character object
+  document.getElementById("Strengthmod").value = formatModifier(character.abilityMods.strength);
+  document.getElementById("Dexteritymod").value = formatModifier(character.abilityMods.dexterity);
+  document.getElementById("Constitutionmod").value = formatModifier(character.abilityMods.constitution);
+  document.getElementById("Intelligencemod").value = formatModifier(character.abilityMods.intelligence);
+  document.getElementById("Wisdommod").value = formatModifier(character.abilityMods.wisdom);
+  document.getElementById("Charismamod").value = formatModifier(character.abilityMods.charisma);
+}
+
+// Helper function to format the modifier for display (adding a '+' sign for positive numbers)
+function formatModifier(modifier) {
+  return (modifier >= 0 ? "+" : "") + modifier;
 }
 
 function logCharData() {
