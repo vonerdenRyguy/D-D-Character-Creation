@@ -456,6 +456,65 @@
         <button type="button" id="submitButton" onclick="saveCharacter()">Save Character</button>
         <button type="button" id="loadButton" onclick="loadCharacterFromLocalStorage()">Load Character</button>
         <button type="button" id="updateButton" onclick="updateCharacter()">Update Character</button>
+        <form id="DiceRollPanel" onsubmit="openDiceRollPanel(event)">
+            <button id="openPopup" onclick="openDiceRollPanel(event)">Open Dice Panel</button>
+
+            <section id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <p>Roll Dice</p>
+                    <nobr>
+                        <input type="text" id="d4Count" name="d4Count" value="0">
+                        <button id="subD4" onclick="d4Count.value--; if (d4Count.value < 0){d4Count.value = 0;}">-</button>
+                        <button id="addD4" onclick="d4Count.value++">+</button>
+                        <label for="d4Count">d4</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d6Count" name="d6Count" value="0">
+                        <button id="subD6" onclick="d6Count.value--; if (d6Count.value < 0){d6Count.value = 0;}">-</button>
+                        <button id="addD6" onclick="d6Count.value++">+</button>
+                        <label for="d6Count">d6</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d8Count" name="d8Count" value="0">
+                        <button id="subD8" onclick="d8Count.value--; if (d8Count.value < 0){d8Count.value = 0;}">-</button>
+                        <button id="addD8" onclick="d8Count.value++">+</button>
+                        <label for="d8Count">d8</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d10Count" name="d10Count" value="0">
+                        <button id="subD10" onclick="d10Count.value--; if (d10Count.value < 0){d10Count.value = 0;}">-</button>
+                        <button id="addD10" onclick="d10Count.value++">+</button>
+                        <label for="d10Count">d10</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d12Count" name="d12Count" value="0">
+                        <button id="subD12" onclick="d12Count.value--; if (d12Count.value < 0){d12Count.value = 0;}">-</button>
+                        <button id="addD12" onclick="d12Count.value++">+</button>
+                        <label for="d12Count">d12</label>
+                    </nobr>
+                    <nobr>
+                        <input type="text" id="d20Count" name="d20Count" value="0">
+                        <button id="subD20" onclick="d20Count.value--; if (d20Count.value < 0){d20Count.value = 0;}">-</button>
+                        <button id="addD20" onclick="d20Count.value++">+</button>
+                        <label for="d20Count">d20</label>
+                    </nobr>
+                    <button id="roll" name="Roll" onclick="rollDice(event);">roll</button>
+                    <p id="total">Total: </p>
+                    <div class="dice">
+                        <nobr>
+                            <div id="die1" onclick="this.style.display = 'none'"></div>
+                            <div id="die2" onclick="this.style.display = 'none'"></div><br>
+                            <div id="die3" onclick="this.style.display = 'none'"></div>
+                            <div id="die4" onclick="this.style.display = 'none'"></div><br>
+                            <div id="die5" onclick="this.style.display = 'none'"></div>
+                            <div id="die6" onclick="this.style.display = 'none'"></div><br>
+                        </nobr>
+                    </div>
+                    <!--<button id = "clear" onclick="clearDice();">clear</button>-->
+                </div>
+            </section>
+        </form>
     </form>
     <script src="script.js"></script>
 </body>
