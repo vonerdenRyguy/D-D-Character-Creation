@@ -1,86 +1,74 @@
 /*Placeholder CSS*/
-header {
-    position:fixed;
-    top:0;
-    left: 0;
-    width: 50%;
-    padding: 20px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-}
 
-.navigation .btnLogin-popup {
-    width: 130px;
-    height: 50px;
+.nav .login-button {
+    width: 140px;
+    height: 60px;
     background: transparent;
     border: 2px solid #e0e0e0;
-    outline: none;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #e0e0e0;
-    font-weight: 500;
-    margin-left: 40px;
-    transition: .5s;
+    font-weight: 600;
+    transition: .5s ease-in-out;
 }
 
-.navigation .btnLogin-popup:hover {
+.nav .login-button:hover {
     background: #e0e0e0;
-    color: #121212;
+    color: #333;
 }
 
-.wrapper {
-    position: relative;
-    width: 480px;
-    height: 440px;
-    background: transparent;
-    border: 2px solid hsl(0, 0%, 88%);
-    border-radius: 20px;
+.loginWrapper {
+    position: fixed;
+    width: 380px;
+    height: 400px;
+    background: #121212;
+    border: 5px solid #e0e0e0;
+    border-radius: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     transform: scale(0);
+    transition: .5s ease-in;
   }
 
-.wrapper.active-popup {
+.loginWrapper.active-popup {
     transform: scale(1);
 }
 
-.wrapper.active {
-    height: 440px;
+.loginWrapper.active {
+    height: 420px;
 }
 
-.wrapper .form-box {
+.loginWrapper .form-box {
     width: 100%;
-    padding: 40px;
+    padding: 50px;
 }
 
-.wrapper .form-box.login {
+.loginWrapper .form-box.login {
     transition: transform .2s ease;
     translate: translateX(0);
 }
 
-.wrapper.active .form-box.login {
+.loginWrapper.active .form-box.login {
     transition: none;
-    transform: translateX(-480px);
+    transform: translateX(-380px);
 }
 
-.wrapper .form-box.register {
+.loginWrapper .form-box.register {
     position: absolute;
     transition: none;
-    transform: translateX(480px);
+    transform: translateX(380px);
 }
 
-.wrapper.active .form-box.register {
+.loginWrapper.active .form-box.register {
     transition: transform .2s ease;
     transform: translateX(0);
 }
 
-.wrapper .icon-close {
+.loginWrapper .icon-close {
     position: absolute;
     display: inline-block;
     top: 0;
@@ -94,6 +82,7 @@ header {
     align-items: center;
     cursor: pointer;
     z-index: 1;
+    filter: invert(100%) grayscale(100%);
 }
 
 .close-icon {
@@ -144,22 +133,6 @@ header {
     font-size: 1em;
     color: #e0e0e0;
     font-weight: 600;
-}
-
-.btn {
-    width: 100%;
-    height: 45px;
-    background: #3b3b3b;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    font-size: 1em;
-    color: #e0e0e0;
-    font-weight: 500;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .login-register {

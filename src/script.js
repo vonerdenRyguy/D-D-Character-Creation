@@ -123,12 +123,6 @@ const character = {
   }
 };
 
-const wrapper = document.querySelector('.wrapper');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
-const btnPopup = document.querySelector('.btnLogin-popup');
-const iconClose = document.querySelector('.icon-close');
-
 // On page run, loads saved character from local storage
 document.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
@@ -539,7 +533,7 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("Charismascore").value = character.abilityScores.charisma;
 
     displayAbilityModifiers();
-    
+
     // Load combat stats
     document.getElementById("ac").value = character.combat.armorClass;
     document.getElementById("initiative").value = character.combat.initiative;

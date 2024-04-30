@@ -1,35 +1,33 @@
-// Function to check if username already exists
+// function to check if the username already exists
 function isUsernameExists(username, userData) {
     return userData.some(user => user.username === username);
 }
 
-// Function to handle user registration
+// function that registers a user with their password
 function registerUser(username, password) {
-    // Retrieve existing user data from localStorage
     var userData = JSON.parse(localStorage.getItem("userData")) || [];
 
-    // Check if username already exists
     if (isUsernameExists(username, userData)) {
-        alert("Username already exists. Please choose another.");
+        alert("Username already exists");
         return;
     }
 
-    // Add new user to user data
+    // create a new user for userData
     var newUser = { username: username, password: password };
     userData.push(newUser);
 
-    // Save updated user data to localStorage
+    // save userData to localStorage
     localStorage.setItem("userData", JSON.stringify(userData));
-    alert("Registration successful!");
+    alert("User registered");
 }
 
-// Event listener for registration form submission
+// event listener for registration form submission
 document.getElementById("registerForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     var username = document.getElementById("registerUsernameInput").value;
     var password = document.getElementById("registerPasswordInput").value;
 
-    // Register the user
+    // attempt to register the user
     registerUser(username, password);
 });
