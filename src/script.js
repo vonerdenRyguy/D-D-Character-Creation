@@ -90,7 +90,17 @@ const character = {
     skills: [],
     other: ""
   },
-  weapons: [],
+  weapons: {
+    name1: "",
+    name2: "",
+    name3: "",
+    atk1: "",
+    atk2: "",
+    atk3: "",
+    damageType1: "",
+    damageType2: "",
+    damageType3: ""
+  },
   equipment: "",
   spellcasting: {
     spellCastingAbility: "",
@@ -190,33 +200,19 @@ iconClose.addEventListener('click', () => {
   wrapper.classList.remove('active-popup');
 });
 
-class Weapon {
-  constructor(name, type, damage) {
-    this.name = name;
-    this.type = type;
-    this.damage = damage;
+function updateWeapons() {
+  character.weapons = {
+    name1: document.getElementById("atkname1").value,
+    name2: document.getElementById("atkname2").value,
+    name3: document.getElementById("atkname3").value,
+    atk1: document.getElementById("atkbonus1").value,
+    atk2: document.getElementById("atkbonus2").value,
+    atk3: document.getElementById("atkbonus3").value,
+    damageType1: document.getElementById("atkdamage1").value,
+    damageType2: document.getElementById("atkdamage2").value,
+    damageType3: document.getElementById("atkdamage3").value,
   }
-}
-
-function parseWeapons() {
-  let weapons = [];
-  const weaponRows = document.querySelectorAll('.attacksandspellcasting tbody tr');
-
-  weaponRows.forEach((row, index) => {
-    const name = document.getElementById(`atkname${index + 1}`).value;
-    const attackBonus = document.getElementById(`atkbonus${index + 1}`).value;
-    const damageType = document.getElementById(`atkdamage${index + 1}`).value;
-
-    if (name || attackBonus || damageType) {  // This check ensures that empty rows are not added
-      weapons.push({
-        name: name,
-        attackBonus: attackBonus,
-        damageType: damageType
-      });
-    }
-  });
-
-  return weapons;
+  console.log("updated weapons!");
 }
 
 function calcAbilityMod(score) {
@@ -265,9 +261,11 @@ function updateCharacter() {
 
   updateCurrency();
 
-  character.weapons = parseWeapons();
-  character.equipment = document.getElementById("equipmentBox").value;
+  updateWeapons();
 
+  character.equipment = document.getElementById("equipmentBox").value;
+  character.hitDice = document.getElementById("remaininghd").value;
+  
   character.spellcasting = {
     spellCastingAbility: "",
     spellAttackBonus: 0,
@@ -487,6 +485,9 @@ function saveCharacter() {
 
   // Passive Wisdom
   character.passiveWisdom = parseInt(document.getElementById("passiveperception").value);
+  
+  // Hit dice
+  character.hitDice = document.getElementById("remaininghd").value;
 
   // Inspiration
   character.inspiration = parseInt(document.getElementById("inspiration").value);
@@ -587,7 +588,21 @@ function loadCharacterFromLocalStorage() {
 
     // Load equipment Box
     document.getElementById("equipmentBox").value = character.equipment;
-    
+
+    // Load hit dice
+    document.getElementById("remaininghd").value = character.hitDice;
+
+    // Load weapons
+    document.getElementById("atkname1").value = character.weapons.name1;
+    document.getElementById("atkname2").value = character.weapons.name2;
+    document.getElementById("atkname3").value = character.weapons.name3;
+    document.getElementById("atkbonus1").value = character.weapons.atk1;
+    document.getElementById("atkbonus2").value = character.weapons.atk2;
+    document.getElementById("atkbonus3").value = character.weapons.atk3;
+    document.getElementById("atkdamage1").value = character.weapons.damageType1;
+    document.getElementById("atkdamage2").value = character.weapons.damageType2;
+    document.getElementById("atkdamage3").value = character.weapons.damageType3;
+
     // Load skills
     document.getElementById("Acrobatics").value = character.skills.acrobatics;
     document.getElementById("Animal Handling").value = character.skills.animalHandling;
