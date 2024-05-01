@@ -151,36 +151,42 @@ document.getElementById("Strengthscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Strengthmod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Strength-save").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
 document.getElementById("Dexterityscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Dexteritymod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Dexterity-save").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
 document.getElementById("Constitutionscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Constitutionmod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Constitution-save").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
 document.getElementById("Wisdomscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Wisdommod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Wisdom-save").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
 document.getElementById("Intelligencescore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Intelligencemod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Intelligence-save").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
 document.getElementById("Charismascore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Charismamod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Charisma-save").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
 function updateWeapons() {
