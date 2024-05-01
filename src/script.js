@@ -151,61 +151,67 @@ document.getElementById("Strengthscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Strengthmod").value = (modifier >= 0 ? "+" : "") + modifier;
-  //document.getElementById("Strength-save").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Athletics").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
+  document.getElementById("Strength-save").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Athletics").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
 });
 
 document.getElementById("Dexterityscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
-  //document.getElementById("Dexteritymod").value = (modifier >= 0 ? "+" : "") + modifier;
-  //document.getElementById("Dexterity-save").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Acrobatics").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Sleight of Hand").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Stealth").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
+  document.getElementById("Dexteritymod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Dexterity-save").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Acrobatics").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Sleight of Hand").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Stealth").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
 });
 
 document.getElementById("Constitutionscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
-  //document.getElementById("Constitutionmod").value = (modifier >= 0 ? "+" : "") + modifier;
-  //document.getElementById("Constitution-save").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
+  document.getElementById("Constitutionmod").value = (modifier >= 0 ? "+" : "") + modifier;
+  document.getElementById("Constitution-save").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
 });
 
 document.getElementById("Wisdomscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Wisdommod").value = (modifier >= 0 ? "+" : "") + modifier;
-  //document.getElementById("Wisdom-save").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Animal Handling").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Insight").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Medicine").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Perception").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Survival").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
+  document.getElementById("Wisdom-save").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Animal Handling").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Insight").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Medicine").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Perception").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Survival").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
 });
 
 document.getElementById("Intelligencescore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Intelligencemod").value = (modifier >= 0 ? "+" : "") + modifier;
-  //document.getElementById("Intelligence-save").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Arcana").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("History").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Investigation").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Nature").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Religion").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
+  document.getElementById("Intelligence-save").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Arcana").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("History").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Investigation").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Nature").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier);//use if proficiency bonus gets fixed
+  document.getElementById("Religion").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
 });
 
 document.getElementById("Charismascore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Charismamod").value = (modifier >= 0 ? "+" : "") + modifier;
-  //document.getElementById("Charisma-save").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Deception").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Intimidation").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Performance").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
-  //document.getElementById("Persuasion").value = (modifier >= 0 ? "+" : "") + modifier; //use if proficiency bonus gets fixed
+  document.getElementById("Charisma-save").value = (calcSkillMod("Charisma-save", modifier) >= 0 ? "+" : "") + calcSkillMod("Charisma-save", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Deception").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier);//use if proficiency bonus gets fixed
+  document.getElementById("Intimidation").value = (calcSkillMod("Intimidation", modifier) >= 0 ? "+" : "") + calcSkillMod("Intimidation", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Performance").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("Persuasion").value = (calcSkillMod("Deception", modifier) >= 0 ? "+" : "") + calcSkillMod("Deception", modifier); //use if proficiency bonus gets fixed
 });
+
+document.querySelectorAll('input[type=checkbox]').forEach(item => {
+  item.addEventListener('change', event => {
+    updateProficiencies();
+  })
+})
 
 function updateWeapons() {
   character.weapons = {
