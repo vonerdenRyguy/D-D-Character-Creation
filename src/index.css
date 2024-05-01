@@ -687,7 +687,7 @@ form.charsheet main section.features div textarea {
   /*set vertical position of popup*/
   top: 50vh;
   /*put popup window on right side of the screen*/
-  left: 92vw;
+  left: 90vw;
   /*set final position of the popup*/
   transform: translate(-50%, -50%);
   /*set background colour*/
