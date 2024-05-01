@@ -205,14 +205,14 @@ function calcAbilityMod(score) {
   return (Math.floor((score - 10) / 2));
 }
 
-function calcSkillMod(skill, score) {
+/*function calcSkillMod(skill, score) {
   let out = 0;
   if (character.proficiencies.skills.includes(skill)) {
-    out += character.parseInt(proficiencyBonus);
+    out += character.parseInt(character.proficiencyBonus);
   }
   out += score;
   return out;
-}
+}*/
 
 function calcPassivePerception(perception) {
   return 10 + perception;
@@ -285,7 +285,7 @@ function calcSkillMod(skill, abilityMod) {
   console.log(`Calculating skill modifier for ${skill}`);
   let output = abilityMod;
   if (character.proficiencies.skills.includes(skill)) {
-    output += character.proficiencyBonus;
+    output += parseInt(character.proficiencyBonus);
   }
   return output;
 }
@@ -408,24 +408,28 @@ function updateCombat() {
 function updateSkills() {
   console.log('Updating skills...');
   character.skills = {
-    acrobatics: calcSkillMod(character.proficiencyBonus, character.abilityMods.dexterity),
-    animalHandling: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
-    arcana: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
-    athletics: calcSkillMod(character.proficiencyBonus, character.abilityMods.strength),
-    deception: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
-    history: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
-    insight: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
-    intimidation: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
-    investigation: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
-    medicine: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
-    nature: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
-    perception: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom),
-    performance: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
-    persuasion: calcSkillMod(character.proficiencyBonus, character.abilityMods.charisma),
-    religion: calcSkillMod(character.proficiencyBonus, character.abilityMods.intelligence),
-    sleightOfHand: calcSkillMod(character.proficiencyBonus, character.abilityMods.dexterity),
-    stealth: calcSkillMod(character.proficiencyBonus, character.abilityMods.dexterity),
-    survival: calcSkillMod(character.proficiencyBonus, character.abilityMods.wisdom)
+    //"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+    //"History", "Insight", "Intimidation", "Investigation", "Medicine",
+    //"Nature", "Perception", "Performance", "Persuasion", "Religion",
+    //"Sleight of Hand", "Stealth", "Survival"
+    acrobatics: calcSkillMod("Acrobatics", character.abilityMods.dexterity),
+    animalHandling: calcSkillMod("Animal Handling", character.abilityMods.wisdom),
+    arcana: calcSkillMod("Arcana", character.abilityMods.intelligence),
+    athletics: calcSkillMod("Athletics", character.abilityMods.strength),
+    deception: calcSkillMod("Deception", character.abilityMods.charisma),
+    history: calcSkillMod("History", character.abilityMods.intelligence),
+    insight: calcSkillMod("Insight", character.abilityMods.wisdom),
+    intimidation: calcSkillMod("Intimidation", character.abilityMods.charisma),
+    investigation: calcSkillMod("Investigation", character.abilityMods.intelligence),
+    medicine: calcSkillMod("Medicine", character.abilityMods.wisdom),
+    nature: calcSkillMod("Nature", character.abilityMods.intelligence),
+    perception: calcSkillMod("Perception", character.abilityMods.wisdom),
+    performance: calcSkillMod("Performance", character.abilityMods.charisma),
+    persuasion: calcSkillMod("Persuasion", character.abilityMods.charisma),
+    religion: calcSkillMod("Religion", character.abilityMods.intelligence),
+    sleightOfHand: calcSkillMod("Sleight of Hand", character.abilityMods.dexterity),
+    stealth: calcSkillMod("Stealth", character.abilityMods.dexterity),
+    survival: calcSkillMod("Survival", character.abilityMods.wisdom)
   };
   console.log('Updated skills:', character.skills);
 }
