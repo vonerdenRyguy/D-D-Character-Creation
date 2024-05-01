@@ -205,15 +205,6 @@ function calcAbilityMod(score) {
   return (Math.floor((score - 10) / 2));
 }
 
-/*function calcSkillMod(skill, score) {
-  let out = 0;
-  if (character.proficiencies.skills.includes(skill)) {
-    out += character.parseInt(character.proficiencyBonus);
-  }
-  out += score;
-  return out;
-}*/
-
 function calcPassivePerception(perception) {
   return 10 + perception;
 }
@@ -295,7 +286,9 @@ function updateProficiencies() {
     "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
     "History", "Insight", "Intimidation", "Investigation", "Medicine",
     "Nature", "Perception", "Performance", "Persuasion", "Religion",
-    "Sleight of Hand", "Stealth", "Survival"
+    "Sleight of Hand", "Stealth", "Survival", "Strength-save",
+    "Dexterity-save", "Constitution-save", "Intelligence-save", 
+    "Wisdom-save", "Charisma-save"
   ];
   character.proficiencies.skills = [];  // Clear and reinitialize the array
   skillNames.forEach(skill => {
@@ -340,12 +333,12 @@ function updateInspiration() {
 
 function updateSaves() {
   character.saves = {
-    strengthSave: parseInt(document.getElementById("Strength-save").value),
-    dexteritySave: parseInt(document.getElementById("Dexterity-save").value),
-    constitutionSave: parseInt(document.getElementById("Constitution-save").value),
-    intelligenceSave: parseInt(document.getElementById("Intelligence-save").value),
-    wisdomSave: parseInt(document.getElementById("Wisdom-save").value),
-    charismaSave: parseInt(document.getElementById("Charisma-save").value)
+    strengthSave: calcSkillMod("Strength-save", character.abilityMods.strength),
+    dexteritySave: calcSkillMod("Dexterity-save", character.abilityMods.dexterity),
+    constitutionSave: calcSkillMod("Constitution-save", character.abilityMods.constitution),
+    intelligenceSave: calcSkillMod("Intelligence-save", character.abilityMods.intelligence),
+    wisdomSave: calcSkillMod("Wisdom-save", character.abilityMods.wisdom),
+    charismaSave: calcSkillMod("Charisma-save", character.abilityMods.charisma),
   };
 }
 
@@ -408,10 +401,6 @@ function updateCombat() {
 function updateSkills() {
   console.log('Updating skills...');
   character.skills = {
-    //"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
-    //"History", "Insight", "Intimidation", "Investigation", "Medicine",
-    //"Nature", "Perception", "Performance", "Persuasion", "Religion",
-    //"Sleight of Hand", "Stealth", "Survival"
     acrobatics: calcSkillMod("Acrobatics", character.abilityMods.dexterity),
     animalHandling: calcSkillMod("Animal Handling", character.abilityMods.wisdom),
     arcana: calcSkillMod("Arcana", character.abilityMods.intelligence),
@@ -429,7 +418,7 @@ function updateSkills() {
     religion: calcSkillMod("Religion", character.abilityMods.intelligence),
     sleightOfHand: calcSkillMod("Sleight of Hand", character.abilityMods.dexterity),
     stealth: calcSkillMod("Stealth", character.abilityMods.dexterity),
-    survival: calcSkillMod("Survival", character.abilityMods.wisdom)
+    survival: calcSkillMod("Survival", character.abilityMods.wisdom),
   };
   console.log('Updated skills:', character.skills);
 }
@@ -531,6 +520,8 @@ function loadCharacterFromTutorial() {
   document.getElementById("Wisdomscore").value = character.abilityScores.wisdom;
   document.getElementById("Charismascore").value = character.abilityScores.charisma;
 
+  document.getElementById("proficiencybonus").value = character.proficiencyBonus;
+
   updateCharacter();  //Call this once this method is completed fully
 }
 
@@ -551,7 +542,8 @@ function loadCharacterFromLocalStorage() {
     // Load ability scores
     document.getElementById("Strengthscore").value = character.abilityScores.strength;
     document.getElementById("Dexterityscore").value = character.abilityScores.dexterity;
-    document.getElementById("Constitutionscore").value = character.abilityScores.constitution; document.getElementById("Wisdomscore").value = character.abilityScores.wisdom;
+    document.getElementById("Constitutionscore").value = character.abilityScores.constitution; 
+    document.getElementById("Wisdomscore").value = character.abilityScores.wisdom;
     document.getElementById("Intelligencescore").value = character.abilityScores.intelligence;
     document.getElementById("Charismascore").value = character.abilityScores.charisma;
 
@@ -588,6 +580,9 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("atkdamage2").value = character.weapons.damageType2;
     document.getElementById("atkdamage3").value = character.weapons.damageType3;
 
+    // Load Proficency Bonus
+    document.getElementById("proficiencybonus").value = character.proficiencyBonus;
+
     // Load skills
     document.getElementById("Acrobatics").value = character.skills.acrobatics;
     document.getElementById("Animal Handling").value = character.skills.animalHandling;
@@ -608,6 +603,14 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("Stealth").value = character.skills.stealth;
     document.getElementById("Survival").value = character.skills.survival;
 
+    // Load Saving Throws
+    document.getElementById("Strength-save").value = character.saves.strengthSave;
+    document.getElementById("Dexterity-save").value = character.saves.dexteritySave;
+    document.getElementById("Constitution-save").value = character.saves.constitutionSave;
+    document.getElementById("Wisdom-save").value = character.saves.wisdomSave;
+    document.getElementById("Intelligence-save").value = character.saves.intelligenceSave;
+    document.getElementById("Charisma-save").value = character.saves.charismaSave;
+
     // Load character traits
     document.getElementById("personality").value = character.characterTraits.personality;
     document.getElementById("ideals").value = character.characterTraits.ideals;
@@ -624,7 +627,7 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("gp").value = character.currency.GP;
     document.getElementById("pp").value = character.currency.PP;
   }
-  // updateCharacter();  remove comment once implemented
+  //updateCharacter();  //remove comment once implemented
   logCharData();
 }
 
