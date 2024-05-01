@@ -8,7 +8,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-#submitButton, #updateButton, #loadButton {
+#submitButton, #updateButton, #loadButton, #printButton {
   margin-top: 2vh;
   font-size: 18px;
   padding: 10px 10px;
