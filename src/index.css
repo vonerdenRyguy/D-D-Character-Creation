@@ -754,7 +754,7 @@ button{
 
 #d4Count,#d6Count,#d8Count,#d10Count,#d12Count,#d20Count,
 #subD4,#subD6,#subD8,#subD10,#subD12,#subD20,
-#addD4,#addD6,#addD8,#addD10,#addD12,#addD20 {
+#addD4,#addD6,#addD8,#addD10,#addD12,#addD20, #roll{
   background-color: #333;
   /* Dark background for input fields */
   color: #ffffff;
