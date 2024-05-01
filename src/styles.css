@@ -1,6 +1,7 @@
 /*Placeholder CSS*/
 
-.nav .login-button {
+.nav #login-button,
+.nav #logout-button {
     width: 140px;
     height: 60px;
     background: transparent;
@@ -13,7 +14,8 @@
     transition: .5s ease-in-out;
 }
 
-.nav .login-button:hover {
+.nav #login-button:hover,
+.nav #logout-button:hover {
     background: #e0e0e0;
     color: #333;
 }
@@ -22,7 +24,7 @@
     position: fixed;
     width: 380px;
     height: 400px;
-    background: #121212;
+    background: #322C2B;
     border: 5px solid #e0e0e0;
     border-radius: 40px;
     display: flex;

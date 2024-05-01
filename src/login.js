@@ -16,8 +16,9 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 
     if (checkLoginCredentials(username, password)) {
         alert(username + " logged in");
-        // clear localStorage after login. Should be removed for presentation.
-        // localStorage.clear();
+        // Hide login button, show logout button
+        document.getElementById("login-button").style.display ="none";
+        document.getElementById("logout-button").style.display ="inline-block";
     }
     else
         alert("Username or password is invalid");
