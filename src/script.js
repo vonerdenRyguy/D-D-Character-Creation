@@ -6,7 +6,6 @@ const character = {
     name: "",
     race: "",
     class: "",
-    level: 1,
     background: "",
     alignment: "",
     experiencePoints: 0
@@ -370,8 +369,7 @@ function updateBasicInfo() {
   character.basicInfo = {
     name: document.getElementById("charname").value,
     race: document.getElementById("race").value,
-    class: document.getElementById("classlevel").value.split(" ")[0],
-    level: parseInt(document.getElementById("classlevel").value.split(" ")[1]),
+    class: document.getElementById("classlevel").value,
     background: document.getElementById("background").value,
     alignment: document.getElementById("alignment").value,
     experiencePoints: parseInt(document.getElementById("experiencepoints").value)
@@ -437,8 +435,7 @@ function saveCharacter() {
   character.basicInfo.name = document.getElementById("charname").value;
   character.basicInfo.race = document.getElementById("race").value;
   character.basicInfo.alignment = document.getElementById("alignment").value;
-  character.basicInfo.class = document.getElementById("classlevel").value.split(" ")[0];
-  character.basicInfo.level = parseInt(document.getElementById("classlevel").value.split(" ")[1] || 0);
+  character.basicInfo.class = document.getElementById("classlevel");
   character.basicInfo.experiencePoints = parseInt(document.getElementById("experiencepoints").value);
   character.basicInfo.background = document.getElementById("background").value;
   character.playername = document.getElementById("playername").value;
@@ -542,7 +539,7 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("charname").value = character.basicInfo.name;
     document.getElementById("race").value = character.basicInfo.race;
     document.getElementById("alignment").value = character.basicInfo.alignment;
-    document.getElementById("classlevel").value = `${character.basicInfo.class} ${character.basicInfo.level}`;  // Look at this again and decide if we want to deal with emoji issues or just use class + level as string.
+    document.getElementById("classlevel").value = character.basicInfo.class;
     document.getElementById("experiencepoints").value = character.basicInfo.experiencePoints;
     document.getElementById("background").value = character.basicInfo.background;
     document.getElementById("playername").value = character.playername;
