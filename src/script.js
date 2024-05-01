@@ -184,22 +184,6 @@ document.getElementById("Charismascore").addEventListener("input", function () {
   document.getElementById("Charismamod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-registerLink.addEventListener('click', () => {
-  wrapper.classList.add('active');
-});
-
-loginLink.addEventListener('click', () => {
-  wrapper.classList.remove('active');
-});
-
-btnPopup.addEventListener('click', () => {
-  wrapper.classList.add('active-popup');
-});
-
-iconClose.addEventListener('click', () => {
-  wrapper.classList.remove('active-popup');
-});
-
 function updateWeapons() {
   character.weapons = {
     name1: document.getElementById("atkname1").value,
