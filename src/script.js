@@ -6,7 +6,7 @@ const character = {
     name: "",
     race: "",
     class: "",
-    level: 0,
+    level: 1,
     background: "",
     alignment: "",
     experiencePoints: 0
@@ -87,12 +87,21 @@ const character = {
     PP: 0
   },
   proficiencies: {
-    languages: [],
     skills: [],
-    other: []
+    other: ""
   },
-  weapons: [],
-  equipement: [],
+  weapons: {
+    name1: "",
+    name2: "",
+    name3: "",
+    atk1: "",
+    atk2: "",
+    atk3: "",
+    damageType1: "",
+    damageType2: "",
+    damageType3: ""
+  },
+  equipment: "",
   spellcasting: {
     spellCastingAbility: "",
     spellAttackBonus: 0,
@@ -139,37 +148,37 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCharacter();
 });
 
-document.getElementById("Strengthscore").addEventListener("input", function() {
+document.getElementById("Strengthscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Strengthmod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Dexterityscore").addEventListener("input", function() {
+document.getElementById("Dexterityscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Dexteritymod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Constitutionscore").addEventListener("input", function() {
+document.getElementById("Constitutionscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Constitutionmod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Wisdomscore").addEventListener("input", function() {
+document.getElementById("Wisdomscore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Wisdommod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Intelligencescore").addEventListener("input", function() {
+document.getElementById("Intelligencescore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Intelligencemod").value = (modifier >= 0 ? "+" : "") + modifier;
 });
 
-document.getElementById("Charismascore").addEventListener("input", function() {
+document.getElementById("Charismascore").addEventListener("input", function () {
   var score = parseInt(this.value);
   var modifier = Math.floor((score - 10) / 2);
   document.getElementById("Charismamod").value = (modifier >= 0 ? "+" : "") + modifier;
@@ -191,33 +200,19 @@ iconClose.addEventListener('click', () => {
   wrapper.classList.remove('active-popup');
 });
 
-class Weapon {
-  constructor(name, type, damage) {
-    this.name = name;
-    this.type = type;
-    this.damage = damage;
+function updateWeapons() {
+  character.weapons = {
+    name1: document.getElementById("atkname1").value,
+    name2: document.getElementById("atkname2").value,
+    name3: document.getElementById("atkname3").value,
+    atk1: document.getElementById("atkbonus1").value,
+    atk2: document.getElementById("atkbonus2").value,
+    atk3: document.getElementById("atkbonus3").value,
+    damageType1: document.getElementById("atkdamage1").value,
+    damageType2: document.getElementById("atkdamage2").value,
+    damageType3: document.getElementById("atkdamage3").value,
   }
-}
-
-function parseWeapons() {
-  let weapons = [];
-  const weaponRows = document.querySelectorAll('.attacksandspellcasting tbody tr');
-
-  weaponRows.forEach((row, index) => {
-    const name = document.getElementById(`atkname${index + 1}`).value;
-    const attackBonus = document.getElementById(`atkbonus${index + 1}`).value;
-    const damageType = document.getElementById(`atkdamage${index + 1}`).value;
-
-    if (name || attackBonus || damageType) {  // This check ensures that empty rows are not added
-      weapons.push({
-        name: name,
-        attackBonus: attackBonus,
-        damageType: damageType
-      });
-    }
-  });
-
-  return weapons;
+  console.log("updated weapons!");
 }
 
 function calcAbilityMod(score) {
@@ -230,7 +225,7 @@ function calcAbilityMod(score) {
 function calcSkillMod(skill, score) {
   let out = 0;
   if (character.proficiencies.skills.includes(skill)) {
-    out += character.proficiencyBonus;
+    out += character.parseInt(proficiencyBonus);
   }
   out += score;
   return out;
@@ -248,45 +243,29 @@ function updateCharacter() {
 
   updateAbilityMods();
 
-  updateProficiencies();  // only applies to skills rn
+  updateProficiencies();
 
-  character.inspiration = document.getElementById("inspiration").value;
+  updateInspiration();
 
   updateCombat();
 
-  character.proficiencyBonus = document.getElementById("proficiencybonus").value;
+  updateProficiencyBonus();
 
   updateSkills();
 
-  character.passiveWisdom = calcPassivePerception(character.perception);
-  character.saves = {
-    strengthSave: parseInt(document.getElementById("Strength-save").value),
-    dexteritySave: parseInt(document.getElementById("Dexterity-save").value),
-    constitutionSave: parseInt(document.getElementById("Constitution-save").value),
-    intelligenceSave: parseInt(document.getElementById("Intelligence-save").value),
-    wisdomSave: parseInt(document.getElementById("Wisdom-save").value),
-    charismaSave: parseInt(document.getElementById("Charisma-save").value)
-  };
-  character.characterTraits = {
-    personality: document.getElementById("personality").value,
-    ideals: document.getElementById("ideals").value,
-    bonds: document.getElementById("bonds").value,
-    flaws: document.getElementById("flaws").value
-  };
-  character.currency = {
-    CP: parseInt(document.getElementById("cp").value),
-    SP: parseInt(document.getElementById("sp").value),
-    EP: parseInt(document.getElementById("ep").value),
-    GP: parseInt(document.getElementById("gp").value),
-    PP: parseInt(document.getElementById("pp").value)
-  };
+  updatePassiveWisdom();
 
-  character.proficiencies = {
-    languages: [],
-    other: []
-  };
-  character.weapons = parseWeapons();
-  character.equipment = [];
+  updateSaves();
+
+  updateTraits();
+
+  updateCurrency();
+
+  updateWeapons();
+
+  character.equipment = document.getElementById("equipmentBox").value;
+  character.hitDice = document.getElementById("remaininghd").value;
+  
   character.spellcasting = {
     spellCastingAbility: "",
     spellAttackBonus: 0,
@@ -342,9 +321,50 @@ function updateProficiencies() {
       character.proficiencies.skills.push(skill);
     }
   });
+  character.proficiencies.other = document.getElementById("otherprofs").value;
   console.log("Updated Skills:", character.proficiencies.skills); // Debugging line
 }
 
+function updateCurrency() {
+  character.currency = {
+    CP: parseInt(document.getElementById("cp").value),
+    SP: parseInt(document.getElementById("sp").value),
+    EP: parseInt(document.getElementById("ep").value),
+    GP: parseInt(document.getElementById("gp").value),
+    PP: parseInt(document.getElementById("pp").value)
+  };
+}
+
+function updateTraits() {
+  character.characterTraits = {
+    personality: document.getElementById("personality").value,
+    ideals: document.getElementById("ideals").value,
+    bonds: document.getElementById("bonds").value,
+    flaws: document.getElementById("flaws").value
+  };
+}
+
+function updatePassiveWisdom() {
+  character.passiveWisdom = calcPassivePerception(character.perception);
+}
+
+function updateProficiencyBonus() {
+  character.proficiencyBonus = document.getElementById("proficiencybonus").value;
+}
+function updateInspiration() {
+  character.inspiration = document.getElementById("inspiration").value;
+}
+
+function updateSaves() {
+  character.saves = {
+    strengthSave: parseInt(document.getElementById("Strength-save").value),
+    dexteritySave: parseInt(document.getElementById("Dexterity-save").value),
+    constitutionSave: parseInt(document.getElementById("Constitution-save").value),
+    intelligenceSave: parseInt(document.getElementById("Intelligence-save").value),
+    wisdomSave: parseInt(document.getElementById("Wisdom-save").value),
+    charismaSave: parseInt(document.getElementById("Charisma-save").value)
+  };
+}
 
 function updateAbilityMods() {
   character.abilityMods.strength = calcAbilityMod(parseInt(document.getElementById("Strengthscore").value));
@@ -465,6 +485,9 @@ function saveCharacter() {
 
   // Passive Wisdom
   character.passiveWisdom = parseInt(document.getElementById("passiveperception").value);
+  
+  // Hit dice
+  character.hitDice = document.getElementById("remaininghd").value;
 
   // Inspiration
   character.inspiration = parseInt(document.getElementById("inspiration").value);
@@ -523,7 +546,7 @@ function loadCharacterFromTutorial() {
   document.getElementById("Wisdomscore").value = character.abilityScores.wisdom;
   document.getElementById("Charismascore").value = character.abilityScores.charisma;
 
-   updateCharacter();  //Call this once this method is completed fully
+  updateCharacter();  //Call this once this method is completed fully
 }
 
 function loadCharacterFromLocalStorage() {
@@ -563,6 +586,23 @@ function loadCharacterFromLocalStorage() {
     // Load inspiration
     document.getElementById("inspiration").value = character.inspiration;
 
+    // Load equipment Box
+    document.getElementById("equipmentBox").value = character.equipment;
+
+    // Load hit dice
+    document.getElementById("remaininghd").value = character.hitDice;
+
+    // Load weapons
+    document.getElementById("atkname1").value = character.weapons.name1;
+    document.getElementById("atkname2").value = character.weapons.name2;
+    document.getElementById("atkname3").value = character.weapons.name3;
+    document.getElementById("atkbonus1").value = character.weapons.atk1;
+    document.getElementById("atkbonus2").value = character.weapons.atk2;
+    document.getElementById("atkbonus3").value = character.weapons.atk3;
+    document.getElementById("atkdamage1").value = character.weapons.damageType1;
+    document.getElementById("atkdamage2").value = character.weapons.damageType2;
+    document.getElementById("atkdamage3").value = character.weapons.damageType3;
+
     // Load skills
     document.getElementById("Acrobatics").value = character.skills.acrobatics;
     document.getElementById("Animal Handling").value = character.skills.animalHandling;
@@ -588,6 +628,9 @@ function loadCharacterFromLocalStorage() {
     document.getElementById("ideals").value = character.characterTraits.ideals;
     document.getElementById("bonds").value = character.characterTraits.bonds;
     document.getElementById("flaws").value = character.characterTraits.flaws;
+
+    // Load proficiencies
+    document.getElementById("otherprofs").value = character.proficiencies.other;
 
     // Load currency
     document.getElementById("cp").value = character.currency.CP;
@@ -627,6 +670,7 @@ function logCharData() {
 //everything below is dice rolling
 function openDiceRollPanel(event) {
   event.preventDefault();
+  event.stopPropagation();
 
   //show the popup
   document.getElementById('popup').style.display = 'block';
