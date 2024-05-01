@@ -782,3 +782,7 @@ function rollDice(event) {
     }
   }
 }
+
+function printDocument() {
+  window.print();
+}
