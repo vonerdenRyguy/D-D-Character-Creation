@@ -277,15 +277,19 @@
             }
         }
 
+        // variable used in the displayHelpText function
         let hintInterval;
 
+        // function prints out a string character by character with a delay
         async function displayHelpText(text, delay) {
             const speechBubble = document.getElementById('speechBubble');
             const speechBubbleContainer = document.getElementById('speechBubbleContainer');
             speechBubble.style.display = 'block';
             speechBubble.textContent = '';
-            clearInterval(hintInterval); // Clear the interval before starting a new one
+            // Clears the interval before next quesiton
+            clearInterval(hintInterval); 
 
+            // prints the string character by character
             let i = 0;
             hintInterval = setInterval(() => {
                 const char = text.charAt(i);
@@ -297,8 +301,9 @@
             }, delay);
         }
 
-
+        // called when the next button is clicked
         function next() {
+            // deals with with the stats rolling question to save all responses
             if (currentQuestionIndex === 4) {
                 for (let i = 0; i < 6; i++) {
                     const input = document.getElementById(`response${i}`);
@@ -317,7 +322,7 @@
 
             if (currentQuestionIndex < questions.length) {
                 displayQuestion();
-                
+                // all the helpful hints for each question
                 if (currentQuestionIndex == 1) {
                     displayHelpText("In D&D, a character's race is a profound reflection of their essence, heritage, and journey. As characters navigate the diverse landscapes of D&D, their race becomes a guiding light, shaping perceptions, influencing choices, and serving as a reminder of past triumphs and future adventures.", 50);
                 } else  if (currentQuestionIndex == 2) {
@@ -334,7 +339,7 @@
             }
         }
 
-
+        // called when back function is clicked
         function back() {
             if (currentQuestionIndex === 4) {
                 for (let i = 0; i < 6; i++) {
@@ -373,11 +378,11 @@
             }
         }
 
-
+        // called when home button is clicked
         function navigateBackToMenu() {
             window.location.href = 'welcomePage.html';
         }
-
+        
         function navigateToSheet() {
             window.location.href = 'sheet.html?from=index';
         }
