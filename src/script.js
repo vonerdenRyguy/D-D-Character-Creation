@@ -169,6 +169,8 @@ document.getElementById("Dexterityscore").addEventListener("input", function () 
   document.getElementById("Acrobatics").value = (calcSkillMod("Acrobatics", modifier) > 0 ? "+" : "") + calcSkillMod("Acrobatics", modifier); //use if proficiency bonus gets fixed
   document.getElementById("Sleight of Hand").value = (calcSkillMod("Sleight of Hand", modifier) > 0 ? "+" : "") + calcSkillMod("Sleight of Hand", modifier); //use if proficiency bonus gets fixed
   document.getElementById("Stealth").value = (calcSkillMod("Stealth", modifier) > 0 ? "+" : "") + calcSkillMod("Stealth", modifier); //use if proficiency bonus gets fixed
+  document.getElementById("initiative").value = (modifier > 0 ? "+" : "") + modifier;
+  //document.getElementById("ac").value = (modifier > 0 ? "+" : "") + (10 + modifier); //use if way to calculate bonuses from equiped armor
 });
 
 document.getElementById("Constitutionscore").addEventListener("input", function () {
@@ -228,7 +230,7 @@ document.getElementById("Charismascore").addEventListener("input", function () {
 document.querySelectorAll('input[type=checkbox]').forEach(item => {
   item.addEventListener('change', event => {
     updateProficiencies(); 
-    //console.log(item.id.substring(0, item.id.length-5));
+    
     let skillName = item.id.substring(0, item.id.length-5);
     document.getElementById(skillName).value = (calcSkillMod(skillName, getModifier(skillName)) > 0 ? "+" : "") + calcSkillMod(skillName, getModifier(skillName));
   })
