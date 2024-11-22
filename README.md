@@ -147,7 +147,7 @@ The `character` object is structured as follows:
 - **Type:** `Array`
 - **Description:** List of weapons.
 
-### `equipement`
+### `equipment`
 - **Type:** `Array`
 - **Description:** List of equipment items.
 
